@@ -2,27 +2,16 @@
 
 ## Database
 
-Inside the `<project-root>/database/` directory, you'll find an executable Bash script (`.sh` file) and several SQL scripts (`.sql` files). These can be used to build and rebuild a PostgreSQL database for the capstone project.
+Setup a database called `final_capstone` using PG Admin. 
 
-From a terminal session, execute the following commands:
+Run the database setup script `database_setup.sql` in the PG Admin Query Tool.
 
-```
-cd <project-root>/database/
-./create.sh
-```
+Note this will setup 2 users as samples `user` and `admin`. The password for both users is `password`.
 
-This Bash script drops the existing database, if necessary, creates a new database named `final_capstone`, and runs the various SQL scripts in the correct order. You don't need to modify the Bash script unless you want to change the database name.
 
-Each SQL script has a specific purpose as described below:
+### Database users 
 
-| File Name | Description |
-| --------- | ----------- |
-| `data.sql` | This script populates the database with any static setup data or test/demo data. The project team should modify this script. |
-| `dropdb.sql` | This script destroys the database so that it can be recreated. It drops the database and associated users. The project team shouldn't have to modify this script. |
-| `schema.sql` | This script creates all of the database objects, such as tables and sequences. The project team should modify this script. |
-| `user.sql` | This script creates the database application users and grants them the appropriate privileges. The project team shouldn't have to modify this script. <br /> See the next section for more information on these users. |
-
-### Database users
+>NOTE: This is informational. You do not have to do anything here. 
 
 The database superuser—meaning `postgres`—must only be used for database administration. It must not be used by applications. As such, two database users are created for the capstone application to use as described below:
 
@@ -36,7 +25,7 @@ The database superuser—meaning `postgres`—must only be used for database adm
 
 ### Datasource
 
-A Datasource has been configured for you in `/src/resources/application.properties`. It connects to the database using the `capstone_appuser` database user. You can change the name of this database if you want, but remember to change it here and in the `create.sh` script in the database folder:
+A Datasource has been configured for you in `/src/resources/application.properties`. It connects to the database using the `final_capstone_appuser` database user. You can change the name of this database if you want, but remember to change it here and in the `create.sh` script in the database folder:
 
 ```
 # datasource connection properties
@@ -93,7 +82,7 @@ The authentication controller uses the `JdbcUserDao` to read and write data from
 
 ### DAO integration tests
 
-`com.techelevator.dao.FinalCapstoneDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
+`com.techelevator.dao.BaseDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
 
 The following is an example of extending this class for writing your own DAO integration tests:
 
