@@ -108,9 +108,11 @@ font-size: 20px;
 }
 .link {
   position: absolute;
+  text-decoration: none;
   bottom: 10px;
   font-size: 20px;
   margin: 0px 172px 0px 172px;
+  color: blue;
 }
 .btn {
   background-color: #00adee;
@@ -123,6 +125,10 @@ font-size: 20px;
   cursor: pointer;
   margin-top: 50px;
 }
+.btn:hover {
+      background-color:#167fa5;
+      transition: 0.7s;
+  }
 h1 {
   margin-top: 40px;
   font-size: 40px;

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <button class="button" @click="$router.push('/login')">Login</button>
-    <button class="button" @click="$router.push('/register')">Sign Up</button>
+    <button class="authorize" @click="$router.push('/login')">
+      <span class="material-icons">login</span>Login
+    </button>
+    <button class="authorize" @click="$router.push('/register')">
+      <span class="material-icons">person_add</span>Sign Up
+    </button>
   </div>
 </template>
 
@@ -12,15 +16,24 @@ export default {
 </script>
 
 <style>
-.button {
+.authorize {
   background-color: #00adee;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  width: 250px;
   color: aliceblue;
   padding: 15px 32px;
-  margin: 20px;
-  text-align: center;
+  margin: 30px;
+  justify-content: space-between;
   font-weight: bold;
   font-size: 16px;
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.authorize:hover {
+  background-color: #167fa5;
+  transition: 0.5s;
 }
 </style>

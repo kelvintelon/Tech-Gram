@@ -3,6 +3,10 @@
     <logged-in-buttons v-if="$store.state.token != ''"></logged-in-buttons>
     <login-or-signUp class="buttons" v-else ></login-or-signUp>
     <footer class="footer">&copy; Tech Elevator 2022</footer>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </div>
 </template>
 

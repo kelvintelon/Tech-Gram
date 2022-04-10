@@ -5,6 +5,10 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import Favorites from '../views/Favorites.vue'
+import PhotoDetails from '../views/PhotoDetails.vue'
+import UserPage from '../views/UserPage.vue'
+import AddPicture from '../views/AddPicture.vue'
 
 Vue.use(Router)
 
@@ -35,7 +39,7 @@ const router = new Router({
       component: Login,
       meta: {
         requiresAuth: false
-      }
+      },
     },
     {
       path: "/logout",
@@ -53,6 +57,38 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: Favorites,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/photoDetails',
+      name: 'photoDetails',
+      component: PhotoDetails,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/userPage',
+      name: 'userPage',
+      component: UserPage,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/addPicture',
+      name: 'addPicture',
+      component: AddPicture,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 
