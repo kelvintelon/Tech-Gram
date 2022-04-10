@@ -1,7 +1,8 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Tech Gram</h1>
+      <h3>Sign up to see photos from your friends:</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -24,6 +25,7 @@
         v-model="user.password"
         required
       />
+      
       <input
         type="password"
         id="confirmPassword"
@@ -32,11 +34,15 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link class="link" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
     </form>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fredoka+One"
+    />
   </div>
 </template>
 
@@ -90,4 +96,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+
+</style>
