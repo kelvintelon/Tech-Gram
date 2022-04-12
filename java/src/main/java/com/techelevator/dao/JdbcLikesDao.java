@@ -1,0 +1,39 @@
+package com.techelevator.dao;
+
+import com.techelevator.model.Likes;
+import com.techelevator.model.Photos;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JdbcLikesDao implements LikesDao{
+
+    private JdbcTemplate jdbcTemplate;
+
+    public JdbcLikesDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public int addLike(Photos photos, int userId) {
+        String sql = "INSERT INTO likes (photo_id, is_active, user_id, date_and_time) " +
+                "VALUES (?,true,?,CURRENT_TIMESTAMP) RETURNING like_id";
+        int newId = jdbcTemplate.queryForObject(sql, Integer.class, photos.getPhoto_id(), userId);
+        return newId;
+    }
+
+    @Override
+    public void unlikeByPhotoId(int photoId, int userId) {
+        String sql = "UPDATE likes SET is_active = false WHERE photo_id = ? AND user_id = ?;";
+        jdbcTemplate.update(sql, photoId, userId);
+    }
+
+    @Override
+    public int getLikeCountByPhotoId(int photoId) {
+        String sql = "SELECT count(*) FROM likes WHERE photo_id = ? AND is_active = true;";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, photoId);
+        return count;
+    }
+
+
+}
