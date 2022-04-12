@@ -3,16 +3,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.CommentsDao;
 import com.techelevator.dao.FavoritesDao;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.Authority;
-import com.techelevator.model.Comments;
-import com.techelevator.model.Favorites;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -27,6 +25,12 @@ public class FavoritesController {
         this.favoritesDao = favoritesDao;
         this.userDao = userDao;
     }
+
+    @RequestMapping(value = "/favorites", method = RequestMethod.GET)
+    public List<Photos> getFavoritePhotos(@Valid Principal principal){
+        return favoritesDao.getFavoritePhotosByUsername(principal.getName());
+    }
+
     @RequestMapping(value = "/photodetails/{photoId}", method = RequestMethod.DELETE)
     public void deleteFromFavorites(@Valid @PathVariable int photoId) {
         favoritesDao.removeFromFavorites(photoId);
