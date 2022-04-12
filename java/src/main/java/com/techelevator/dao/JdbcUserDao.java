@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.model.Comments;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -84,6 +85,20 @@ public class JdbcUserDao implements UserDao {
         int newUserId = (int) keyHolder.getKeys().get(id_column);
 
         return userCreated;
+    }
+    @Override
+    public void deleteUserByUsername(String username) {
+        String sql = "BEGIN TRANSACTION; " +
+                "DELETE FROM comments " +
+                "WHERE comments.user_id = (SELECT user_id FROM users WHERE username = ?); " +
+                "DELETE FROM photos " +
+                "WHERE photos.user_id = (SELECT user_id FROM users WHERE username = ?); " +
+                "DELETE FROM favorites " +
+                "WHERE favorites.user_id = (SELECT user_id FROM users WHERE username = ?); " +
+                "DELETE FROM users " +
+                "WHERE users.username = ?; " +
+                "COMMIT TRANSACTION;";
+        jdbcTemplate.update(sql, username, username, username, username);
     }
 
     private User mapRowToUser(SqlRowSet rs) {

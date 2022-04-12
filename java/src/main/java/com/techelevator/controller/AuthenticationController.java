@@ -21,6 +21,8 @@ import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
+import java.security.Principal;
+
 @RestController
 @CrossOrigin
 public class AuthenticationController {
@@ -33,6 +35,11 @@ public class AuthenticationController {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+    public void deleteUser(@Valid Principal principal) {
+        userDao.deleteUserByUsername(principal.getName());
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
