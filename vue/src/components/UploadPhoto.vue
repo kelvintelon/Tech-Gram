@@ -2,23 +2,42 @@
   <div class="upload-pic">
       <div v-if="!image">
           <h2>Select an image</h2>
-          <input type="file" @change="onFileChange">
+          <input type="file" name="file" id="file"
+            class="inputfile" @change="onFileChange">
       </div>
-    <!-- why the next div not working... -->
+      
+    
       <div v-else>
           <img id="upload-img"  :src="image" />
-          <button @click="removeImage">Remove image</button>
+          <div class="caption-container">
+                <textarea class="caption-input" placeholder="Write a caption..." 
+                    type="text" :caption="caption" 
+                    @input="$emit('input', $event.target.value)"
+                    cols="200" rows="10"></textarea>
+            
+          </div>
+          <button @click="removeImage">Cancel</button>
+
       </div>
+
+      
+
    
   </div>
 </template>
 
 <script>
+import UploadFileService from "../services/UploadFileService";
 
 export default {
     name: "upload-photo",
     data(){
-        // image:''
+        return {
+            
+            image:"",
+            caption:"",
+            
+        };
     },
     beforeMount(){
         let vm = this
@@ -35,7 +54,7 @@ export default {
         set(key){
             // let vm = this
             try{
-                localStorage.setItem(key,this.image);
+                localStorage.setItem(key, this.image);
             }
             catch(e){
                 console.log(`Storage failed: ${e}`);
@@ -47,8 +66,6 @@ export default {
             if (!files.length)
                 return;
             this.createImage(files[0]);
-            // refresh page
-            // test branch
 
         },
 
@@ -67,9 +84,23 @@ export default {
         removeImage(){
             this.image='';
             localStorage.removeItem('img')
-            // refresh page
 
-        }
+        },
+        upload() {
+            this.progress = 0;
+            UploadFileService.upload(this.image)
+            
+            .then(response => {
+                if (response.status ===201){
+                    return UploadFileService.getFiles();
+                }
+            })
+            
+            .catch((err) => {
+            this.message = "Could not upload the image! " + err;
+            this.image = undefined;
+        });
+    },
 
     }
 
