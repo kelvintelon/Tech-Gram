@@ -48,6 +48,7 @@ export default {
                 return;
             this.createImage(files[0]);
             // refresh page
+            // test branch
 
         },
 
