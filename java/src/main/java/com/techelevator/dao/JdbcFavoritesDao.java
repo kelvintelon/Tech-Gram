@@ -1,7 +1,9 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Favorites;
+import com.techelevator.model.Photos;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,4 +45,13 @@ public class JdbcFavoritesDao implements FavoritesDao {
         return favoritesId;
     }
 
+    private Photos mapRowToPhotos(SqlRowSet rowSet) {
+        Photos photos = new Photos();
+        photos.setPhoto_id(rowSet.getInt("photo_id"));
+        photos.setUser_id(rowSet.getInt("user_id"));
+        photos.setCaption(rowSet.getString("caption"));
+        photos.setImage_location(rowSet.getString("image_location"));
+        photos.setDate_and_time(rowSet.getTimestamp("date_and_time"));
+        return photos;
+    }
 }
