@@ -66,8 +66,22 @@ public class JdbcPhotosDao implements PhotosDao {
 
     @Override
     public void deletePhotoByPhotoId(int photoId) {
-        String sql = "DELETE FROM photos WHERE photo_id = ?;";
-        jdbcTemplate.update(sql, photoId);
+        String sql = "BEGIN TRANSACTION;\n" +
+                "\n" +
+                "DELETE FROM comments \n" +
+                "WHERE comments.photo_id = ?;\n" +
+                "\n" +
+                "DELETE FROM likes\n" +
+                "WHERE likes.photo_id = ?;\n" +
+                "\n" +
+                "DELETE FROM favorites\n" +
+                "WHERE favorites.photo_id = ?;\n" +
+                "\n" +
+                "DELETE FROM photos\n" +
+                "WHERE photo_id = ?;\n" +
+                "\n" +
+                "COMMIT TRANSACTION;";
+        jdbcTemplate.update(sql, photoId, photoId, photoId, photoId);
     }
 
     @Override
