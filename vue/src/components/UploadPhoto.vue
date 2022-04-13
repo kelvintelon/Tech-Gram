@@ -11,9 +11,12 @@
           <img id="upload-img"  :src="imagePost.image" />
           <div class="caption-container">
               <form v-on:submit.prevent="submitForm">
-                <textarea class="caption-input" placeholder="Write a caption..." 
-                    type="text" :caption="caption" 
+                <!-- <textarea class="caption-input" placeholder="Write a caption..." 
+                    type="text" :caption="imagePost.caption" 
                     @input="$emit('input', $event.target.value)"
+                    cols="200" rows="10" name="textarea"></textarea> -->
+                    <textarea class="caption-input" placeholder="Write a caption..." 
+                    type="text" v-model="imagePost.caption"
                     cols="200" rows="10" name="textarea"></textarea>
                     <br>
                      <button @click="removeImage">Cancel</button>
@@ -89,13 +92,13 @@ export default {
             reader.readAsDataURL(file);
         },
         removeImage(){
-            this.image='';
+            this.imagePost.image='';
             localStorage.removeItem('img')
 
         },
         upload() {
-            this.progress = 0;
-            UploadFileService.upload(this.image)
+            // this.progress = 0;
+            UploadFileService.upload(this.imagePost)
             
             .then(response => {
                 if (response.status ===201){
