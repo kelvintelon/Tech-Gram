@@ -1,6 +1,6 @@
 <template>
   <div class="upload-pic">
-      <div v-if="!image">
+      <div v-if="!imagePost.image">
           <h2>Select an image</h2>
           <input type="file" name="file" id="file"
             class="inputfile" @change="onFileChange">
@@ -8,7 +8,7 @@
       
     
       <div v-else>
-          <img id="upload-img"  :src="image" />
+          <img id="upload-img"  :src="imagePost.image" />
           <div class="caption-container">
               <form v-on:submit.prevent="submitForm">
                 <textarea class="caption-input" placeholder="Write a caption..." 
@@ -22,10 +22,7 @@
           </div>
 
       </div>
-
-      
-
-   
+  
   </div>
 </template>
 
@@ -36,10 +33,10 @@ export default {
     name: "upload-photo",
     data(){
         return {
-            
-            image:"",
-            caption:"",
-            
+            imagePost:{
+                image:"",
+                caption:"",
+            }                     
         };
     },
     beforeMount(){
@@ -51,19 +48,19 @@ export default {
 
     methods:{
         submitForm() {
-            this.caption = document.querySelector('textarea').value;
-            console.log(this.caption)
-            this.image ="";
+            this.imagePost.caption = document.querySelector('textarea').value;
+            console.log(this.imagePost.caption)
+            this.imagePost.image ="";
             this.$router.push("/");
         },
         get(key){
-            this.image=localStorage.getItem(key);
+            this.imagePost.image=localStorage.getItem(key);
         },
 
         set(key){
             // let vm = this
             try{
-                localStorage.setItem(key, this.image);
+                localStorage.setItem(key, this.imagePost.image);
             }
             catch(e){
                 console.log(`Storage failed: ${e}`);
@@ -85,7 +82,7 @@ export default {
             let vm = this;
 
             reader.onload = (e) => {
-                vm.image = e.target.result;
+                vm.imagePost.image = e.target.result;
                 vm.set('img');
                             
             };
