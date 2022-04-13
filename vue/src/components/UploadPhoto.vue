@@ -1,6 +1,6 @@
 <template>
   <div class="upload-pic">
-      <div v-if="!imagePost.imageLocation">
+      <div v-if="!imagePost.image_location">
           <h2>Select an image</h2>
           <input type="file" name="file" id="file"
             class="inputfile" @change="onFileChange">
@@ -8,7 +8,7 @@
       
     
       <div v-else>
-          <img id="upload-img"  :src="imagePost.imageLocation" />
+          <img id="upload-img"  :src="imagePost.image_location" />
           <div class="caption-container">
               <form v-on:submit.prevent="submitForm">
                 <textarea class="caption-input" placeholder="Write a caption..." 
@@ -32,12 +32,16 @@ import UploadFileService from "../services/UploadFileService";
 
 export default {
     name: "upload-photo",
+
     data(){
         return {
             imagePost:{
-                imageLocation:"",
                 caption:"",
-            }                     
+                image_location:""
+            },
+            photoCount:"1",
+            photo:"Photo",
+            fileName:"",                     
         };
     },
     beforeMount(){
@@ -54,17 +58,37 @@ export default {
         submitForm() {
             this.imagePost.caption = document.querySelector('textarea').value;
             console.log(this.imagePost.caption)
-            this.imagePost.imageLocation ="";
+            // this.imagePost.image_location = this.image;
+            if (localStorage.getItem('PhotoCount')) {
+                this.photoCount = localStorage.getItem('PhotoCount');
+                let intCount = parseInt(this.photoCount);
+                intCount++;
+                this.photoCount = intCount;
+                localStorage.removeItem('PhotoCount')
+                localStorage.setItem('PhotoCount', this.photoCount)
+                let generatedName = this.photo + this.photoCount;
+                // console.log(generatedName)
+                localStorage.setItem(generatedName, JSON.stringify(this.imagePost))
+            } else {
+                localStorage.setItem('PhotoCount', this.photoCount)
+                let generatedName = this.photo + this.photoCount;
+                // console.log(generatedName)
+                localStorage.setItem(generatedName, JSON.stringify(this.imagePost))
+            }
+            this.image ="";
+            this.imagePost.caption="";
+            this.imagePost.image_location="";
+            localStorage.removeItem('img');
             this.$router.push("/");
         },
         get(key){
-            this.imagePost.imageLocation=localStorage.getItem(key);
+            this.imagePost.image_location=localStorage.getItem(key);
         },
 
         set(key){
             // let vm = this
             try{
-                localStorage.setItem(key, this.imagePost.imageLocation);
+                localStorage.setItem(key, this.imagePost.image_location);
             }
             catch(e){
                 console.log(`Storage failed: ${e}`);
@@ -86,14 +110,14 @@ export default {
             let vm = this;
 
             reader.onload = (e) => {
-                vm.imagePost.imageLocation = e.target.result;
+                vm.imagePost.image_location = e.target.result;
                 vm.set('img');
                             
             };
             reader.readAsDataURL(file);
         },
         removeImage(){
-            this.imagePost.imageLocation='';
+            this.imagePost.image_location='';
             localStorage.removeItem('img')
 
         },
