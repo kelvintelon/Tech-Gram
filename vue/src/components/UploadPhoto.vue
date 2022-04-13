@@ -50,7 +50,7 @@ export default {
         vm.get('img')
     // before mount displays the image when the page loads
         // line 49 is to display nothing when page loads
-        this.imagePost.imageLocation='';
+        this.imagePost.image_location='';
         
     },
 
