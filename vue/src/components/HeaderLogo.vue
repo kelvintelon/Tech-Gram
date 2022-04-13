@@ -31,6 +31,6 @@ header {
 }
 .title {
   font-size: 40px;
-  font-family: Fredoka One;
+  font-family: 'Playfair Display', serif;
 }
 </style>
