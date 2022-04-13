@@ -168,18 +168,21 @@ textarea {
 }
 
 #upload-img{
-    /* width:30%;
+     width:30%;
     margin: auto;
     display: block;
-    margin-bottom:10px; */
+    margin-bottom:10px; 
 
     
     object-fit: cover;
 }
 
-button{
-
-}
-
+/* .button{
+  background-color: #00adee;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+} */
 
 </style>
