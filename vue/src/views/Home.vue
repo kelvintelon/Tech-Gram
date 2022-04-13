@@ -5,6 +5,13 @@
     <header-logo></header-logo>
     <picture-card></picture-card>
     <!-- <login></login> -->
+      <!-- font -->
+    <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Fredoka+One"
@@ -84,11 +91,17 @@ body {
 
 .title {
   font-size: 40px;
-  font-family: Fredoka One;
+  /* margin-bottom: 20px; */
+  /* font-family: Fredoka One; */
+  /* font-family: 'Grand Hotel', cursive; */
+  font-family: 'Billabong', sans-serif;
+  /* color:rgb(62, 62, 63) */
+  color: aliceblue;
+  
 }
 
 .logo {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 </style>
