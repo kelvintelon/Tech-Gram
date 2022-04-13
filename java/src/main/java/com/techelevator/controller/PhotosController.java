@@ -25,7 +25,7 @@ public class PhotosController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path= "/photos", method = RequestMethod.GET)
+    @RequestMapping(path= "", method = RequestMethod.GET)
     public List<Photos> getAllPhotos() {
         return photosDao.getAllPhotos();
     }
