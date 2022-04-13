@@ -8,7 +8,9 @@
       
     
       <div v-else>
+
           <img id="upload-img"  :src="imagePost.image_location" />
+
           <div class="caption-container">
               <form v-on:submit.prevent="submitForm">
                 <textarea class="caption-input" placeholder="Write a caption..." 
@@ -151,14 +153,28 @@ textarea {
     width:30%;
 }
 .upload-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
+    width:80%;
+}
+.image-with-frame{
+    
+    width: 50%;
+    height: 50%;
+    border: 1px solid black;
 }
 
 #upload-img{
-    width:30%;
+    /* width:30%;
     margin: auto;
     display: block;
-    margin-bottom:10px;
+    margin-bottom:10px; */
+
+    
+    object-fit: cover;
 }
 
 button{
