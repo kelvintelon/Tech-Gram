@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="$router.push('photoDetails')">
+  <div class="picContainer" @click="$router.push('photoDetails')">
     <div class="picture">
       <img
         src="https://www.rd.com/wp-content/uploads/2021/01/GettyImages-1175550351.jpg?resize=2048,1339"
@@ -17,13 +17,13 @@ export default {
 </script>
 
 <style>
-.container {
+.picContainer {
   background-color: #efe3ef;
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
   width: 250px;
-  height: 550px;
+  height: 100%;
   margin: 20px;
   padding: 10px;
 }

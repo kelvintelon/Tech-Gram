@@ -56,21 +56,7 @@ body {
   background-color: #00adee;
   margin: 0px;
 }
-.home {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-}
-.sideMenu {
-  border-left: 2px solid black;
-  background-color: aliceblue;
-  position: absolute;
-  right: 0px;
-  width: 350px;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-}
+
 .title {
   font-size: 40px;
   font-family: Fredoka One;
