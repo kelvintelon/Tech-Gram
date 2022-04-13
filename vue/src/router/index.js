@@ -9,6 +9,8 @@ import Favorites from '../views/Favorites.vue'
 import PhotoDetails from '../views/PhotoDetails.vue'
 import UserPage from '../views/UserPage.vue'
 import AddPicture from '../views/AddPicture.vue'
+import DeleteUser from '../views/DeleteUser.vue'
+import DeleteUserFinal from '../views/DeleteUserFinal'
 
 Vue.use(Router)
 
@@ -88,7 +90,23 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/deleteUser',
+      name: 'deleteUser',
+      component: DeleteUser,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/deleteUserFinal',
+      name: 'deleteUserFinal',
+      component: DeleteUserFinal,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
