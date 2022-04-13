@@ -24,6 +24,16 @@ export default {
 </script>
 
 <style>
+.menu {
+  border-left: 2px solid black;
+  background-color: aliceblue;
+  position: absolute;
+  right: 0px;
+  width: 350px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
 .buttons {
   align-items: top;
 }

@@ -43,7 +43,7 @@
       <span class="material-icons"> emoji_people </span>
       Log Out
     </button>
-    <button class="delete button">
+    <button class="delete button" @click="$router.push('/deleteUser')">
       <span class="material-icons"> no_accounts </span>Delete Profile
     </button>
   </div>
