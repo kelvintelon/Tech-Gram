@@ -10,13 +10,16 @@
       <div v-else>
           <img id="upload-img"  :src="image" />
           <div class="caption-container">
+              <form v-on:submit.prevent="submitForm">
                 <textarea class="caption-input" placeholder="Write a caption..." 
                     type="text" :caption="caption" 
                     @input="$emit('input', $event.target.value)"
-                    cols="200" rows="10"></textarea>
-            
+                    cols="200" rows="10" name="textarea"></textarea>
+                    <br>
+                     <button @click="removeImage">Cancel</button>
+                    <button type="submit">Upload</button>
+            </form>
           </div>
-          <button @click="removeImage">Cancel</button>
 
       </div>
 
@@ -43,10 +46,16 @@ export default {
         let vm = this
         console.log('before Mounted')
         vm.get('img')
-
+    // before mount displays the image when the page loads
     },
 
     methods:{
+        submitForm() {
+            this.caption = document.querySelector('textarea').value;
+            console.log(this.caption)
+            this.image ="";
+            this.$router.push("/");
+        },
         get(key){
             this.image=localStorage.getItem(key);
         },
@@ -70,8 +79,9 @@ export default {
         },
 
         createImage(file){
-            // let image = new Image();
+
             let reader = new FileReader();
+            // The vm in this case means viewmodel, its a shortcut for writing this.someMethod() so that you can use vm.someMethod()
             let vm = this;
 
             reader.onload = (e) => {
@@ -110,6 +120,9 @@ export default {
 </script>
 
 <style>
+textarea {
+    width:30%;
+}
 .upload-pic{
     text-align: center;
 }
