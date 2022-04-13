@@ -1,6 +1,6 @@
 <template>
   <div class="upload-pic">
-      <div v-if="!imagePost.image">
+      <div v-if="!imagePost.imageLocation">
           <h2>Select an image</h2>
           <input type="file" name="file" id="file"
             class="inputfile" @change="onFileChange">
@@ -8,16 +8,14 @@
       
     
       <div v-else>
-          <img id="upload-img"  :src="imagePost.image" />
+          <img id="upload-img"  :src="imagePost.imageLocation" />
           <div class="caption-container">
               <form v-on:submit.prevent="submitForm">
-                <!-- <textarea class="caption-input" placeholder="Write a caption..." 
+                <textarea class="caption-input" placeholder="Write a caption..." 
                     type="text" :caption="imagePost.caption" 
                     @input="$emit('input', $event.target.value)"
-                    cols="200" rows="10" name="textarea"></textarea> -->
-                    <textarea class="caption-input" placeholder="Write a caption..." 
-                    type="text" v-model="imagePost.caption"
                     cols="200" rows="10" name="textarea"></textarea>
+                    
                     <br>
                      <button @click="removeImage">Cancel</button>
                     <button type="submit">Upload</button>
@@ -37,7 +35,7 @@ export default {
     data(){
         return {
             imagePost:{
-                image:"",
+                imageLocation:"",
                 caption:"",
             }                     
         };
@@ -47,23 +45,26 @@ export default {
         console.log('before Mounted')
         vm.get('img')
     // before mount displays the image when the page loads
+        // line 49 is to display nothing when page loads
+        this.imagePost.imageLocation='';
+        
     },
 
     methods:{
         submitForm() {
             this.imagePost.caption = document.querySelector('textarea').value;
             console.log(this.imagePost.caption)
-            this.imagePost.image ="";
+            this.imagePost.imageLocation ="";
             this.$router.push("/");
         },
         get(key){
-            this.imagePost.image=localStorage.getItem(key);
+            this.imagePost.imageLocation=localStorage.getItem(key);
         },
 
         set(key){
             // let vm = this
             try{
-                localStorage.setItem(key, this.imagePost.image);
+                localStorage.setItem(key, this.imagePost.imageLocation);
             }
             catch(e){
                 console.log(`Storage failed: ${e}`);
@@ -85,30 +86,32 @@ export default {
             let vm = this;
 
             reader.onload = (e) => {
-                vm.imagePost.image = e.target.result;
+                vm.imagePost.imageLocation = e.target.result;
                 vm.set('img');
                             
             };
             reader.readAsDataURL(file);
         },
         removeImage(){
-            this.imagePost.image='';
+            this.imagePost.imageLocation='';
             localStorage.removeItem('img')
 
         },
         upload() {
             // this.progress = 0;
+            
             UploadFileService.upload(this.imagePost)
             
             .then(response => {
                 if (response.status ===201){
+                   
                     return UploadFileService.getFiles();
                 }
             })
             
             .catch((err) => {
             this.message = "Could not upload the image! " + err;
-            this.image = undefined;
+            this.imagePost.imageLocation = undefined;
         });
     },
 
