@@ -29,8 +29,10 @@ export default {
   background-color: aliceblue;
   position: absolute;
   right: 0px;
-  width: 350px;
-  height: 100%;
+  /* width: 350px; */
+  width: 20%;
+  /* height: 100%; */
+  height: 100vh;
   display: flex;
   justify-content: space-around;
 }
