@@ -5,8 +5,15 @@
         class="logo"
         src="https://images.squarespace-cdn.com/content/v1/55ef2da9e4b03f6e1ef0cd28/1558034939902-652JBW936829PJQM7K30/Mark.jpg"
       /> -->
-      <img class="logo" src="../../img/mark-update.png" />
-      <h1 class="title">Tech Gram</h1>
+      <div class="inner_header">
+        <img class="logo" src="../../img/mark.png" />
+        <div class="logo_container">
+          <h1 class="title">Tech Gram</h1>
+        </div>
+        
+
+      </div>
+      
     </header>
 
     <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
@@ -38,18 +45,49 @@ header {
   /* background-color:aliceblue; */
   border-bottom: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-bottom: 20px;
-
-  /* edit below */
+ 
   width: 80%;
   height: 80px;
-  vertical-align: middle;
 }
-.title {
-  font-size: 40px;
-  /* font-family: Fredoka One; */
-  /* font-family: 'Grand Hotel', cursive; */
+
+.inner_header{
+  width: 99%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+ 
+}
+
+.logo_container{
+  height: 100%;
+  display: table;
+  float: left;
+}
+
+.logo_container h1{
   font-family: 'Billabong', sans-serif;
-  
+  color: aliceblue;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 40px;
+  font-weight: 200;
 }
+
+.logo{
+  height: 100%;
+  display: table-cell;
+
+  vertical-align: middle;
+  float:left;
+  padding: 0px 0px 0px 10px;
+
+  margin-top: 10px;
+  margin-bottom: auto;
+
+  width: 60px;
+  height: 60px;
+
+}
+
 </style>

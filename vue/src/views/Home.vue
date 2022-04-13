@@ -78,7 +78,7 @@ export default {
 </script>
 <style>
 .image {
-  width:30%;
+    width:30%;
     margin: auto;
     display: block;
     margin-bottom:10px;
@@ -100,8 +100,8 @@ body {
   
 }
 
-.logo {
+/* .logo {
   width: 60px;
   height: 60px;
-}
+} */
 </style>
