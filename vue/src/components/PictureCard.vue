@@ -16,15 +16,17 @@ import UploadFileService from "../services/UploadFileService";
 
 export default {
   name: "picture-card",
+  
+  created(){
+      this.getImagePosts();
+    },
   methods:{
     getImagePosts(){
       UploadFileService.getFiles().then(response => {
         this.$store.commit("SET_IMAGEPOSTS", response.data);
       });
     },
-    created(){
-      this.getImagePosts();
-    }
+    
   }
 
 };
