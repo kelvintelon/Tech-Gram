@@ -17,16 +17,17 @@
           id="file"
           class="inputfile"
           @change="onFileChange"
+          hidden
         />
+        <button id="custom-btn" v-on:click="defaultBtnActive()">Choose an image</button>
       </div>
 
-      <div v-else>
+      <div v-else class="else">
         
         <div class="image">
             <img id="upload-img" :src="imagePost.image_location" />
         </div>
         
-          
         <div class="caption-container">
           <form v-on:submit.prevent="submitForm">
             <textarea
@@ -41,8 +42,8 @@
             ></textarea>
 
             <br />
-            <button @click="removeImage">Cancel</button>
-            <button type="submit">Upload</button>
+            <button id="cancel" @click="removeImage">Cancel</button> &nbsp;
+            <button id="upload" type="submit">Upload</button>
           </form>
         </div>
       </div>
@@ -53,6 +54,8 @@
 <script>
 
 import PhotoService from "../services/PhotoService";
+
+
 
 export default {
   name: "upload-photo",
@@ -142,6 +145,13 @@ export default {
       this.imagePost.image_location = "";
       localStorage.removeItem("img");
     },
+    
+
+    defaultBtnActive(){
+        const defaultBtn = document.querySelector("#file");
+        // const customeBtn = document.querySelector("#custom-btn");
+        defaultBtn.click();
+    },
 /*    upload() {
       // this.progress = 0;
 
@@ -163,8 +173,9 @@ export default {
 </script>
 
 <style>
-/*  added */
+
 h2{
+  margin-top: 40px;
   color:#3b3b3b;
 }
 
@@ -188,7 +199,7 @@ h2{
   width: 600px;
   border-radius: 10px;
   background: rgb(233, 233, 233);
-  border: 3px dashed #c2cdda;
+  border: 3px dashed #a4a4a5;
   
   display: flex;
   align-items: center;
@@ -201,55 +212,53 @@ h2{
   color: #5B5B7B;
 }
 
-/* .upload-pic{
-  height: 350px;
-  width: 430px;
-  position: relative;
-} */
-
-/* .upload-pic .wrapper{
-  position: relative;
-  height: 350px;
-  width: 40%;
-  border-radius: 10px;
-  background: #fff;
-  border: 2px dashed #c2cdda;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-} */
-
-/* .wrapper.active{
-  border: none;
-} */
-/* .image{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.image img{
-  height: 100%;
-  width: auto;
-  object-fit:cover;
-} */
-/* .content .text{
-  font-size: 20px;
-  font-weight: 500;
-  color: #5B5B7B;
-} */
-
-/* .caption-container button{
+.caption-container button{
   margin-top: 30px;
-  display: block;
-  width: 100%;
+  /* display: flex;
+  flex-direction: row; */
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  align-items: center;
+  
+  width: 10%;
   height: 50px;
   border: none;
   outline: none;
   border-radius: 25px;
+
+  border: 1px solid rgba(0, 0, 0, 0.61);
+  /* border-radius: 10px; */
+  
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#cancel,
+#upload{
+ margin:20px 40px 0 40px;
+}
+
+#cancel:hover,
+#upload:hover{
+  color: #167fa5;
+}
+
+#custom-btn{
+  margin-top: 30px;
+  /* display: block; */
+  width: 40%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: aliceblue;
+
+  border: 1px solid rgba(0, 0, 0, 0.61);
+  /* border-radius: 10px; */
   
   font-size: 18px;
   font-weight: 500;
@@ -257,12 +266,12 @@ h2{
   text-transform: uppercase;
   cursor: pointer;
 
-} */
+}
 
+#custom-btn:hover{
+  color: #167fa5;
+}
 
-
-
-/* ------ */
 textarea {
   width: 30%;
 }
@@ -274,32 +283,17 @@ textarea {
   text-align: center;
   width: 80%;
 }
-/* .image-with-frame {
-  width: 50%;
-  height: 50%;
-  border: 1px solid black;
-} */
 
-/* #upload-img{
-     width:100%;} */
-/* #upload-img {
-
-    margin: auto;
-    display: block;
-    margin-bottom:10px; 
-
-  object-fit: cover;
-} */
+#upload-img{
+  margin: 30px auto 20px -10px;
+  display: block;
   
-
-
-/* .button
-  background-color: #00adee;
-  border: 1px solid black;
+  width:100%;  
+  padding: 10px;
   border-radius: 10px;
-  box-shadow: rgba0, 0, 0, 0.24 0px 3px 8px;
-  display: flex;
- */
+  background: rgb(233, 233, 233);
+  border: 3px dashed #a4a4a5;
+  }
 
 
 </style>
