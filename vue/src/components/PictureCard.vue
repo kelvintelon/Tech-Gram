@@ -4,7 +4,7 @@
       class="picContainer"
       v-for="photo in this.$store.state.imagePosts"
       v-bind:key="photo.photo_id"
-      @click="$router.push('photoDetails')"
+      @click="$router.push({name: 'photoDetails', params: {photoId: photo.photo_id}})"
     >
       <img class="picture" :src=" photo.image_location " />
       <div class="caption">{{ photo.caption }}</div>

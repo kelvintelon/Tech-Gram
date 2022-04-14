@@ -1,28 +1,38 @@
 <template>
   <div class="card">
-    <div
+
+    <!-- <div
       class="picContainer"
-      v-for="photo in this.$store.state.userImages"
+      v-for="photo in this.$store.state.pictureDetails"
       v-bind:key="photo.photo_id"
-      @click="$router.push({name: 'photoDetails', params: {photoId: photo.photo_id}})"
+      
+    > -->
+    <div
+      class="picContainer" 
     >
       <img class="picture" :src=" photo.image_location " />
       <div class="caption">{{ photo.caption }}</div>
-      <div class="likes">3</div>
-      <div class="comments">Comments:</div>
+      <div class="likes">{{photo.likeCount}}</div>
+      <div class="comments">{{photo.comments}}</div>
     </div>
   </div>
   
 </template>
 
 <script>
-import UploadFileService from "../services/UploadFileService";
+import PhotoService from "../services/PhotoService";
+// import commentsList from "@/components/CommentsList";
 
 export default {
-  name: "user-picture-card",
-   data() {
+  name: "picture-detail",
+  components:{
+      //CommentsList
+  },
+    data() {
     return {
-      username: ""
+        // username: ""
+      
+      errorMsg: "",
     };
   },
    mounted(){
@@ -31,19 +41,35 @@ export default {
      let secondIndex = UserString.indexOf("authorities");
      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
      console.log(this.username);
-      this.getUserImages();
+      this.retrievePicture();
    },
 
   created() {
-    this.getUserImages();
+    this.retrievePicture();
+    console.log(this.$route.params.photoId);
   },
   methods: {
-    getUserImages() {
-      UploadFileService.getUserFiles(this.username).then(response => {
-        this.$store.commit("SET_USERIMAGES", response.data);
+    retrievePicture() {
+      PhotoService.getOnePicture(this.$route.params.photoId).then(response => {
+        this.$store.commit("SET_CURRENT_PIC", response.data);
+        
+      })
+      .catch(error =>{
+          if (error.response && error.response.status === 404) {
+            alert(
+              "Photo not available. This photo may have been deleted or you have entered an invalid card ID."
+            );
+            this.$router.push("/");
+          }
       });
     },
   },
+  computed:{
+      photo(){
+          return this.$store.state.pictureDetails;
+      }
+  }
+ 
 };
 </script>
 
