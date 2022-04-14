@@ -24,7 +24,8 @@ export default {
           user_id: 0,
           caption: "",
           image_location: "",
-          date_and_time: ""
+          date_and_time: "",
+          like_count: 0
         },
     }
   },
