@@ -1,25 +1,21 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:3000"
-});
-
 export default {
 
     getCommentsByPhotoID(photoID) {
-     return http.get(`/comments/${photoID}`)
+     return axios.get(`/comments/${photoID}`)
  },
 
   addComment(comment) {
-      return http.post(`/comments`, comment )
+      return axios.post(`/comments`, comment )
   },
 
   deleteComment(comment) {
-      return http.delete(`/comments`, comment )
+      return axios.delete(`/comments`, comment )
   },
 
   updateComment(comment) {
-    return http.put(`/comments`, comment )
+    return axios.put(`/comments`, comment )
 }
 
 
