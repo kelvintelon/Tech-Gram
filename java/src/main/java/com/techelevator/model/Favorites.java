@@ -3,6 +3,7 @@ package com.techelevator.model;
 import org.springframework.data.relational.core.sql.In;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Favorites {
     Integer favoriteId;
@@ -10,6 +11,24 @@ public class Favorites {
     Integer userId;
     String text;
     Timestamp dateAndTime;
+    private List<Comments> comments;
+    private int likeCount;
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
 
     public Favorites() {}
 

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Comments;
 import com.techelevator.model.Favorites;
 import com.techelevator.model.Photos;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,6 +27,8 @@ public class JdbcFavoritesDao implements FavoritesDao {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, usernameWhoFavorited);
         while (result.next()) {
             Photos photo = mapRowToPhotos(result);
+            photo.setComments(getCommentsByPhotoId(photo.getPhoto_id()));
+            photo.setLikeCount(getLikeCountByPhotoId(photo.getPhoto_id()));
             photos.add(photo);
         }
         return photos;
@@ -47,7 +50,28 @@ public class JdbcFavoritesDao implements FavoritesDao {
         Integer favoritesId = jdbcTemplate.queryForObject(sql, Integer.class, photoId, username);
         return favoritesId;
     }
-    
+
+    @Override
+    public List<Comments> getCommentsByPhotoId(int id) {
+        List<Comments> comments = new ArrayList<>();
+        String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
+                "FROM comments " +
+                "WHERE photo_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        while(result.next()) {
+            Comments comment = mapRowToComments(result);
+            comments.add(comment);
+        }
+        return comments;
+    }
+
+    @Override
+    public int getLikeCountByPhotoId(int photoId) {
+        String sql = "SELECT count(*) FROM likes WHERE photo_id = ? AND is_active = true;";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, photoId);
+        return count;
+    }
+
     private Photos mapRowToPhotos(SqlRowSet rowSet) {
         Photos photos = new Photos();
         photos.setPhoto_id(rowSet.getInt("photo_id"));
@@ -56,5 +80,15 @@ public class JdbcFavoritesDao implements FavoritesDao {
         photos.setImage_location(rowSet.getString("image_location"));
         photos.setDate_and_time(rowSet.getTimestamp("date_and_time"));
         return photos;
+    }
+
+    private Comments mapRowToComments(SqlRowSet rs) {
+        Comments comments = new Comments();
+        comments.setCommentId(rs.getInt("comment_id"));
+        comments.setPhotoId(rs.getInt("photo_id"));
+        comments.setUserId(rs.getInt("user_id"));
+        comments.setText(rs.getString("text"));
+        comments.setDateAndTime(rs.getTimestamp("date_and_time"));
+        return comments;
     }
 }
