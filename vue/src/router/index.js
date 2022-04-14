@@ -60,7 +60,7 @@ const router = new Router({
       }
     },
     {
-      path: '/favorites',
+      path: '/favorites/:username',
       name: 'favorites',
       component: Favorites,
       meta: {
@@ -76,7 +76,7 @@ const router = new Router({
       }
     },
     {
-      path: '/userPage',
+      path: '/userPage/:username',
       name: 'userPage',
       component: UserPage,
       meta: {

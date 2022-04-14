@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // change the http address later
 const http = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://localhost:3000",
     headers:{
         "Content-type":"application/json"
     }
@@ -26,7 +26,7 @@ export default {
       // },
 
       getFiles(){
-          return http.get('/images');
+          return http.get('/photos');
       },
 
 

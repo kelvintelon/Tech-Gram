@@ -166,15 +166,24 @@ textarea {
   border: 1px solid black;
 }
 
-#upload-img {
+#upload-img{
+     width:30%;}
+/*#upload-img 
   /* width:30%;
     margin: auto;
     display: block;
-    margin-bottom:10px; */
+    margin-bottom:10px; 
 
   object-fit: cover;
-}
 
-button {
-}
+
+/* .button
+  background-color: #00adee;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: rgba0, 0, 0, 0.24 0px 3px 8px;
+  display: flex;
+ */
+
+
 </style>

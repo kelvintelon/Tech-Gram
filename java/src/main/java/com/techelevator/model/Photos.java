@@ -3,6 +3,7 @@ package com.techelevator.model;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class Photos {
 
@@ -11,6 +12,8 @@ public class Photos {
     private String caption;
     private String image_location;
     private Timestamp date_and_time;
+    private List<Comments> comments;
+    private int likeCount;
 
     public Photos(int photo_id, int user_id, String caption, String image_location, Timestamp date_and_time) {
         this.photo_id = photo_id;
@@ -22,6 +25,22 @@ public class Photos {
 
     public Photos() {
 
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 
     public int getPhoto_id() {
