@@ -32,7 +32,7 @@ public class CommentsController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public List<Comments> getAllComments (@Valid @PathVariable Long id) {
+    public List<Comments> getAllComments (@Valid @PathVariable int id) {
         return commentsDao.getCommentsByPhotoId(id);
     }
 

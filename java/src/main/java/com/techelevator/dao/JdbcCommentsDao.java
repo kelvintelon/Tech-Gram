@@ -20,7 +20,7 @@ public class JdbcCommentsDao implements CommentsDao{
     }
 
     @Override
-    public List<Comments> getCommentsByPhotoId(Long id){
+    public List<Comments> getCommentsByPhotoId(int id){
         List<Comments> comments = new ArrayList<>();
         String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
                 "FROM comments " +
