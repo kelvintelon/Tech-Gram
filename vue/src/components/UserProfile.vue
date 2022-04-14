@@ -14,57 +14,29 @@
                 <img id="imgPreview3" src="" alt="Preview">
            </div>
     
-       </section>       
+       </section>
+       <user-picture-card>
+       </user-picture-card>       
        </main> 
+
 </template>
 
 <script>
 
-import UploadFileService from "../services/UploadFileService";
+import UserPictureCard from "../components/UserPictureCard.vue";
 
 
 export default {
     name: 'user-profile',
-    methods:{
-    getImagePosts(){
-      UploadFileService.getFiles().then(response => {
-        this.$store.commit("SET_IMAGEPOSTS", response.data);
-      });
+    components: {
+        UserPictureCard
     },
-    created(){
-      this.getImagePosts();
-    }
-  },
- mounted(){
-        const imageObject1= localStorage.getItem("Photo1");
-        
-        if (imageObject1) {
-          let findDataIndex1 = imageObject1.indexOf("data")
-        let dataUrl1 = imageObject1.substring(findDataIndex1, imageObject1.length-2)
-          this.ImagePresent = true
-          document.querySelector("#imgPreview1").setAttribute("src", dataUrl1);
-        }
-
-        const imageObject2= localStorage.getItem("Photo2");
-      
-
-        if (imageObject2) {
-           let findDataIndex2 = imageObject2.indexOf("data")
-        let dataUrl2 = imageObject2.substring(findDataIndex2, imageObject2.length-2)
-          this.ImagePresent = true
-          document.querySelector("#imgPreview2").setAttribute("src", dataUrl2);
-        }
-
-        const imageObject3= localStorage.getItem("Photo3");
-        
-        
-        if (imageObject3) {
-          let findDataIndex3 = imageObject3.indexOf("data")
-        let dataUrl3 = imageObject3.substring(findDataIndex3, imageObject3.length-2)
-          this.ImagePresent = true
-          document.querySelector("#imgPreview3").setAttribute("src", dataUrl3);
-        }
+    methods:{
+  
+      }
 }
+    
+
 </script>
 
 <style lang = "scss" scoped>

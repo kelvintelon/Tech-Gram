@@ -29,5 +29,10 @@ export default {
           return http.get('/photos');
       },
 
+      getUserFiles(name){
+        return http.get(`/photos/user/${name}`);
+
+      }
+
 
 }
