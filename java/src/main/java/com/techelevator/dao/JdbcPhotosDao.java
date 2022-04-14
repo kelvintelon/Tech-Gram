@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Comments;
 import com.techelevator.model.Photos;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,6 +18,28 @@ public class JdbcPhotosDao implements PhotosDao {
 
     public JdbcPhotosDao(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate;}
 
+
+    @Override
+    public List<Comments> getCommentsByPhotoId(int id) {
+        List<Comments> comments = new ArrayList<>();
+        String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
+                "FROM comments " +
+                "WHERE photo_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        while(result.next()) {
+            Comments comment = mapRowToComments(result);
+            comments.add(comment);
+        }
+        return comments;
+    }
+
+    @Override
+    public int getLikeCountByPhotoId(int photoId) {
+        String sql = "SELECT count(*) FROM likes WHERE photo_id = ? AND is_active = true;";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, photoId);
+        return count;
+    }
+
     @Override
     public List<Photos> getAllPhotos() {
         List<Photos> allPhotos = new ArrayList<>();
@@ -24,7 +47,10 @@ public class JdbcPhotosDao implements PhotosDao {
                 "JOIN users ON photos.user_id = users.user_id;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while (result.next()) {
-            allPhotos.add(mapRowToPhotos(result));
+            Photos photos = mapRowToPhotos(result);
+            photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
+            photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
+            allPhotos.add(photos);
         }
         return allPhotos;
     }
@@ -46,7 +72,10 @@ public class JdbcPhotosDao implements PhotosDao {
                 "WHERE users.username = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
         while (result.next()) {
-            allPhotosByUser.add(mapRowToPhotos(result));
+            Photos photos = mapRowToPhotos(result);
+            photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
+            photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
+            allPhotosByUser.add(photos);
         }
         return allPhotosByUser;
     }
@@ -60,6 +89,9 @@ public class JdbcPhotosDao implements PhotosDao {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, photoId);
         if (result.next()) {
             photos = mapRowToPhotos(result);
+            photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
+            photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
+
         }
         return photos;
     }
@@ -100,5 +132,15 @@ public class JdbcPhotosDao implements PhotosDao {
         photos.setImage_location(rowSet.getString("image_location"));
         photos.setDate_and_time(rowSet.getTimestamp("date_and_time"));
         return photos;
+    }
+
+    private Comments mapRowToComments(SqlRowSet rs) {
+        Comments comments = new Comments();
+        comments.setCommentId(rs.getInt("comment_id"));
+        comments.setPhotoId(rs.getInt("photo_id"));
+        comments.setUserId(rs.getInt("user_id"));
+        comments.setText(rs.getString("text"));
+        comments.setDateAndTime(rs.getTimestamp("date_and_time"));
+        return comments;
     }
 }
