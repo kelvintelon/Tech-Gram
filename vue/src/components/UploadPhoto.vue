@@ -1,38 +1,52 @@
 <template>
   <div class="upload-pic">
-    <div v-if="!imagePost.image_location">
-      <h2>Select an image</h2>
-      <input
-        type="file"
-        name="file"
-        id="file"
-        class="inputfile"
-        @change="onFileChange"
-      />
-    </div>
+    
 
-    <div v-else>
-      <img id="upload-img" :src="imagePost.image_location" />
+      <div v-if="!imagePost.image_location">
+        <h2>Select an image</h2>
+        <div class="wrapper">
+          <div class="text">
+            No file chosen, yet!
 
-      <div class="caption-container">
-        <form v-on:submit.prevent="submitForm">
-          <textarea
-            class="caption-input"
-            placeholder="Write a caption..."
-            type="text"
-            :caption="imagePost.caption"
-            @input="$emit('input', $event.target.value)"
-            cols="200"
-            rows="10"
-            name="textarea"
-          ></textarea>
+          </div>
+        </div>
 
-          <br />
-          <button @click="removeImage">Cancel</button>
-          <button type="submit">Upload</button>
-        </form>
+        <input
+          type="file"
+          name="file"
+          id="file"
+          class="inputfile"
+          @change="onFileChange"
+        />
       </div>
-    </div>
+
+      <div v-else>
+        
+        <div class="image">
+            <img id="upload-img" :src="imagePost.image_location" />
+        </div>
+        
+          
+        <div class="caption-container">
+          <form v-on:submit.prevent="submitForm">
+            <textarea
+              class="caption-input"
+              placeholder="Write a caption..."
+              type="text"
+              :caption="imagePost.caption"
+              @input="$emit('input', $event.target.value)"
+              cols="200"
+              rows="10"
+              name="textarea"
+            ></textarea>
+
+            <br />
+            <button @click="removeImage">Cancel</button>
+            <button type="submit">Upload</button>
+          </form>
+        </div>
+      </div>
+    
   </div>
 </template>
 
@@ -149,6 +163,106 @@ export default {
 </script>
 
 <style>
+/*  added */
+h2{
+  color:#3b3b3b;
+}
+
+.upload-pic{
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.wrapper{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  /* display: grid; */
+  /* height: 80%; */
+  place-items: center;
+  text-align: center;
+
+  position: relative;
+  height: 350px;
+  width: 600px;
+  border-radius: 10px;
+  background: rgb(233, 233, 233);
+  border: 3px dashed #c2cdda;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.wrapper .text{
+  font-size: 20px;
+  font-weight: 500;
+  color: #5B5B7B;
+}
+
+/* .upload-pic{
+  height: 350px;
+  width: 430px;
+  position: relative;
+} */
+
+/* .upload-pic .wrapper{
+  position: relative;
+  height: 350px;
+  width: 40%;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px dashed #c2cdda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+} */
+
+/* .wrapper.active{
+  border: none;
+} */
+/* .image{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image img{
+  height: 100%;
+  width: auto;
+  object-fit:cover;
+} */
+/* .content .text{
+  font-size: 20px;
+  font-weight: 500;
+  color: #5B5B7B;
+} */
+
+/* .caption-container button{
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+} */
+
+
+
+
+/* ------ */
 textarea {
   width: 30%;
 }
@@ -160,21 +274,23 @@ textarea {
   text-align: center;
   width: 80%;
 }
-.image-with-frame {
+/* .image-with-frame {
   width: 50%;
   height: 50%;
   border: 1px solid black;
-}
+} */
 
-#upload-img{
-     width:30%;}
-/*#upload-img 
-  /* width:30%;
+/* #upload-img{
+     width:100%;} */
+/* #upload-img {
+
     margin: auto;
     display: block;
     margin-bottom:10px; 
 
   object-fit: cover;
+} */
+  
 
 
 /* .button
