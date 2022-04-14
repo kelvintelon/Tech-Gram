@@ -7,7 +7,7 @@ export default {
       },
 
       getUserFiles(name){
-        return http.get(`/photos/user/${name}`);
+        return axios.get(`/photos/user/${name}`);
 
       }
 
