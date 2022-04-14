@@ -11,7 +11,6 @@ import HeaderLogo from "../components/HeaderLogo.vue";
 import SideMenu from "../components/SideMenu.vue";
 import FavoriteCard from "../components/FavoriteCard.vue";
 
-import favoriteService from "../services/AuthService"
 
 export default {
   data() {
@@ -28,10 +27,7 @@ export default {
     }
   },
   mounted() {
-      favoriteService.getFavorites().then(response => {
-        this.photo_id = response.data.photo_id;
-        this.user_id = response.data.user_id;
-      })
+      
   },
   components: {
     HeaderLogo,
