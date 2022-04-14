@@ -25,7 +25,7 @@ export default {
 
 <style>
 .menu {
-  border-left: 2px solid black;
+ border-left: 2px solid black;
   background-color: aliceblue;
   position: absolute;
   right: 0px;
@@ -36,6 +36,7 @@ export default {
   display: flex;
   justify-content: space-around;
 }
+
 .buttons {
   align-items: top;
 }

@@ -10,11 +10,11 @@
       href="https://fonts.googleapis.com/css?family=Fredoka+One"
     />
   </div>
-  <div class = "image" v-show="ImagePresent">
+ <!-- <div class = "image" v-show="ImagePresent">
 <img id="imgPreview1" src="" alt="Preview">
 <img id="imgPreview2" src="" alt="Preview">
 <img id="imgPreview3" src="" alt="Preview">
-</div>
+</div> -->
   
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
         ImagePresent: false,
     }
   },
-   mounted(){
+ /*  mounted(){
         const imageObject1= localStorage.getItem("Photo1");
         
         if (imageObject1) {
@@ -61,7 +61,7 @@ export default {
           document.querySelector("#imgPreview3").setAttribute("src", dataUrl3);
         }
     // mount displays the image when the page loads
-    },
+    }, */
   components: {
     SideMenu,
     PictureCard,

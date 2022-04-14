@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
-//@RequestMapping(path = "/photos")
+@RequestMapping(path = "/photos")
 @CrossOrigin
 public class PhotosController {
 
