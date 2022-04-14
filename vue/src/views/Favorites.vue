@@ -2,16 +2,14 @@
   <div class="favorites">
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
-    <picture-card></picture-card>
-  <div>{{ photo_id }}</div>
-  <div>{{ user_id }}</div>
+    <favorite-card></favorite-card>
   </div>
 </template>
 
 <script>
 import HeaderLogo from "../components/HeaderLogo.vue";
 import SideMenu from "../components/SideMenu.vue";
-import PictureCard from "../components/PictureCard.vue";
+import FavoriteCard from "../components/FavoriteCard.vue";
 
 import favoriteService from "../services/AuthService"
 
@@ -38,7 +36,7 @@ export default {
   components: {
     HeaderLogo,
     SideMenu,
-    PictureCard
+    FavoriteCard
   },
 };
 </script>

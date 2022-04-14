@@ -2,7 +2,7 @@
   <div class="card">
     <div
       class="picContainer"
-      v-for="photo in this.$store.state.userImages"
+      v-for="photo in this.$store.state.favoriteImages"
       v-bind:key="photo.photo_id"
       @click="$router.push('photoDetails')"
     >
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import UploadFileService from "../services/UploadFileService";
+import FavoriteService from "../services/FavoriteService";
+
 
 export default {
   name: "user-picture-card",
@@ -34,13 +35,14 @@ export default {
    },
 
   created() {
-    this.getUserImages();
+    this.getFavoriteImages();
   },
   methods: {
-    getUserImages() {
-      UploadFileService.getUserFiles(this.username).then(response => {
-        this.$store.commit("SET_USERIMAGES", response.data);
-      });
+    getFavoriteImages() {
+
+       FavoriteService.getFavorites().then(response => {
+           this.$store.commit("SET_FAVORITEIMAGES", response.data)
+       });
     },
   },
 };
