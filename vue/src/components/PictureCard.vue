@@ -8,6 +8,7 @@
     <div class="likes">3</div>
     <div class="comments">Comments:</div>
   </div>
+  
 </template>
 
 <script>
