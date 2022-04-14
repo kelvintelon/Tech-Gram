@@ -2,7 +2,7 @@
   <div class="card">
     <div
       class="picContainer"
-      v-for="photo in this.$store.state.imagePosts"
+      v-for="photo in this.$store.state.userImages"
       v-bind:key="photo.photo_id"
       @click="$router.push('photoDetails')"
     >
@@ -20,13 +20,26 @@ import UploadFileService from "../services/UploadFileService";
 
 export default {
   name: "user-picture-card",
+   data() {
+    return {
+      username: ""
+    };
+  },
+   mounted(){
+     const UserString= localStorage.getItem("user");
+     let firstIndex = UserString.indexOf("username");
+     let secondIndex = UserString.indexOf("authorities");
+     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+     console.log(this.username);
+   },
+
   created() {
-    this.getImagePosts();
+    this.getUserImages();
   },
   methods: {
-    getImagePosts() {
-      UploadFileService.getUserFiles().then((response) => {
-        this.$store.commit("SET_IMAGEPOSTS", response.data);
+    getUserImages() {
+      UploadFileService.getUserFiles("sam").then(response => {
+        this.$store.commit("SET_USERIMAGES", response.data);
       });
     },
   },
