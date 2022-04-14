@@ -69,6 +69,7 @@ export default {
       photoCount: "1",
       photo: "Photo",
       fileName: "",
+      username: ""
     };
   },
   beforeMount() {
@@ -78,6 +79,11 @@ export default {
     // before mount displays the image when the page loads
     // line 49 is to display nothing when page loads
     this.imagePost.image_location = "";
+
+    const UserString= localStorage.getItem("user");
+     let firstIndex = UserString.indexOf("username");
+     let secondIndex = UserString.indexOf("authorities");
+     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
   },
 
   methods: {
@@ -107,7 +113,7 @@ export default {
           this.imagePost.caption = "";
           this.imagePost.image_location = "";
           localStorage.removeItem("img");
-          this.$router.push("/userPage");
+          this.$router.push({name: "userPage", params: {username: this.username} });
         }
       });
     },

@@ -21,6 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     imagePosts:[],
+    userImages:[],
+    favoriteImages:[],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,6 +43,12 @@ export default new Vuex.Store({
     },
     SET_IMAGEPOSTS(state, data){
       state.imagePosts = data;
+    },
+    SET_USERIMAGES(state, data){
+      state.userImages = data;
+    },
+    SET_FAVORITEIMAGES(state, data){
+      state.favoriteImages = data;
     }
   }
 })
