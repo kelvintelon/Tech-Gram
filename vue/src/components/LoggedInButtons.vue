@@ -3,23 +3,23 @@
     <button
       class="button"
       @click="$router.push('/')"
-      v-if="this.$router.currentRoute.path == '/userPage'"
+      v-if="this.$router.currentRoute.path == '/userPage/' + username"
     >
       <span class="material-icons"> grid_view </span>
       See Feed
     </button>
-    <button class="button" @click="$router.push('/userPage')" v-else>
+    <button class="button" @click="$router.push({ name: 'userPage', params: { username } })" v-else>
       <span class="material-icons">perm_identity</span>See Your Page
     </button>
     <button
       class="button"
       @click="$router.push('/')"
-      v-if="this.$router.currentRoute.path == '/favorites'"
+      v-if="this.$router.currentRoute.path == '/favorites/' + username"
     >
       <span class="material-icons"> grid_view </span>
       See Feed
     </button>
-    <button class="button" @click="$router.push('/favorites')" v-else>
+    <button class="button" @click="$router.push({ name: 'favorites', params: { username } })" v-else>
       <span class="material-icons">bookmarks</span>
       Favorites
     </button>
@@ -53,8 +53,17 @@
 export default {
   name: "logged-in-buttons",
   data() {
-    return {};
+    return {
+      username: ""
+    };
   },
+   mounted(){
+     const UserString= localStorage.getItem("user");
+     let firstIndex = UserString.indexOf("username");
+     let secondIndex = UserString.indexOf("authorities");
+     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+     console.log(this.username);
+   },
 };
 </script>
 
