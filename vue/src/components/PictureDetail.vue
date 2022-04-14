@@ -1,12 +1,6 @@
 <template>
   <div class="card">
 
-    <!-- <div
-      class="picContainer"
-      v-for="photo in this.$store.state.pictureDetails"
-      v-bind:key="photo.photo_id"
-      
-    > -->
     <div
       class="picContainer" 
     >
