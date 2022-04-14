@@ -38,7 +38,7 @@ public class JdbcCommentsDao implements CommentsDao{
         Comments comment = null;
         String sql = "INSERT INTO comments (photo_id, user_id, text, date_and_time) " +
                 "VALUES (?, (SELECT user_id FROM users WHERE username = ?), ?, CURRENT_TIMESTAMP) RETURNING comment_id";
-        Integer commentId = jdbcTemplate.queryForObject(sql, Integer.class, comments.getPhotoId(), username, comments.getText());
+        Integer commentId = jdbcTemplate.queryForObject(sql, Integer.class, comments.getPhoto_id(), username, comments.getText());
         return commentId;
     }
 
@@ -46,23 +46,23 @@ public class JdbcCommentsDao implements CommentsDao{
     public void updateComment(Comments comments){
         String sql = "UPDATE comments SET text = ? " +
                 "WHERE comments.comment_id = ?";
-        jdbcTemplate.update(sql,comments.getText(), comments.getCommentId());
+        jdbcTemplate.update(sql,comments.getText(), comments.getComment_id());
     }
 
     @Override
     public void deleteComment(Comments comments){
         String sql = "DELETE FROM comments " +
                 "WHERE comments.comment_id = ?";
-        jdbcTemplate.update(sql, comments.getCommentId());
+        jdbcTemplate.update(sql, comments.getComment_id());
     }
 
     private Comments mapRowToComments(SqlRowSet rs) {
         Comments comments = new Comments();
-        comments.setCommentId(rs.getInt("comment_id"));
-        comments.setPhotoId(rs.getInt("photo_id"));
-        comments.setUserId(rs.getInt("user_id"));
+        comments.setComment_id(rs.getInt("comment_id"));
+        comments.setPhoto_id(rs.getInt("photo_id"));
+        comments.setUser_id(rs.getInt("user_id"));
         comments.setText(rs.getString("text"));
-        comments.setDateAndTime(rs.getTimestamp("date_and_time"));
+        comments.setDate_and_time(rs.getTimestamp("date_and_time"));
         return comments;
     }
 

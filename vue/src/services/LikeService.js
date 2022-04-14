@@ -1,21 +1,17 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:3000"
-});
-
 export default {
 
     getLikeCountByPhotoID(photoID) {
-     return http.get(`/likeCount/${photoID}`)
+     return axios.get(`/likeCount/${photoID}`)
  },
 
   addLike(photo) {
-      return http.post(`/likes}`, photo)
+      return axios.post(`/likes}`, photo)
   },
 
   unlikeByPhotoID(photoID) {
-      return http.delete(`/unlike/${photoID}`)
+      return axios.delete(`/unlike/${photoID}`)
   }
 
 

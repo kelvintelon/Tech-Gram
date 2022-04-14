@@ -6,11 +6,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Favorites {
-    Integer favoriteId;
-    Integer photoId;
-    Integer userId;
+    int favorite_id;
+    int photo_id;
+    int user_id;
     String text;
-    Timestamp dateAndTime;
+    Timestamp date_and_time;
     private List<Comments> comments;
     private int likeCount;
 
@@ -32,36 +32,36 @@ public class Favorites {
 
     public Favorites() {}
 
-    public Favorites(Integer favoriteId, Integer photoId, Integer userId, String text, Timestamp dateAndTime) {
-        this.favoriteId = favoriteId;
-        this.photoId = photoId;
-        this.userId = userId;
+    public Favorites(int favorite_id, int photo_id, int user_id, String text, Timestamp date_and_time) {
+        this.favorite_id = favorite_id;
+        this.photo_id = photo_id;
+        this.user_id = user_id;
         this.text = text;
-        this.dateAndTime = dateAndTime;
+        this.date_and_time = date_and_time;
     }
 
-    public Integer getFavoriteId() {
-        return favoriteId;
+    public int getFavorite_id() {
+        return favorite_id;
     }
 
-    public void setFavoriteId(Integer favoriteId) {
-        this.favoriteId = favoriteId;
+    public void setFavorite_id(int favorite_id) {
+        this.favorite_id = favorite_id;
     }
 
-    public Integer getPhotoId() {
-        return photoId;
+    public int getPhoto_id() {
+        return photo_id;
     }
 
-    public void setPhotoId(Integer photoId) {
-        this.photoId = photoId;
+    public void setPhoto_id(int photo_id) {
+        this.photo_id = photo_id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getText() {
@@ -72,22 +72,11 @@ public class Favorites {
         this.text = text;
     }
 
-    public Timestamp getDateAndTime() {
-        return dateAndTime;
+    public Timestamp getDate_and_time() {
+        return date_and_time;
     }
 
-    public void setDateAndTime(Timestamp dateAndTime) {
-        this.dateAndTime = dateAndTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Favorites{" +
-                "favoriteId=" + favoriteId +
-                ", photoId='" + photoId +
-                ", userId=" + userId +
-                ", text=" + text +
-                ", dateAndTime=" + dateAndTime +
-                "}";
+    public void setDate_and_time(Timestamp date_and_time) {
+        this.date_and_time = date_and_time;
     }
 }

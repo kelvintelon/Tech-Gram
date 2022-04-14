@@ -3,43 +3,20 @@ package com.techelevator.model;
 import java.sql.Timestamp;
 
 public class Comments {
-    Integer commentId;
-    Integer photoId;
-    Integer userId;
+    int comment_id;
+    int photo_id;
+    int user_id;
     String text;
-    Timestamp dateAndTime;
+    Timestamp date_and_time;
 
     public Comments(){};
 
-    public Comments(Integer commentId, Integer photoId, Integer userId, String text, Timestamp dateAndTime) {
-        this.commentId = commentId;
-        this.photoId = photoId;
-        this.userId = userId;
+    public Comments(int comment_id, int photo_id, int user_id, String text, Timestamp date_and_time) {
+        this.comment_id = comment_id;
+        this.photo_id = photo_id;
+        this.user_id = user_id;
         this.text = text;
-        this.dateAndTime = dateAndTime;
-    }
-    public Integer getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
-    }
-
-    public Integer getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(Integer photoId) {
-        this.photoId = photoId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.date_and_time = date_and_time;
     }
 
     public String getText() {
@@ -50,22 +27,35 @@ public class Comments {
         this.text = text;
     }
 
-    public Timestamp getDateAndTime() {
-        return dateAndTime;
+    public int getComment_id() {
+        return comment_id;
     }
 
-    public void setDateAndTime(Timestamp dateAndTime) {
-        this.dateAndTime = dateAndTime;
+    public void setComment_id(int comment_id) {
+        this.comment_id = comment_id;
     }
 
-@Override
-    public String toString() {
-        return "Comments{" +
-                "commentId=" + commentId +
-                ", photoId='" + photoId +
-                ", userId=" + userId +
-                ", text=" + text +
-                ", dateAndTime=" + dateAndTime +
-                "}";
-        }
+    public int getPhoto_id() {
+        return photo_id;
     }
+
+    public void setPhoto_id(int photo_id) {
+        this.photo_id = photo_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public Timestamp getDate_and_time() {
+        return date_and_time;
+    }
+
+    public void setDate_and_time(Timestamp date_and_time) {
+        this.date_and_time = date_and_time;
+    }
+}

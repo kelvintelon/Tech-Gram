@@ -136,11 +136,11 @@ public class JdbcPhotosDao implements PhotosDao {
 
     private Comments mapRowToComments(SqlRowSet rs) {
         Comments comments = new Comments();
-        comments.setCommentId(rs.getInt("comment_id"));
-        comments.setPhotoId(rs.getInt("photo_id"));
-        comments.setUserId(rs.getInt("user_id"));
+        comments.setComment_id(rs.getInt("comment_id"));
+        comments.setPhoto_id(rs.getInt("photo_id"));
+        comments.setUser_id(rs.getInt("user_id"));
         comments.setText(rs.getString("text"));
-        comments.setDateAndTime(rs.getTimestamp("date_and_time"));
+        comments.setDate_and_time(rs.getTimestamp("date_and_time"));
         return comments;
     }
 }
