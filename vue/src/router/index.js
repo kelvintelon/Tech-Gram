@@ -68,7 +68,7 @@ const router = new Router({
       }
     },
     {
-      path: '/photoDetails',
+      path: '/photoDetails/:photoId',
       name: 'photoDetails',
       component: PhotoDetails,
       meta: {
