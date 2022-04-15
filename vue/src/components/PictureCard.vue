@@ -4,22 +4,31 @@
       class="picContainer"
       v-for="photo in this.$store.state.imagePosts"
       v-bind:key="photo.photo_id"
-      @click="$router.push('photoDetails')"
     >
-      <img class="picture" :src=" photo.image_location " />
+      <img
+        class="picture"
+        :src="photo.image_location"
+        @click="$router.push('photoDetails')"
+      />
       <div class="caption">{{ photo.caption }}</div>
-      <div class="likes">3</div>
+      <div class="likesBlock">
+        <like-button class="likes"></like-button>
+        <div class="likes likesCount">3</div>
+      </div>
       <div class="comments">Comments:</div>
     </div>
   </div>
-  
 </template>
 
 <script>
 import UploadFileService from "../services/UploadFileService";
+import LikeButton from "../components/LikeButton.vue";
 
 export default {
   name: "picture-card",
+  components: {
+    LikeButton,
+  },
   created() {
     this.getImagePosts();
   },
@@ -35,11 +44,11 @@ export default {
 
 <style>
 .card {
-  display: -ms-flexbox; 
+  display: -ms-flexbox;
   display: inline-flex;
   max-width: 1550px;
   -ms-flex-pack: distribute;
-  justify-content:left;
+  justify-content: left;
   margin: 40px auto;
   flex-wrap: wrap;
 }
@@ -54,9 +63,7 @@ export default {
   margin-bottom: 30px;
   padding: 10px;
 }
-.likes:before {
-  content: "❤️";
-}
+
 img {
   width: 80%;
   height: 80%;
@@ -70,4 +77,12 @@ img {
 ul {
   list-style: none;
 }
+.likes {
+   display: inline-block;
+}
+.likesCount {
+  margin-left: 3px;
+  font-size: 20px;
+}
+
 </style>

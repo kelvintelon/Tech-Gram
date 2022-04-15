@@ -69,9 +69,7 @@ export default {
   margin-bottom: 30px;
   padding: 10px;
 }
-.likes:before {
-  content: "❤️";
-}
+
 img {
   width: 80%;
   height: 80%;
