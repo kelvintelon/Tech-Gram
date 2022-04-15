@@ -11,6 +11,7 @@ import UserPage from '../views/UserPage.vue'
 import AddPicture from '../views/AddPicture.vue'
 import DeleteUser from '../views/DeleteUser.vue'
 import DeleteUserFinal from '../views/DeleteUserFinal'
+import UserFeed from '../views/UserFeed'
 
 Vue.use(Router)
 
@@ -79,6 +80,14 @@ const router = new Router({
       path: '/userPage/:username',
       name: 'userPage',
       component: UserPage,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/userFeed/:username',
+      name: 'userFeed',
+      component: UserFeed,
       meta: {
         requiresAuth: true
       }
