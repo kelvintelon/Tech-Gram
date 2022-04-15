@@ -10,23 +10,25 @@
     <div class="picComments">
       <div class="comments">{{photo.comments}}</div>
       <!-- <comments-list :comments="pictureDetails.comments"></comments-list> -->
+      <comments-list></comments-list>
       <!-- for adding comments -->
+      <add-comment></add-comment>   
     </div>
-      
-      
-    
+          
   </div>
   
 </template>
 
 <script>
 import PhotoService from "../services/PhotoService";
-// import CommentsList from "@/components/CommentsList";
+import CommentsList from "./CommentsList.vue";
+import AddComment from "./AddComment.vue";
 
 export default {
   name: "picture-detail",
   components:{
-      // CommentsList
+      CommentsList,
+      AddComment
   },
     data() {
     return {
@@ -91,21 +93,15 @@ export default {
   border-radius: 10px;
   width: 400px;
   height: 100%;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   margin-bottom: 30px;
   padding: 10px;
 }
-<<<<<<< HEAD
 .likes:before {
   content: "❤️";
 }
 img.picture{
   /* width: 80%;
-=======
-
-img {
-  width: 80%;
->>>>>>> 1d27944739f82677340b6cc0bf4a50ec7886a9a0
   height: 80%;
   margin: 20px;
   margin-bottom: 10px; */
