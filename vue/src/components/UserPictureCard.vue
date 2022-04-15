@@ -18,6 +18,7 @@
 <script>
 import UploadFileService from "../services/UploadFileService";
 
+
 export default {
   name: "user-picture-card",
    data() {
