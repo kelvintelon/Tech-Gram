@@ -61,5 +61,18 @@ export default new Vuex.Store({
     SET_CURRENT_PIC(state, data){
       state.pictureDetails = data;
     },
-  }
+    ADD_COMMENT(state, comment) {
+      state.pictureDetails.comments.unshift(comment);
+    },
+    // FLIP_FAVORITED(state, commentToChange) {
+    //   commentToChange.favorited = ! commentToChange.favorited;
+    // }
+  },
+  // actions: {
+  // },
+  // modules: {
+  // },
+  // strict: true
 })
+
+
