@@ -3,7 +3,7 @@
   <div class="home">
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
-    <picture-card></picture-card>
+    <picture-card v-bind:allPhotos="allPhotos"></picture-card>
  
     <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
 
@@ -30,6 +30,7 @@ export default {
   data() {
     return {
         ImagePresent: false,
+        allPhotos: true
     }
   },
   mounted(){

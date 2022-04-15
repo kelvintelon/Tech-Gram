@@ -2,21 +2,26 @@
   <div>
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
-    <user-picture-card></user-picture-card>
+    <picture-card v-bind:userPhotos="userPhotos"></picture-card>
   </div>
 </template>
 
 <script>
 import HeaderLogo from "../components/HeaderLogo.vue";
 import SideMenu from "../components/SideMenu.vue";
-import UserPictureCard from "../components/UserPictureCard.vue";
+import PictureCard from "../components/PictureCard.vue";
 
 export default {
   components: {
     HeaderLogo,
     SideMenu,
-    UserPictureCard,
+    PictureCard,
       },
+       data() {
+    return {
+        userPhotos: true
+    }
+  },
 };
 </script>
 

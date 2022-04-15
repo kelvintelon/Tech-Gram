@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     getFavoriteImages() {
-
        FavoriteService.getFavorites().then(response => {
            this.$store.commit("SET_FAVORITEIMAGES", response.data)
        });

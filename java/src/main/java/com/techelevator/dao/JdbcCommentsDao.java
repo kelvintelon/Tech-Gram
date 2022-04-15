@@ -28,6 +28,7 @@ public class JdbcCommentsDao implements CommentsDao{
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()) {
             Comments comment = mapRowToComments(result);
+            comment.setUsername(getUsernameByUserId(comment.getUser_id()));
             comments.add(comment);
         }
         return comments;
@@ -54,6 +55,13 @@ public class JdbcCommentsDao implements CommentsDao{
         String sql = "DELETE FROM comments " +
                 "WHERE comments.comment_id = ?";
         jdbcTemplate.update(sql, comments.getComment_id());
+    }
+
+    @Override
+    public String getUsernameByUserId(int userId) {
+        String sql = "SELECT username FROM users WHERE user_id = ?;";
+        String username = jdbcTemplate.queryForObject(sql, String.class, userId);
+        return username;
     }
 
     private Comments mapRowToComments(SqlRowSet rs) {

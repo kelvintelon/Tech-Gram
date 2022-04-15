@@ -1,9 +1,10 @@
 <template>
   <div class="card">
     <div
-      class="picContainer"
+      class="picContainer allPics"
       v-for="photo in this.$store.state.imagePosts"
       v-bind:key="photo.photo_id"
+      v-show="allPhotos"
     >
       <img
         class="picture"
@@ -15,6 +16,57 @@
           })
         "
       />
+      <div class="usernameYours">{{photo.username}}</div>
+      <div class="caption">{{ photo.caption }}</div>
+      <div class="likesBlock">
+        <like-button class="likes"></like-button>
+        <div class="likes likesCount">3</div>
+      </div>
+      <div class="comments">Comments:</div>
+    </div>
+
+    <div
+      class="picContainer userPics"
+      v-for="photo in this.$store.state.userImages"
+      v-bind:key="photo.username"
+      v-show="userPhotos"
+    >
+      <img
+        class="picture"
+        :src="photo.image_location"
+        @click="
+          $router.push({
+            name: 'photoDetails',
+            params: { photoId: photo.photo_id },
+          })
+        "
+      />
+       <div class="usernameYours">{{photo.username}}</div>
+      <div class="caption">{{ photo.caption }}</div>
+      <div class="likesBlock">
+        <like-button class="likes"></like-button>
+        <div class="likes likesCount">3</div>
+      </div>
+      <div class="comments">Comments:</div>
+    </div>
+
+    <div
+      class="picContainer favoritePics"
+      v-for="photo in this.$store.state.favoriteImages"
+      v-bind:key="photo.user_id"
+      v-show="favoritesPhotos"
+    >
+      <img
+        class="picture"
+        :src="photo.image_location"
+        @click="
+          $router.push({
+            name: 'photoDetails',
+            params: { photoId: photo.photo_id },
+          })
+        "
+      />
+       <div class="usernameYours">{{photo.username}}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes"></like-button>
@@ -25,22 +77,64 @@
   </div>
 </template>
 
+
+
 <script>
 import UploadFileService from "../services/UploadFileService";
 import LikeButton from "../components/LikeButton.vue";
+import FavoriteService from "../services/FavoriteService";
 
 export default {
   name: "picture-card",
   components: {
     LikeButton,
   },
+  props: ["allPhotos", "userPhotos", "favoritesPhotos"],
+  data() {
+    return {};
+  },
   created() {
-    this.getImagePosts();
+    if (this.allPhotos == true) {
+      this.getImagePosts();
+    }
+    if (this.userPhotos == true) {
+      this.getUserImages();
+    }
+    if (this.favoritesPhotos == true) {
+      this.getFavoriteImages();
+    }
+  },
+  mounted() {
+    const UserString = localStorage.getItem("user");
+    let firstIndex = UserString.indexOf("username");
+    let secondIndex = UserString.indexOf("authorities");
+    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+
+ if (this.allPhotos == true) {
+      this.getImagePosts();
+    }
+    if (this.userPhotos == true) {
+      this.getUserImages();
+    }
+    if (this.favoritesPhotos == true) {
+      this.getFavoriteImages();
+    }
   },
   methods: {
+    turnFalse() {},
     getImagePosts() {
       UploadFileService.getFiles().then((response) => {
         this.$store.commit("SET_IMAGEPOSTS", response.data);
+      });
+    },
+    getUserImages() {
+      UploadFileService.getUserFiles(this.username).then((response) => {
+        this.$store.commit("SET_USERIMAGES", response.data);
+      });
+    },
+    getFavoriteImages() {
+      FavoriteService.getFavorites().then((response) => {
+        this.$store.commit("SET_FAVORITEIMAGES", response.data);
       });
     },
   },
