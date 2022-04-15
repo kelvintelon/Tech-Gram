@@ -16,4 +16,7 @@ public interface FavoritesDao {
     List<Comments> getCommentsByPhotoId(int id);
 
     int getLikeCountByPhotoId(int photoId);
+
+    String getUsernameByUserId(int userId);
+
 }

@@ -95,11 +95,17 @@ export default {
   margin-bottom: 30px;
   padding: 10px;
 }
+<<<<<<< HEAD
 .likes:before {
   content: "❤️";
 }
 img.picture{
   /* width: 80%;
+=======
+
+img {
+  width: 80%;
+>>>>>>> 1d27944739f82677340b6cc0bf4a50ec7886a9a0
   height: 80%;
   margin: 20px;
   margin-bottom: 10px; */

@@ -4,14 +4,16 @@
       class="picContainer"
       v-for="photo in this.$store.state.imagePosts"
       v-bind:key="photo.photo_id"
-
-      @click="$router.push({name: 'photoDetails', params: {photoId: photo.photo_id}})"
-
     >
       <img
         class="picture"
         :src="photo.image_location"
-        @click="$router.push('photoDetails')"
+        @click="
+          $router.push({
+            name: 'photoDetails',
+            params: { photoId: photo.photo_id },
+          })
+        "
       />
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
@@ -81,11 +83,10 @@ ul {
   list-style: none;
 }
 .likes {
-   display: inline-block;
+  display: inline-block;
 }
 .likesCount {
   margin-left: 3px;
   font-size: 20px;
 }
-
 </style>

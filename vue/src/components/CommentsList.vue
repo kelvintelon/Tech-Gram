@@ -1,44 +1,59 @@
 <template>
   <div class="comments">
-    <h2>Comments</h2>
-    <div class="comment" v-for="comment in comments" v-bind:key="comment.id">
-      <h3>{{ comment.author }}</h3>
-      <p class="postedOn">{{ comment.postedOn }}</p>
-      <p>{{ comment.body }}</p>
-    </div>
+    <!-- double check key for comment -->
+    <comment-display
+      v-for="comment in comments"
+      v-bind:key="comment.id"
+      v-bind:comment="comment"
+    />
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 // import CommentService from "../services/CommentService";
+=======
+import CommentDisplay from "./CommentDisplay";
+>>>>>>> 1d27944739f82677340b6cc0bf4a50ec7886a9a0
 
 export default {
-  name: 'comments-list',
-  props: ['comments']
+  name: "comment-list",
+  components: {
+    CommentDisplay
+  },
+  computed: {
+    comments() {
+      return this.$store.state.pictureDetails.comments;
+      }
+  }
 };
 </script>
 
-<style scoped>
-.comments {
-  background-color: #f7fafc;
-  border-radius: 10px;
-  padding: 10px 20px 20px 20px;
+<style>
+div.main {
+  margin: 1rem 0;
 }
-.comments h2 {
-  margin: 0 0 30px 0;
+div.main div.well-display {
+  display: flex;
+  justify-content: space-around;
 }
-.comment {
-  margin: 20px 0;
-  border-bottom: 1px solid rgb(180, 180, 180);
+
+div.main div.well-display div.well {
+  display: inline-block;
+  width: 15%;
+  border: 1px black solid;
+  border-radius: 6px;
+  text-align: center;
+  margin: 0.25rem;
 }
-.comment:last-child {
-  border-bottom: none;
+
+div.main div.well-display div.well span.amount {
+  color: darkslategray;
+  display: block;
+  font-size: 2.5rem;
 }
-.comment h3 {
-  margin-bottom: 0;
-}
-.postedOn {
-  margin-top: 4px;
-  font-size: 0.75rem;
+
+div.main div.well-display div.well {
+  cursor: pointer;
 }
 </style>
