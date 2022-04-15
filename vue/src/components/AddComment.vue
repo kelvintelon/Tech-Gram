@@ -1,10 +1,10 @@
 <template>
   <div>
-    <form v-on:submit.prevent="addNewComment">
+    <form v-on:submit.prevent="addNewComment" class="addComment">
      
       <div class="form-element">
-        <label for="comment">Comment:</label>
-        <textarea id="comment" type="text" name="textarea"  
+        <!-- <label for="comment">Comment:</label> -->
+        <textarea id="comment" type="text" name="textarea" placeholder=" Add a comment..." 
             @input="$emit('input', $event.target.value)"
             v-model="newComment.text" ></textarea>
       </div>
@@ -23,7 +23,7 @@ export default {
     return {
       newComment: {
         photo_id: "",
-        text: ""
+        text: "",
       }
     };
   },
@@ -31,6 +31,7 @@ export default {
     addNewComment() {
       this.newComment.text = document.querySelector("textarea").value;
       this.newComment.photo_id = this.$store.state.pictureDetails.photo_id;
+
       CommentService.addComment(this.newComment).then(response => {     
          this.$store.commit("ADD_COMMENT", response.data);
       console.log(this.newComment.text);
@@ -40,6 +41,7 @@ export default {
     resetForm() {
       this.newComment.photo_id= "";
       this.newComment.text="";
+
     }
   },
   
@@ -47,6 +49,11 @@ export default {
 </script>
 
 <style>
+.addComment{
+  display: flex;
+  flex-direction: row;
+  
+}
 div.form-element {
   margin-top: 10px;
 }
@@ -58,15 +65,23 @@ div.form-element > select {
   height: 30px;
   width: 300px;
 }
+/* edit here */
 div.form-element > textarea {
-  height: 60px;
-  width: 300px;
+  height: 45px;
+  width: 950px;
+  border-radius: 10px;
+  
 }
 form > input[type="button"] {
+  margin: 10px 0px 10px 20px;
   width: 100px;
 }
 form > input[type="submit"] {
+  
+  margin: 10px 10px 10px 40px;
   width: 100px;
   margin-right: 10px;
 }
+
+
 </style>

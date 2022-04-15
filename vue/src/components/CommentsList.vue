@@ -1,11 +1,14 @@
 <template>
-  <div class="comments">
+  <div class="commentsList">
+    <h3>Comments: </h3>
+    <div class="comments">
     <!-- double check key for comment -->
-    <comment-display
-      v-for="comment in comments"
-      v-bind:key="comment.id"
-      v-bind:comment="comment"
-    />
+      <comment-display
+        v-for="comment in comments"
+        v-bind:key="comment.id"
+        v-bind:comment="comment"
+      />
+    </div>
   </div>
 </template>
 
@@ -29,27 +32,8 @@ export default {
 div.main {
   margin: 1rem 0;
 }
-div.main div.well-display {
-  display: flex;
-  justify-content: space-around;
+.comments{
+  background-color: rgb(209, 208, 208);
 }
 
-div.main div.well-display div.well {
-  display: inline-block;
-  width: 15%;
-  border: 1px black solid;
-  border-radius: 6px;
-  text-align: center;
-  margin: 0.25rem;
-}
-
-div.main div.well-display div.well span.amount {
-  color: darkslategray;
-  display: block;
-  font-size: 2.5rem;
-}
-
-div.main div.well-display div.well {
-  cursor: pointer;
-}
 </style>
