@@ -1,26 +1,32 @@
 <template>
-  <div class="card">
+  <div class="picCard">
 
-    <div
-      class="picContainer" 
-    >
+    <div class="picDetailContainer" >
       <img class="picture" :src=" photo.image_location " />
       <div class="caption">{{ photo.caption }}</div>
       <div class="likes">{{photo.likeCount}}</div>
-      <div class="comments">{{photo.comments}}</div>
     </div>
+
+    <div class="picComments">
+      <div class="comments">{{photo.comments}}</div>
+      <!-- <comments-list :comments="pictureDetails.comments"></comments-list> -->
+      <!-- for adding comments -->
+    </div>
+      
+      
+    
   </div>
   
 </template>
 
 <script>
 import PhotoService from "../services/PhotoService";
-// import commentsList from "@/components/CommentsList";
+// import CommentsList from "@/components/CommentsList";
 
 export default {
   name: "picture-detail",
   components:{
-      //CommentsList
+      // CommentsList
   },
     data() {
     return {
@@ -68,21 +74,22 @@ export default {
 </script>
 
 <style>
-.card {
-  display: -ms-flexbox; 
-  display: inline-flex;
+.picCard {
+  /* display: -ms-flexbox;  */
+  display: flex;
+  flex-direction: column;
   max-width: 1550px;
-  -ms-flex-pack: distribute;
+  /* -ms-flex-pack: distribute; */
   justify-content:left;
   margin: 40px auto;
   flex-wrap: wrap;
 }
-.picContainer {
-  background-color: #efe3ef;
+.picDetailContainer {
+  background-color: #ddab23;
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
-  width: 200px;
+  width: 400px;
   height: 100%;
   margin-left: 30px;
   margin-bottom: 30px;
@@ -91,11 +98,12 @@ export default {
 .likes:before {
   content: "❤️";
 }
-img {
-  width: 80%;
+img.picture{
+  /* width: 80%;
   height: 80%;
   margin: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
+  margin: 40px 20px 20px 20px;
 }
 .likes,
 .comments {

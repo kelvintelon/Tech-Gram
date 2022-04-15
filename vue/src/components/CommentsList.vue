@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CommentService from "../services/CommentService";
+// import CommentService from "../services/CommentService";
 
 export default {
   name: 'comments-list',
