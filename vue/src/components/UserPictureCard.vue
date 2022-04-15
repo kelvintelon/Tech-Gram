@@ -30,7 +30,7 @@ export default {
      let firstIndex = UserString.indexOf("username");
      let secondIndex = UserString.indexOf("authorities");
      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
-     console.log(this.username);
+  
       this.getUserImages();
    },
 
@@ -68,9 +68,7 @@ export default {
   margin-bottom: 30px;
   padding: 10px;
 }
-.likes:before {
-  content: "❤️";
-}
+
 img {
   width: 80%;
   height: 80%;
