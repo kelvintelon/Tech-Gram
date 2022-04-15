@@ -8,10 +8,10 @@
     </div>
 
     <div class="picComments">
-      <div class="comments">{{photo.comments}}</div>
-      <!-- <comments-list :comments="pictureDetails.comments"></comments-list> -->
+      <!-- <div class="comments">{{photo.comments}}</div> -->
+  
       <comments-list></comments-list>
-      <!-- for adding comments -->
+  
       <add-comment></add-comment>   
     </div>
           
