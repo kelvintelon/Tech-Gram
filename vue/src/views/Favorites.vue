@@ -2,14 +2,14 @@
   <div class="favorites">
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
-    <favorite-card></favorite-card>
+    <picture-card v-bind:favoritesPhotos="favoritesPhotos"></picture-card>
   </div>
 </template>
 
 <script>
 import HeaderLogo from "../components/HeaderLogo.vue";
 import SideMenu from "../components/SideMenu.vue";
-import FavoriteCard from "../components/FavoriteCard.vue";
+import PictureCard from "../components/PictureCard.vue";
 
 
 export default {
@@ -24,6 +24,7 @@ export default {
           date_and_time: "",
           like_count: 0
         },
+        favoritesPhotos: true
     }
   },
   mounted() {
@@ -32,7 +33,7 @@ export default {
   components: {
     HeaderLogo,
     SideMenu,
-    FavoriteCard
+    PictureCard
   },
 };
 </script>
