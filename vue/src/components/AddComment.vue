@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form v-on:submit.prevent="addNewComment" v-if="showForm === true">
+    <form v-on:submit.prevent="addNewComment">
      
       <div class="form-element">
         <label for="comment">comment:</label>
@@ -13,18 +13,23 @@
 </template>
 
 <script>
+import CommentService from "../services/CommentService";
+
 export default {
   name: "add-comment",
   data() {
     return {
       newComment: {
-        favorited: false
+        photo_id: " ",
+        text: " "
       }
     };
   },
   methods: {
     addNewcomment() {
-      this.$store.commit("ADD_COMMENT", this.newComment);
+              CommentService.addComment(this.newComment).then(response => {     
+                   this.$store.commit("ADD_COMMENT", response.data);
+});
       this.resetForm();
     },
     resetForm() {

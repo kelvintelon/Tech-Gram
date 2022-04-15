@@ -30,6 +30,7 @@ export default new Vuex.Store({
       data_and_time:'',
       comments:[],
       likeCount:0,
+      username: ''
     },
   },
   mutations: {

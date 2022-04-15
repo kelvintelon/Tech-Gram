@@ -1,8 +1,8 @@
 <template>
   <div class="comment" v-bind:class="{ favorited: comment.favorited }" v-bind:key="comment.id">
     <!-- double check comment.commenter -->
-    <h4>{{ comment.commenter }}</h4>
-    <p>{{ comment.comment }}</p>
+    <h4>{{ comment.username }}</h4>
+    <p>{{ comment.text }}</p>
   </div>
 </template>
 
