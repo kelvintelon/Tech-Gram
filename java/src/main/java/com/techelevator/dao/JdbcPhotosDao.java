@@ -41,6 +41,13 @@ public class JdbcPhotosDao implements PhotosDao {
     }
 
     @Override
+    public String getUsernameByUserId(int userId) {
+        String sql = "SELECT username FROM users WHERE user_id = ?;";
+        String username = jdbcTemplate.queryForObject(sql, String.class, userId);
+        return username;
+    }
+
+    @Override
     public List<Photos> getAllPhotos() {
         List<Photos> allPhotos = new ArrayList<>();
         String sql = "SELECT photo_id, photos.user_id, caption, image_location, date_and_time FROM photos " +
@@ -50,6 +57,7 @@ public class JdbcPhotosDao implements PhotosDao {
             Photos photos = mapRowToPhotos(result);
             photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
             photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
+            photos.setUsername(getUsernameByUserId(photos.getUser_id()));
             allPhotos.add(photos);
         }
         return allPhotos;
@@ -75,6 +83,7 @@ public class JdbcPhotosDao implements PhotosDao {
             Photos photos = mapRowToPhotos(result);
             photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
             photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
+            photos.setUsername(getUsernameByUserId(photos.getUser_id()));
             allPhotosByUser.add(photos);
         }
         return allPhotosByUser;
@@ -91,7 +100,7 @@ public class JdbcPhotosDao implements PhotosDao {
             photos = mapRowToPhotos(result);
             photos.setComments(getCommentsByPhotoId(photos.getPhoto_id()));
             photos.setLikeCount(getLikeCountByPhotoId(photos.getPhoto_id()));
-
+            photos.setUsername(getUsernameByUserId(photos.getUser_id()));
         }
         return photos;
     }
