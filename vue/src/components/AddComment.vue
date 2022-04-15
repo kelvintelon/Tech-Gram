@@ -3,8 +3,10 @@
     <form v-on:submit.prevent="addNewComment">
      
       <div class="form-element">
-        <label for="comment">comment:</label>
-        <textarea id="comment" type="text" name="textarea"  @input="$emit('input', $event.target.value)"></textarea>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" type="text" name="textarea"  
+            @input="$emit('input', $event.target.value)"
+            v-model="newComment.text" ></textarea>
       </div>
       <input type="submit" value="Save" />
       <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
@@ -27,22 +29,20 @@ export default {
   },
   methods: {
     addNewComment() {
-      // this.newComment.photo_id = this.$router.params.photoId;
       this.newComment.text = document.querySelector("textarea").value;
       this.newComment.photo_id = this.$store.state.pictureDetails.photo_id;
-              CommentService.addComment(this.newComment).then(response => {     
-                   this.$store.commit("ADD_COMMENT", response.data);
+      CommentService.addComment(this.newComment).then(response => {     
+         this.$store.commit("ADD_COMMENT", response.data);
       console.log(this.newComment.text);
 });
-      location.reload();
       this.resetForm();
     },
     resetForm() {
-      this.newComment.photo_id = "";
+      this.newComment.photo_id= "";
       this.newComment.text="";
-      location.reload();
     }
-  }
+  },
+  
 };
 </script>
 

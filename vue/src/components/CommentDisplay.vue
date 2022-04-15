@@ -10,6 +10,7 @@
 export default {
   name: "comment-display",
   props: ["comment"],
+ 
 };
 </script>
 
