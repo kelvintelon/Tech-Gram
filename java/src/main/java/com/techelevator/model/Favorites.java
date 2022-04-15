@@ -13,6 +13,15 @@ public class Favorites {
     Timestamp date_and_time;
     private List<Comments> comments;
     private int likeCount;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public List<Comments> getComments() {
         return comments;

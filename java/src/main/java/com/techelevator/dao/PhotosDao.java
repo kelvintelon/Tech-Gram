@@ -11,6 +11,8 @@ public interface PhotosDao {
 
     int getLikeCountByPhotoId(int photoId);
 
+    String getUsernameByUserId(int userId);
+
     List<Photos> getAllPhotos();
 
     Photos addPhoto(Photos photos, int userId);
