@@ -35,12 +35,12 @@ public class JdbcCommentsDao implements CommentsDao{
     }
 
     @Override
-    public int createComment(Comments comments, String username) {
+    public Comments createComment(Comments comments, String username) {
         Comments comment = null;
         String sql = "INSERT INTO comments (photo_id, user_id, text, date_and_time) " +
                 "VALUES (?, (SELECT user_id FROM users WHERE username = ?), ?, CURRENT_TIMESTAMP) RETURNING comment_id";
-        Integer commentId = jdbcTemplate.queryForObject(sql, Integer.class, comments.getPhoto_id(), username, comments.getText());
-        return commentId;
+        int newId = jdbcTemplate.queryForObject(sql, Integer.class, comments.getPhoto_id(), username, comments.getText());
+        return getCommentByCommentId(newId);
     }
 
     @Override
@@ -62,6 +62,21 @@ public class JdbcCommentsDao implements CommentsDao{
         String sql = "SELECT username FROM users WHERE user_id = ?;";
         String username = jdbcTemplate.queryForObject(sql, String.class, userId);
         return username;
+    }
+
+    @Override
+    public Comments getCommentByCommentId(int id) {
+        Comments comments = null;
+        String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
+                "FROM comments " +
+                "WHERE comment_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        while(result.next()) {
+            comments = mapRowToComments(result);
+            comments.setUsername(getUsernameByUserId(comments.getUser_id()));
+
+        }
+        return comments;
     }
 
     private Comments mapRowToComments(SqlRowSet rs) {
