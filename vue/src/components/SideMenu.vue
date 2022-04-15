@@ -35,6 +35,7 @@ export default {
   height: 100vh;
   display: flex;
   justify-content: space-around;
+  position:fixed;
 }
 
 .buttons {
