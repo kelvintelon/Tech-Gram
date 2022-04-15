@@ -14,6 +14,7 @@ public class Photos {
     private Timestamp date_and_time;
     private List<Comments> comments;
     private int likeCount;
+    private String username;
 
     public Photos(int photo_id, int user_id, String caption, String image_location, Timestamp date_and_time) {
         this.photo_id = photo_id;
@@ -25,6 +26,14 @@ public class Photos {
 
     public Photos() {
 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getLikeCount() {

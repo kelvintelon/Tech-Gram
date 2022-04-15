@@ -29,6 +29,7 @@ public class JdbcFavoritesDao implements FavoritesDao {
             Photos photo = mapRowToPhotos(result);
             photo.setComments(getCommentsByPhotoId(photo.getPhoto_id()));
             photo.setLikeCount(getLikeCountByPhotoId(photo.getPhoto_id()));
+            photo.setUsername(getUsernameByUserId(photo.getUser_id()));
             photos.add(photo);
         }
         return photos;
@@ -70,6 +71,13 @@ public class JdbcFavoritesDao implements FavoritesDao {
         String sql = "SELECT count(*) FROM likes WHERE photo_id = ? AND is_active = true;";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, photoId);
         return count;
+    }
+
+    @Override
+    public String getUsernameByUserId(int userId) {
+        String sql = "SELECT username FROM users WHERE user_id = ?;";
+        String username = jdbcTemplate.queryForObject(sql, String.class, userId);
+        return username;
     }
 
     private Photos mapRowToPhotos(SqlRowSet rowSet) {
