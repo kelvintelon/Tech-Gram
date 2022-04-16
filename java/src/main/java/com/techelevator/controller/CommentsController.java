@@ -27,8 +27,8 @@ public class CommentsController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public int createComment(@Valid @RequestBody Comments comments, Principal principal){
-        return commentsDao.createComment(comments, principal.getName());
+    public Comments createComment(@Valid @RequestBody Comments comments, Principal principal){
+       return commentsDao.createComment(comments, principal.getName());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

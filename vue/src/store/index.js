@@ -23,6 +23,7 @@ export default new Vuex.Store({
     imagePosts:[],
     userImages:[],
     favoriteImages:[],
+    userFeedImages:[],
     pictureDetails:{
       photo_id:'',
       user_id:'',
@@ -30,6 +31,7 @@ export default new Vuex.Store({
       data_and_time:'',
       comments:[],
       likeCount:0,
+      username: ''
     },
   },
   mutations: {
@@ -57,6 +59,9 @@ export default new Vuex.Store({
     },
     SET_FAVORITEIMAGES(state, data){
       state.favoriteImages = data;
+    },
+    SET_USERFEEDIMAGES(state, data){
+      state.userFeedImages = data
     },
     SET_CURRENT_PIC(state, data){
       state.pictureDetails = data;

@@ -52,10 +52,7 @@
 </template>
 
 <script>
-
 import PhotoService from "../services/PhotoService";
-
-
 
 export default {
   name: "upload-photo",

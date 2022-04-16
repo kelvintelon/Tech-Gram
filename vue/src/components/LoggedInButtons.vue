@@ -8,8 +8,13 @@
       <span class="material-icons"> grid_view </span>
       See Feed
     </button>
-    <button class="button" @click="$router.push({ name: 'userPage', params: { username } })" v-else>
-      <span class="material-icons">perm_identity</span>See Your Page
+    <button
+      class="button"
+      @click="$router.push({ name: 'userPage', params: { username } })"
+      v-else
+    >
+      <span class="material-icons">perm_identity</span>
+      See Your Page
     </button>
     <button
       class="button"
@@ -19,7 +24,11 @@
       <span class="material-icons"> grid_view </span>
       See Feed
     </button>
-    <button class="button" @click="$router.push({ name: 'favorites', params: { username } })" v-else>
+    <button
+      class="button"
+      @click="$router.push({ name: 'favorites', params: { username } })"
+      v-else
+    >
       <span class="material-icons">bookmarks</span>
       Favorites
     </button>
@@ -35,6 +44,7 @@
       <span class="material-icons"> photo </span>
       Add Picture
     </button>
+
     <button
       class="logOut button"
       @click="$router.push('/logout')"
@@ -54,16 +64,15 @@ export default {
   name: "logged-in-buttons",
   data() {
     return {
-      username: ""
+      username: "",
     };
   },
-   mounted(){
-     const UserString= localStorage.getItem("user");
-     let firstIndex = UserString.indexOf("username");
-     let secondIndex = UserString.indexOf("authorities");
-     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
-     
-   },
+  mounted() {
+    const UserString = localStorage.getItem("user");
+    let firstIndex = UserString.indexOf("username");
+    let secondIndex = UserString.indexOf("authorities");
+    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+  },
 };
 </script>
 

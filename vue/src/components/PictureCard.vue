@@ -16,7 +16,9 @@
           })
         "
       />
-      <div class="usernameYours">{{photo.username}}</div>
+     <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
+        <div class="usernameYours">{{photo.username}}</div> 
+        </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes"></like-button>
@@ -49,12 +51,39 @@
       </div>
       <div class="comments">Comments:</div>
     </div>
-
+<!-- This bottom div contains favoritePics -->
     <div
       class="picContainer favoritePics"
       v-for="photo in this.$store.state.favoriteImages"
       v-bind:key="photo.user_id"
       v-show="favoritesPhotos"
+    >
+      <img
+        class="picture"
+        :src="photo.image_location"
+        @click="
+          $router.push({
+            name: 'photoDetails',
+            params: { photoId: photo.photo_id },
+          })
+        "
+      />
+      <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
+        <div class="usernameYours">{{photo.username}}</div> 
+        </router-link>
+      <div class="caption">{{ photo.caption }}</div>
+      <div class="likesBlock">
+        <like-button class="likes"></like-button>
+        <div class="likes likesCount">3</div>
+      </div>
+      <div class="comments">Comments:</div>
+    </div>
+<!-- This bottom div is for other users besides the one who is logged -->
+    <div
+      class="picContainer userFeedPics"
+      v-for="photo in this.$store.state.userFeedImages"
+      v-bind:key="photo.text"
+      v-show="userFeed"
     >
       <img
         class="picture"
@@ -89,9 +118,11 @@ export default {
   components: {
     LikeButton,
   },
-  props: ["allPhotos", "userPhotos", "favoritesPhotos"],
+  props: ["allPhotos", "userPhotos", "favoritesPhotos", "userFeed"],
   data() {
-    return {};
+    return {
+      username: "",
+    };
   },
   created() {
     if (this.allPhotos == true) {
@@ -103,25 +134,36 @@ export default {
     if (this.favoritesPhotos == true) {
       this.getFavoriteImages();
     }
+    if (this.userFeed == true) {
+      this.getUserFeedImages();
+    }
   },
   mounted() {
-    const UserString = localStorage.getItem("user");
-    let firstIndex = UserString.indexOf("username");
-    let secondIndex = UserString.indexOf("authorities");
-    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+    
 
  if (this.allPhotos == true) {
       this.getImagePosts();
     }
     if (this.userPhotos == true) {
+      const UserString = localStorage.getItem("user");
+    let firstIndex = UserString.indexOf("username");
+    let secondIndex = UserString.indexOf("authorities");
+    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
       this.getUserImages();
     }
     if (this.favoritesPhotos == true) {
       this.getFavoriteImages();
     }
+    if (this.userFeed == true) {
+      this.getUserFeedImages();
+    }
   },
   methods: {
-    turnFalse() {},
+   getUserFeedImages() {
+     UploadFileService.getUserFiles(this.$route.params.username).then((response) => {
+        this.$store.commit("SET_USERFEEDIMAGES", response.data);
+      });
+   },
     getImagePosts() {
       UploadFileService.getFiles().then((response) => {
         this.$store.commit("SET_IMAGEPOSTS", response.data);

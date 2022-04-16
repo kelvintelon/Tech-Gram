@@ -8,6 +8,15 @@ public class Comments {
     int user_id;
     String text;
     Timestamp date_and_time;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Comments(){};
 

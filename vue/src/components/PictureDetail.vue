@@ -8,11 +8,9 @@
     </div>
 
     <div class="picComments">
-      <div class="comments">{{photo.comments}}</div>
-      <!-- <comments-list :comments="pictureDetails.comments"></comments-list> -->
+      <add-comment></add-comment>  
       <comments-list></comments-list>
-      <!-- for adding comments -->
-      <add-comment></add-comment>   
+       
     </div>
           
   </div>
@@ -80,11 +78,11 @@ export default {
   /* display: -ms-flexbox;  */
   display: flex;
   flex-direction: column;
-  max-width: 1500px;
+  width: 80%;
   /* -ms-flex-pack: distribute; */
-  justify-content:left;
-  margin: 40px auto;
-  flex-wrap: wrap;
+  justify-content:center;
+  /* margin: 40px auto; */
+  /* flex-wrap: wrap; */
 }
 .picDetailContainer {
   background-color: #ddab23;
@@ -94,7 +92,8 @@ export default {
   width: 400px;
   height: 100%;
   /* margin-left: 30px; */
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  margin: 30px auto 0 auto;
   padding: 10px;
 }
 
@@ -111,5 +110,13 @@ img.picture{
 }
 ul {
   list-style: none;
+}
+.picComments{
+  width: 80%;
+  border: 1px black solid;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 20px auto 0 auto;
+
 }
 </style>
