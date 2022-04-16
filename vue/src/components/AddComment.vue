@@ -4,7 +4,7 @@
      
       <!-- <div class="form-element"> -->
         <!-- <label for="comment">Comment:</label> -->
-        <textarea id="comment" type="text" name="textarea" placeholder=" Add a comment..." 
+        <textarea id="comment" type="text" name="textarea" placeholder=" Leave your thoughts here..." 
             @input="$emit('input', $event.target.value)"
             v-model="newComment.text" ></textarea>
       <!-- </div> -->
@@ -57,6 +57,7 @@ export default {
 
   gap: 4px;
   grid-auto-flow: column;
+  margin-bottom: 15px;
 }
 /* div.form-element {
   margin-top: 10px;
@@ -76,6 +77,7 @@ select {
   border-radius: 50px;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 16px;
   
 }
 form > input[type="button"] {
@@ -107,6 +109,11 @@ input[type="submit"]
   text-transform: uppercase;
   cursor: pointer;
 
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover{
+  color: #167fa5;
 }
 
 

@@ -1,16 +1,24 @@
 <template>
+
   <div class="picCard">
 
     <div class="picDetailContainer" >
-      <img class="picture" :src=" photo.image_location " v-on:click="enlargeImg()" id="img"/>
-      <div class="caption">{{ photo.caption }}</div>
-      <div class="likes">{{photo.likeCount}}</div>
+      <img class="picture" :src=" photo.image_location "  id="img"/>
+
+      <div class="picInfo">
+        <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div>
+        <div class="userInfo">
+          <div class="picusername">{{photo.username}}</div> 
+          <div class="piccaption">{{ photo.caption }}</div>
+        </div>
+        
+      </div>
+      
     </div>
 
     <div class="picComments">
       <add-comment></add-comment>  
       <comments-list></comments-list>
-       
     </div>
           
   </div>
@@ -24,6 +32,7 @@ import AddComment from "./AddComment.vue";
 
 export default {
   name: "picture-detail",
+  
   components:{
       CommentsList,
       AddComment
@@ -49,6 +58,7 @@ export default {
     console.log(this.$route.params.photoId);
   },
   methods: {
+    
     retrievePicture() {
       PhotoService.getOnePicture(this.$route.params.photoId).then(response => {
         this.$store.commit("SET_CURRENT_PIC", response.data);
@@ -63,13 +73,7 @@ export default {
           }
       });
     },
-    enlargeImg(){
-      const img = document.getElementById("img");
-       // Set image size to 1.5 times original
-        img.style.transform = "scale(1.5)";
-        // Animation effect 
-        img.style.transition = "transform 0.25s ease";
-    }
+    
   },
   computed:{
       photo(){
@@ -81,6 +85,10 @@ export default {
 </script>
 
 <style>
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .picCard {
   /* display: -ms-flexbox;  */
   display: flex;
@@ -90,9 +98,11 @@ export default {
   justify-content:center;
   /* margin: 40px auto; */
   /* flex-wrap: wrap; */
+
 }
 .picDetailContainer {
-  background-color: #ddab23;
+  /* background-color: #ddab23; */
+  background-color: #efe3ef;
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
@@ -101,28 +111,58 @@ export default {
   /* margin-left: 30px; */
   /* margin-bottom: 30px; */
   margin: 30px auto 0 auto;
+  /* padding: 10px; */
+}
+
+div.picInfo{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  /* align-items: center; */
+  
+  column-gap: 30px;
+  
+  margin-top: 10px;
+  border-top:1px solid black;
+  /* height: 20px; */
   padding: 10px;
+  
 }
 .likes:before {
   content: "❤️";
 }
 img.picture{
-  /* width: 80%;
-  height: 80%;
-  margin: 20px;
-  margin-bottom: 10px; */
-  margin: 40px 20px 20px 20px;
+  
+  margin: 20px 20px 20px 20px;
 }
-.likes,
+#img{
+  margin: 40px 20px 20px 40px;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  /* this below is hard code */
+  margin-bottom: 7px;
+}
+
+/* .likes,
 .comments {
   margin-bottom: 10px;
+} */
+.picusername{
+  font-weight: bold;
+}
+.piccaption{
+  margin-left: 5px;
 }
 ul {
   list-style: none;
 }
 .picComments{
   width: 80%;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   border-radius: 6px;
   padding: 1rem;
   margin: 20px auto 0 auto;

@@ -3,13 +3,16 @@
     <!-- double check comment.commenter -->
     <h4>{{ comment.username }}</h4>
     <p>{{ comment.text }}</p>
+    <p>{{comment.date_and_time | formatDate}}</p>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "comment-display",
   props: ["comment"],
+  
  
 };
 </script>
@@ -29,6 +32,7 @@ div.main div.comment p {
 div.main div.comment h4 {
   font-size: 1rem;
 }
+
 
 
 </style>

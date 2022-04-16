@@ -7,7 +7,7 @@
         v-for="comment in this.$store.state.pictureDetails.comments"
         v-bind:key="comment.id"
         v-bind:comment="comment"
-      >{{comment.username}}</comment-display>
+      />
     </div>
   </div>
 </template>
@@ -33,7 +33,11 @@ div.main {
   margin: 1rem 0;
 }
 .comments{
-  background-color: rgb(209, 208, 208);
+  /* background-color: rgb(209, 208, 208); */
+  background-color:#efe3ef;
 }
-
+h3{
+  margin: auto;
+  font-weight: normal;
+}
 </style>
