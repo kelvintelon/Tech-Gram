@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// import CommentDisplay from "./CommentDisplay";
 import CommentService from "../services/CommentService";
 
 
