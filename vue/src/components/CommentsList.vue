@@ -4,10 +4,10 @@
     <div class="comments">
     <!-- double check key for comment -->
       <comment-display
-        v-for="comment in comments"
+        v-for="comment in this.$store.state.pictureDetails.comments"
         v-bind:key="comment.id"
         v-bind:comment="comment"
-      />
+      >{{comment.username}}</comment-display>
     </div>
   </div>
 </template>

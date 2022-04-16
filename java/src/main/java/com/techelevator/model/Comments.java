@@ -20,12 +20,13 @@ public class Comments {
 
     public Comments(){};
 
-    public Comments(int comment_id, int photo_id, int user_id, String text, Timestamp date_and_time) {
+    public Comments(int comment_id, int photo_id, int user_id, String text, Timestamp date_and_time, String username) {
         this.comment_id = comment_id;
         this.photo_id = photo_id;
         this.user_id = user_id;
         this.text = text;
         this.date_and_time = date_and_time;
+        this.username = username;
     }
 
     public String getText() {

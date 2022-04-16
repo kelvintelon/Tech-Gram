@@ -2,7 +2,7 @@
   <div class="picCard">
 
     <div class="picDetailContainer" >
-      <img class="picture" :src=" photo.image_location " />
+      <img class="picture" :src=" photo.image_location " v-on:click="enlargeImg()" id="img"/>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likes">{{photo.likeCount}}</div>
     </div>
@@ -63,6 +63,13 @@ export default {
           }
       });
     },
+    enlargeImg(){
+      const img = document.getElementById("img");
+       // Set image size to 1.5 times original
+        img.style.transform = "scale(1.5)";
+        // Animation effect 
+        img.style.transition = "transform 0.25s ease";
+    }
   },
   computed:{
       photo(){
