@@ -33,11 +33,15 @@ export default {
       this.newComment.photo_id = this.$store.state.pictureDetails.photo_id;
 
       CommentService.addComment(this.newComment).then(response => {     
-         this.$store.commit("ADD_COMMENT", response.data);
+         if (response.status === 201) {
+           
+           this.resetForm();
+         }
+        //  this.$store.commit("ADD_COMMENT", response.data);
       console.log(response.data);
       console.log(this.newComment.text);
 });
-      this.resetForm();
+      
     },
     resetForm() {
       this.newComment.photo_id= "";

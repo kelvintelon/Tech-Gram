@@ -24,6 +24,7 @@ export default new Vuex.Store({
     userImages:[],
     favoriteImages:[],
     userFeedImages:[],
+    pictureComments:[],
     pictureDetails:{
       photo_id:'',
       user_id:'',
@@ -33,6 +34,7 @@ export default new Vuex.Store({
       likeCount:0,
       username: ''
     },
+
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -67,8 +69,11 @@ export default new Vuex.Store({
       state.pictureDetails = data;
     },
     ADD_COMMENT(state, comment) {
-      state.pictureDetails.comments.unshift(comment);
+      state.pictureDetails.comments.push(comment);
     },
+    SET_COMMENTS(state,data){
+      state.pictureComments = data;
+    }
     // FLIP_FAVORITED(state, commentToChange) {
     //   commentToChange.favorited = ! commentToChange.favorited;
     // }

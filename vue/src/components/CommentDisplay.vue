@@ -1,19 +1,35 @@
 <template>
-  <div class="comment" v-bind:key="comment.id">
+  <div class="comment" >
+        <div v-for="comment in this.$store.state.pictureComments"
+        v-bind:key="comment.photo_id"
+        v-bind:comment="comment">
+          
+            <p>{{ comment.username }}</p>
+            <p>{{ comment.text }}</p>
+            <p>{{comment.date_and_time | formatDate}}</p>
+        </div>
     <!-- double check comment.commenter -->
-    <h4>{{ comment.username }}</h4>
-    <p>{{ comment.text }}</p>
-    <p>{{comment.date_and_time | formatDate}}</p>
+    <!-- <h4>{{ comment.username }}</h4> -->
+    
   </div>
 </template>
 
 <script>
+import CommentService from "../services/CommentService";
 
 export default {
   name: "comment-display",
-  props: ["comment"],
+  // props: ["comment"],
+  methods:{
+    getCommentsByPhotoId(){
+      CommentService.getCommentsByPhotoID(this.$route.params.photoId)
+                    .then((response) =>{
+                      this.$store.commit("SET_COMMENTS", response.data)
+                    })
+
   
- 
+    },
+  }
 };
 </script>
 

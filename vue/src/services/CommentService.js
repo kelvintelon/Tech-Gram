@@ -16,7 +16,8 @@ export default {
 
   updateComment(comment) {
     return axios.put(`/comments`, comment )
-}
+},
+
 
 
 }
