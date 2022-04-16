@@ -3,7 +3,7 @@
     
 
       <div v-if="!imagePost.image_location">
-        <h2>New Post</h2>
+        <h2>Select an image</h2>
         <div class="wrapper">
           <div class="text">
             No file chosen, yet!
@@ -43,7 +43,7 @@
 
             <br />
             <button id="cancel" @click="removeImage">Cancel</button> &nbsp;
-            <button id="share" type="submit">Share</button>
+            <button id="upload" type="submit">Upload</button>
           </form>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default {
 
     createImage(file) {
       let reader = new FileReader();
-      // The vm in this case means view model, its a shortcut for writing this.someMethod() so that you can use vm.someMethod()
+      // The vm in this case means viewmodel, its a shortcut for writing this.someMethod() so that you can use vm.someMethod()
       let vm = this;
 
       reader.onload = (e) => {
@@ -152,7 +152,7 @@ export default {
 
     defaultBtnActive(){
         const defaultBtn = document.querySelector("#file");
-        // const customerBtn = document.querySelector("#custom-btn");
+        // const customeBtn = document.querySelector("#custom-btn");
         defaultBtn.click();
     },
 /*    upload() {
