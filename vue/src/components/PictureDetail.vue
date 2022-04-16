@@ -80,7 +80,7 @@ export default {
   /* display: -ms-flexbox;  */
   display: flex;
   flex-direction: column;
-  max-width: 1550px;
+  max-width: 1500px;
   /* -ms-flex-pack: distribute; */
   justify-content:left;
   margin: 40px auto;
@@ -97,9 +97,7 @@ export default {
   margin-bottom: 30px;
   padding: 10px;
 }
-.likes:before {
-  content: "❤️";
-}
+
 img.picture{
   /* width: 80%;
   height: 80%;

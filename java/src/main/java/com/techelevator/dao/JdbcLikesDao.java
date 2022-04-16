@@ -17,20 +17,28 @@ public class JdbcLikesDao implements LikesDao{
     @Override
     public int addLike(Photos photos, int userId) {
         String sql = "INSERT INTO likes (photo_id, is_active, user_id, date_and_time) " +
-                "VALUES (?,true,?,CURRENT_TIMESTAMP) RETURNING like_id";
+                "VALUES (?, true, ?, CURRENT_TIMESTAMP) RETURNING like_id";
         int newId = jdbcTemplate.queryForObject(sql, Integer.class, photos.getPhoto_id(), userId);
         return newId;
     }
 
     @Override
-    public void unlikeByPhotoId(int photoId, int userId) {
-        String sql = "UPDATE likes SET is_active = false WHERE photo_id = ? AND user_id = ?;";
-        jdbcTemplate.update(sql, photoId, userId);
+    public void unlikeByPhotoId(int photoId, String username) {
+        String sql =
+                " DELETE FROM likes " +
+                " WHERE photo_id = ? AND user_id = (SELECT user_id FROM users WHERE username = ?); ";
+        jdbcTemplate.update(sql, photoId, username);
+    }
+
+    public void likeOrUnlike(int photoId, String username) {
+        String sql = " DELETE FROM likes " +
+                " WHERE photo_id = ? AND user_id = (SELECT user_id FROM users WHERE username = ?); ";
+        jdbcTemplate.update(sql, photoId, username);
     }
 
     @Override
     public int getLikeCountByPhotoId(int photoId) {
-        String sql = "SELECT count(*) FROM likes WHERE photo_id = ? AND is_active = true;";
+        String sql = "SELECT count(*) FROM likes WHERE photo_id = ?;";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, photoId);
         return count;
     }
