@@ -30,12 +30,6 @@ public class JdbcLikesDao implements LikesDao{
         jdbcTemplate.update(sql, photoId, username);
     }
 
-    public void likeOrUnlike(int photoId, String username) {
-        String sql = " DELETE FROM likes " +
-                " WHERE photo_id = ? AND user_id = (SELECT user_id FROM users WHERE username = ?); ";
-        jdbcTemplate.update(sql, photoId, username);
-    }
-
     @Override
     public int getLikeCountByPhotoId(int photoId) {
         String sql = "SELECT count(*) FROM likes WHERE photo_id = ?;";

@@ -9,7 +9,6 @@ public interface LikesDao {
 
     void unlikeByPhotoId(int photoId, String username);
 
-    void likeOrUnlike(int photoId, String username);
 
     int getLikeCountByPhotoId(int photoId);
 }
