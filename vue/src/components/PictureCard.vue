@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <!--       This    div    contains    All     pictures -->
     <div
       class="picContainer allPics"
       v-for="photo in this.$store.state.imagePosts"
@@ -22,10 +23,12 @@
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id" ></like-button>
+        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
-
+    
+<!--       This    div    contains    Logged In    User     pictures    -->
     <div
       class="picContainer userPics"
       v-for="photo in this.$store.state.userImages"
@@ -46,10 +49,12 @@
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
+        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
-<!-- This bottom div contains favoritePics -->
+
+<!--      This     bottom     div     contains      favoritePics -->
     <div
       class="picContainer favoritePics"
       v-for="photo in this.$store.state.favoriteImages"
@@ -72,10 +77,12 @@
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
+        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-    </div>
-<!-- This bottom div is for other users besides the one who is logged -->
+    </div> 
+
+<!--      This   bottom   div   is   for  other  users   besides   the   one   who  is  logged -->
     <div
       class="picContainer userFeedPics"
       v-for="photo in this.$store.state.userFeedImages"
@@ -96,6 +103,7 @@
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
+        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
@@ -108,11 +116,13 @@
 import UploadFileService from "../services/UploadFileService";
 import LikeButton from "../components/LikeButton.vue";
 import FavoriteService from "../services/FavoriteService";
+import FavoriteButton from "../components/FavoriteButton.vue"
 
 export default {
   name: "picture-card",
   components: {
     LikeButton,
+    FavoriteButton
   },
   props: ["allPhotos", "userPhotos", "favoritesPhotos", "userFeed"],
   data() {
@@ -220,5 +230,12 @@ ul {
 .likesCount {
   margin-left: 3px;
   font-size: 20px;
+}
+.likesBlock {
+  display: flex;
+  justify-content:space-between;
+}
+.favorites{
+  margin-right: 10px;
 }
 </style>

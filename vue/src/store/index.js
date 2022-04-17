@@ -26,6 +26,7 @@ export default new Vuex.Store({
     userFeedImages:[],
     pictureComments:[],
     Likes: '',
+    Favorites: '',
     pictureDetails:{
       photo_id:'',
       user_id:'',
@@ -77,6 +78,9 @@ export default new Vuex.Store({
     },
     SET_LIKES(state, data) {
       state.Likes = data;
+    },
+    SET_FAVORITES(state, data) {
+      state.Favorites = data;
     }
     // FLIP_FAVORITED(state, commentToChange) {
     //   commentToChange.favorited = ! commentToChange.favorited;

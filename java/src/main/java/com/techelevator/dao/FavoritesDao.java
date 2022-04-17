@@ -13,6 +13,8 @@ public interface FavoritesDao {
 
     int addToFavorites(int photoId, String username);
 
+    int checkIfExists(int photoId, String username);
+
     List<Comments> getCommentsByPhotoId(int id);
 
     int getLikeCountByPhotoId(int photoId);

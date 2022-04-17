@@ -23,6 +23,15 @@ public class JdbcLikesDao implements LikesDao{
     }
 
     @Override
+    public int checkIfLiked(int photoId, String username) {
+        String sql = "SELECT count(*) FROM likes " +
+                "WHERE photo_id = ? AND is_active = true AND user_id = " +
+                "(SELECT user_id FROM users WHERE username = ?)";
+        int number = jdbcTemplate.queryForObject(sql, Integer.class, photoId, username);
+        return number;
+    }
+
+    @Override
     public void unlikeByPhotoId(int photoId, String username) {
         String sql =
                 " DELETE FROM likes " +

@@ -53,6 +53,14 @@ public class JdbcFavoritesDao implements FavoritesDao {
     }
 
     @Override
+    public int checkIfExists(int photoId, String username) {
+        String sql = "SELECT count(*) FROM favorites " +
+                "WHERE photo_id = ? AND user_id = (SELECT user_id FROM users WHERE username = ?)";
+        Integer number = jdbcTemplate.queryForObject(sql, Integer.class, photoId, username);
+        return number;
+    }
+
+    @Override
     public List<Comments> getCommentsByPhotoId(int id) {
         List<Comments> comments = new ArrayList<>();
         String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +

@@ -31,6 +31,11 @@ public class FavoritesController {
         return favoritesDao.getFavoritePhotosByUsername(principal.getName());
     }
 
+    @RequestMapping(value = "/favorites/{photoId}", method = RequestMethod.GET)
+    public int checkIfExists(@Valid @PathVariable int photoId, Principal principal){
+        return favoritesDao.checkIfExists(photoId, principal.getName());
+    }
+
     @RequestMapping(value = "/photodetails/{photoId}", method = RequestMethod.DELETE)
     public void deleteFromFavorites(@Valid @PathVariable int photoId) {
         favoritesDao.removeFromFavorites(photoId);

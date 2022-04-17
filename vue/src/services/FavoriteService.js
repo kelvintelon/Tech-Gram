@@ -12,6 +12,10 @@ export default {
 
   deleteFavoriteByPhotoID(photoID) {
       return axios.delete(`/photodetails/${photoID}`)
+  },
+
+  checkFavorite(photoId) {
+    return axios.get(`/favorites/${photoId}`)
   }
 
 

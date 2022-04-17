@@ -35,6 +35,11 @@ public class LikesController {
         likesDao.unlikeByPhotoId(photoId, principal.getName());
     }
 
+    @RequestMapping(path = "/CheckCount/{photoId}", method = RequestMethod.GET)
+    public int checkLikes(@Valid @PathVariable int photoId, Principal principal) {
+        return likesDao.checkIfLiked(photoId, principal.getName());
+    }
+
     @RequestMapping(path = "/likeCount/{photoId}", method = RequestMethod.GET)
     public int getLikeCountByPhotoId(@Valid @PathVariable int photoId) {
         return likesDao.getLikeCountByPhotoId(photoId);

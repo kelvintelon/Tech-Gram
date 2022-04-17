@@ -4,11 +4,15 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <i class="material-icons" id="notLiked" @click="whenClicked(photoId)" v-if="notLiked"
+    <i
+      class="material-icons"
+      id="notLiked"
+      @click="whenClicked(photoId)"
+      v-if="notLiked"
       >favorite_border</i
     >
     <span class="material-icons" id="Liked" v-else>favorite</span>
-    <div class="likes likesCount">{{this.oneCount}}</div>
+    <div class="likes likesCount">{{ this.oneCount }}</div>
   </div>
 </template>
 
@@ -18,16 +22,15 @@ import LikesService from "../services/LikesService";
 export default {
   name: "like-button",
   props: {
-    photoId: Number
+    photoId: Number,
   },
   data() {
     return {
       notLiked: true,
-      oneCount: '',
-      newCount: '',
+      oneCount: "",
       photo: {
         photo_id: "",
-      }
+      },
     };
   },
   mounted() {
@@ -37,17 +40,9 @@ export default {
     delay(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     },
-    whenClicked(pictureId) {
+    whenClicked(photoId) {
       this.notLiked = false;
-      this.checkIfExists(pictureId)
-      if(this.oneCount == this.newCount) {
-        this.addLike(pictureId);
-        this.oneCount ++;
-        
-      } else {
-        this.oneCount --;
-        this.oneCount = this.newCount;
-      }
+      this.checkLike(photoId);
       this.delay(400).then(() => (this.notLiked = true));
     },
     getAllLikes(photoId) {
@@ -56,20 +51,24 @@ export default {
         this.oneCount = response.data;
       });
     },
-    countLikes(photoId) {
-      LikesService.getLikes(photoId).then((response) => {
-        this.newCount = response.data;
-      });
-    },
-    checkIfExists(photoId) {
+    deleteLike(photoId) {
       LikesService.deleteLike(photoId);
-      this.countLikes(photoId);
     },
     addLike(photoId) {
       this.photo.photo_id = photoId;
-      this.photo.user_id = 9;
       LikesService.addLike(this.photo);
-    }
+    },
+    checkLike(photoId) {
+      LikesService.checkLikes(photoId).then((response) => {
+        if (response.data == 0) {
+        this.addLike(photoId);
+        this.oneCount ++;
+      } else { 
+        this.deleteLike(photoId);
+        this.oneCount --;
+      }
+      });
+    },
   },
 };
 </script>
