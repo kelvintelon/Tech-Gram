@@ -21,8 +21,7 @@
         </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
-        <like-button class="likes"></like-button>
-        <div class="likes likesCount">3</div>
+        <like-button class="likes" :photoId="photo.photo_id" ></like-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
@@ -46,8 +45,7 @@
        <div class="usernameYours">{{photo.username}}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
-        <like-button class="likes"></like-button>
-        <div class="likes likesCount">3</div>
+        <like-button class="likes" :photoId="photo.photo_id"></like-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
@@ -73,8 +71,7 @@
         </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
-        <like-button class="likes"></like-button>
-        <div class="likes likesCount">3</div>
+        <like-button class="likes" :photoId="photo.photo_id"></like-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
@@ -98,8 +95,7 @@
        <div class="usernameYours">{{photo.username}}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
-        <like-button class="likes"></like-button>
-        <div class="likes likesCount">3</div>
+        <like-button class="likes" :photoId="photo.photo_id"></like-button>
       </div>
       <div class="comments">Comments:</div>
     </div>

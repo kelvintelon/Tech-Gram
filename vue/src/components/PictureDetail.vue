@@ -129,9 +129,7 @@ div.picInfo{
   padding: 10px;
   
 }
-.likes:before {
-  content: "❤️";
-}
+
 img.picture{
   
   margin: 20px 20px 20px 20px;

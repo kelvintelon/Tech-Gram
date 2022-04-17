@@ -30,9 +30,9 @@ public class LikesController {
         return likesDao.addLike(photos, userDao.findIdByUsername(principal.getName()));
     }
 
-    @RequestMapping(path = "/unlike/{photoId}", method = RequestMethod.PUT)
-    public void unlikeByPhotoId(@Valid Principal principal, @PathVariable int photoId) {
-        likesDao.unlikeByPhotoId(photoId, userDao.findIdByUsername(principal.getName()));
+    @RequestMapping(path = "/unlike/{photoId}", method = RequestMethod.DELETE)
+    public void unlikeByPhotoId(@Valid @PathVariable int photoId, Principal principal) {
+        likesDao.unlikeByPhotoId(photoId, principal.getName());
     }
 
     @RequestMapping(path = "/likeCount/{photoId}", method = RequestMethod.GET)
