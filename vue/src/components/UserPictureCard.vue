@@ -62,23 +62,23 @@ export default {
   background-color: #efe3ef;
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 200px;
   height: 100%;
-  margin-left: 30px;
-  margin-bottom: 30px;
-  padding: 10px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
 }
 
 img {
   width: 80%;
   height: 80%;
   margin: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .likes,
 .comments {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 ul {
   list-style: none;
