@@ -2,7 +2,7 @@
   <div>
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
-    <picture-card v-bind:userPhotos="userPhotos"></picture-card>
+    <picture-card v-bind:userPhotos="userPhotos" ></picture-card>
   </div>
 </template>
 

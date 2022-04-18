@@ -20,7 +20,32 @@
           })
         "
       />
+<<<<<<< HEAD
     
+=======
+      <!-- need to compare if photo.username == this.username-->
+     <!-- <router-link
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
+      >
+      
+        <div class="usernameYours">{{ photo.username }}</div>
+      </router-link> -->
+      <router-link
+        v-bind:to="{ name: 'userPage', params: { username: photo.username } }" v-if="checkUser(photo)"
+      >
+        <div class="usernameYours">{{ photo.username }}</div>
+      </router-link>
+
+      <router-link
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }" v-if="!checkUser(photo)"
+      >
+        <div class="usernameYours">{{ photo.username }}</div>
+      </router-link>
+
+
+      <!-- edit above -->
+
+>>>>>>> ziyeBranch
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
@@ -147,6 +172,7 @@ export default {
   data() {
     return {
       username: "",
+      isUser: false,
     };
   },
   created() {
@@ -162,6 +188,9 @@ export default {
     if (this.userFeed == true) {
       this.getUserFeedImages();
     }
+  //  edit here -z
+     console.log('this works');
+
   },
   mounted() {
     if (this.allPhotos == true) {
@@ -173,6 +202,7 @@ export default {
       let secondIndex = UserString.indexOf("authorities");
       this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
       this.getUserImages();
+
     }
     if (this.favoritesPhotos == true) {
       this.getFavoriteImages();
@@ -204,7 +234,22 @@ export default {
         this.$store.commit("SET_FAVORITEIMAGES", response.data);
       });
     },
+    
+    // to check is login user=username, yes-isUser to true, no-isUser to false
+    checkUser(photo){
+      
+      const UserString = localStorage.getItem("user");
+      let firstIndex = UserString.indexOf("username");
+      let secondIndex = UserString.indexOf("authorities");
+      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+      if (this.username == photo.username){
+        return this.isUser=true;
+      }else{
+        return this.isUser=false;
+      }
+    },
   },
+ 
 };
 </script>
 
@@ -219,7 +264,8 @@ export default {
 .card {
   display: -ms-flexbox;
   display: inline-flex;
-  max-width: 1550px;
+  width:80%;
+  /* max-width: 1550px; */
   -ms-flex-pack: distribute;
   justify-content: left;
   margin: 40px auto;
