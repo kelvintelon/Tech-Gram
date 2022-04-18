@@ -52,7 +52,8 @@ public class JdbcPhotosDao implements PhotosDao {
     public List<Photos> getAllPhotos() {
         List<Photos> allPhotos = new ArrayList<>();
         String sql = "SELECT photo_id, photos.user_id, caption, image_location, date_and_time FROM photos " +
-                "JOIN users ON photos.user_id = users.user_id;";
+                "JOIN users ON photos.user_id = users.user_id " +
+                "ORDER BY date_and_time DESC;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while (result.next()) {
             Photos photos = mapRowToPhotos(result);
@@ -78,7 +79,8 @@ public class JdbcPhotosDao implements PhotosDao {
         List<Photos> allPhotosByUser = new ArrayList<>();
         String sql = "SELECT photo_id, photos.user_id, caption, image_location, date_and_time FROM photos " +
                 "JOIN users ON photos.user_id = users.user_id " +
-                "WHERE users.username = ?;";
+                "WHERE users.username = ? " +
+                "ORDER BY date_and_time DESC;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
         while (result.next()) {
             Photos photos = mapRowToPhotos(result);
