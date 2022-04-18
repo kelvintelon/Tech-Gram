@@ -55,9 +55,12 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-      <ul v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
-        <li>{{comment.username}}{{comment.text}}</li>
-        </ul>
+      <table>
+      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
+        <th>{{comment.username}}:</th>
+        <td>  {{comment.text}}</td>
+        </tr>
+</table>
     </div>
 
     <!--       This    div    contains    Logged In    User     pictures    -->
@@ -87,6 +90,12 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
+       <table>
+      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
+        <th>{{comment.username}}:</th>
+        <td>  {{comment.text}}</td>
+        </tr>
+</table>
     </div>
 
     <!--      This     bottom     div     contains      favoritePics -->
@@ -121,6 +130,12 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
+       <table>
+      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
+        <th>{{comment.username}}:</th>
+        <td>  {{comment.text}}</td>
+        </tr>
+</table>
     </div>
 
     <!--      This   bottom   div   is   for  other  users   besides   the   one   who  is  logged -->
@@ -151,6 +166,12 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments: </div>
+       <table>
+      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
+        <th>{{comment.username}}:</th>
+        <td>  {{comment.text}}</td>
+        </tr>
+</table>
     </div>
   </div>
 </template>

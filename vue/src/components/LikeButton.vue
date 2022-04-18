@@ -64,19 +64,11 @@ export default {
       LikesService.checkLikes(photoId).then((response) => {
         if (response.data == 0) {
         this.addLike(photoId);
-<<<<<<< HEAD
-        this.oneCount ++;
+        this.oneCount++;
       } else { 
         this.deleteLike(photoId);
-        this.oneCount --;
+        this.oneCount--;
       }
-=======
-        this.oneCount++ ;
-      } else { 
-        this.deleteLike(photoId);
-        this.oneCount-- ;      
-        }
->>>>>>> f59906fbbf6c1f9ec5121229e1b07570f5ab3c2b
       });
     },
   },
