@@ -7,6 +7,9 @@
       v-bind:key="photo.photo_id"
       v-show="allPhotos"
     >
+     <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
+        <div class="usernameYours">{{photo.username}}</div> 
+        </router-link>
       <img
         class="picture"
         :src="photo.image_location"
@@ -17,11 +20,7 @@
           })
         "
       />
-      <router-link
-        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
-      >
-        <div class="usernameYours">{{ photo.username }}</div>
-      </router-link>
+    
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
@@ -43,6 +42,7 @@
       v-bind:key="photo.username"
       v-show="userPhotos"
     >
+    <div class="usernameYours">{{photo.username}}</div> 
       <img
         class="picture"
         :src="photo.image_location"
@@ -53,7 +53,6 @@
           })
         "
       />
-      <div class="usernameYours">{{ photo.username }}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
@@ -208,6 +207,13 @@ export default {
 </script>
 
 <style>
+.usernameYours{
+  text-align: center;
+  color:#00adee;
+  font-family:Palatino, URW Palladio L, serif;
+  font-weight: bold;
+  border-radius: 5px;
+}
 .card {
   display: -ms-flexbox;
   display: inline-flex;
@@ -216,7 +222,7 @@ export default {
   justify-content: left;
   margin: 40px auto;
   flex-wrap: wrap;
-}
+  text-align: center;}
 .picContainer {
   background-color: #efe3ef;
   border: 1px solid black;
@@ -235,10 +241,15 @@ img {
   margin: 20px;
   margin-bottom: 10px;
 }
-.likes,
+.likes{}
 .comments {
   margin-bottom: 10px;
+  padding: 10px;
+  border-left-style: solid;
+  border-left-color: lightblue;
+  text-align: left;
 }
+
 ul {
   list-style: none;
 }
