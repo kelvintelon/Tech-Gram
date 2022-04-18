@@ -11,7 +11,9 @@
       v-if="notLiked"
       >favorite_border</i
     >
+
     <span class="material-icons" id="Liked" v-else>favorite</span>
+    
     <div class="likes likesCount">{{ this.oneCount }}</div>
   </div>
 </template>
@@ -62,10 +64,10 @@ export default {
       LikesService.checkLikes(photoId).then((response) => {
         if (response.data == 0) {
         this.addLike(photoId);
-        this.getAllLikes(photoId);
+        this.oneCount ++;
       } else { 
         this.deleteLike(photoId);
-        this.getAllLikes(photoId);
+        this.oneCount --;
       }
       });
     },
@@ -76,10 +78,12 @@ export default {
 <style>
 #notLiked {
   color: #00adee;
-  cursor: default;
+  cursor: pointer;
 }
 
 #Liked {
   color: #00adee;
+  cursor: pointer;
 }
+
 </style>
