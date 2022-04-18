@@ -24,7 +24,8 @@ public class JdbcCommentsDao implements CommentsDao{
         List<Comments> comments = new ArrayList<>();
         String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
                 "FROM comments " +
-                "WHERE photo_id = ?";
+                "WHERE photo_id = ?" +
+                "ORDER BY date_and_time DESC";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()) {
             Comments comment = mapRowToComments(result);
@@ -75,6 +76,23 @@ public class JdbcCommentsDao implements CommentsDao{
             comments = mapRowToComments(result);
             comments.setUsername(getUsernameByUserId(comments.getUser_id()));
 
+        }
+        return comments;
+    }
+
+    @Override
+    public List<Comments> getTwoComments(int photoId) {
+        List<Comments> comments = new ArrayList<>();
+        String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
+                "FROM comments " +
+                "WHERE photo_id = 15 " +
+                "ORDER BY  date_and_time DESC " +
+                "LIMIT 2 ";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, photoId);
+        while(result.next()) {
+            Comments comment = mapRowToComments(result);
+            comment.setUsername(getUsernameByUserId(comment.getUser_id()));
+            comments.add(comment);
         }
         return comments;
     }
