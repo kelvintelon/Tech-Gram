@@ -23,7 +23,8 @@ public class JdbcFavoritesDao implements FavoritesDao {
                 "photos.image_location, photos.date_and_time " +
                 "FROM photos " +
                 "JOIN favorites ON photos.photo_id = favorites.photo_id " +
-                "WHERE favorites.user_id = (SELECT user_id FROM users WHERE username = ?)";
+                "WHERE favorites.user_id = (SELECT user_id FROM users WHERE username = ?) " +
+                "ORDER BY date_and_time DESC;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, usernameWhoFavorited);
         while (result.next()) {
             Photos photo = mapRowToPhotos(result);
