@@ -6,11 +6,13 @@
         src="https://images.squarespace-cdn.com/content/v1/55ef2da9e4b03f6e1ef0cd28/1558034939902-652JBW936829PJQM7K30/Mark.jpg"
       /> -->
       <div class="inner_header">
-        <img class="logo" src="../../img/mark.png" />
-        <div class="logo_container">
-          <h1 class="title">Tech Gram</h1>
-        </div>
-        
+        <router-link v-bind:to="{ name: 'home'}">
+
+          <img class="logo" src="../../img/mark.png" />
+          <div class="logo_container">
+            <h1 class="title">Tech Gram</h1>
+          </div>
+        </router-link>
 
       </div>
       
