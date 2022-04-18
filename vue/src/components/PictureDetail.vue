@@ -10,7 +10,10 @@
           <like-button class="likes" v-bind:photoId="photo.photo_id" ></like-button>
           <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p>
            <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
-           <button id="editCaption" v-show="this.yourPhoto">Edit caption</button>
+           <edit-caption :photoUsername="photo.username"></edit-caption>
+
+           
+           <!-- <button id="editCaption" v-show="this.yourPhoto">Edit caption</button> -->
         <!-- <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div> -->
         </div>
         
@@ -38,6 +41,7 @@ import CommentsList from "./CommentsList.vue";
 import AddComment from "./AddComment.vue";
 import LikeButton from "./LikeButton.vue";
 import FavoriteButton from "./FavoriteButton.vue"
+import EditCaption from "./EditCaption.vue"
 
 export default {
   name: "picture-detail",
@@ -47,6 +51,7 @@ export default {
       AddComment,
       LikeButton,
       FavoriteButton,
+    EditCaption,
   },
     data() {
     return {
@@ -57,23 +62,44 @@ export default {
     };
   },
    mounted(){
-     const UserString= localStorage.getItem("user");
-     let firstIndex = UserString.indexOf("username");
-     let secondIndex = UserString.indexOf("authorities");
-     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+     this.retrievePicture();
+     
+    //  const UserString= localStorage.getItem("user");
+    //  let firstIndex = UserString.indexOf("username");
+    //  let secondIndex = UserString.indexOf("authorities");
+    //  this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
 
-     if (this.username == this.$store.state.pictureDetails.username) {
-       this.yourPhoto = true;
-     }
-     console.log(this.username);
-      this.retrievePicture();
+
+
+    //  if (this.username == this.$store.state.pictureDetails.username) {
+    //    this.yourPhoto = true;
+    // console.log(this.username);
+    //  console.log(this.$store.state.pictureDetails.username)
+    //  }
+    //  console.log(this.username);
+    //  console.log(this.$store.state.pictureDetails.username)
+
+      
    },
 
   created() {
     this.retrievePicture();
-     if (this.username == this.$store.state.pictureDetails.username) {
-       this.yourPhoto = true;
-     }
+     
+    //  const UserString= localStorage.getItem("user");
+    //  let firstIndex = UserString.indexOf("username");
+    //  let secondIndex = UserString.indexOf("authorities");
+    //  this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+
+
+
+    //  if (this.username == this.$store.state.pictureDetails.username) {
+    //    this.yourPhoto = true;
+    // console.log(this.username);
+    //  console.log(this.$store.state.pictureDetails.username)
+    //  }
+    //  console.log(this.username);
+    //  console.log(this.$store.state.pictureDetails.username)
+
   },
   methods: {
     

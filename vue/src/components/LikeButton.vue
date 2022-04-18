@@ -64,10 +64,10 @@ export default {
       LikesService.checkLikes(photoId).then((response) => {
         if (response.data == 0) {
         this.addLike(photoId);
-        this.oneCount ++;
+        this.oneCount++;
       } else { 
         this.deleteLike(photoId);
-        this.oneCount --;
+        this.oneCount--;
       }
       });
     },
