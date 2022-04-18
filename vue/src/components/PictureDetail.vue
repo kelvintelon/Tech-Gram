@@ -6,7 +6,14 @@
       <img class="picture" :src=" photo.image_location "  id="img"/>
 
       <div class="picInfo">
-        <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div>
+        <div class="like_and_fav">
+          <like-button  v-bind:photoId="photo.photo_id" ></like-button>
+       
+          <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p>
+           <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+        <!-- <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div> -->
+        </div>
+        
         <div class="userInfo">
           <div class="picusername">{{photo.username}}</div> 
           <div class="piccaption">{{ photo.caption }}</div>
@@ -29,13 +36,17 @@
 import PhotoService from "../services/PhotoService";
 import CommentsList from "./CommentsList.vue";
 import AddComment from "./AddComment.vue";
+import LikeButton from "./LikeButton.vue";
+import FavoriteButton from "./FavoriteButton.vue"
 
 export default {
   name: "picture-detail",
   
   components:{
       CommentsList,
-      AddComment
+      AddComment,
+      LikeButton,
+      FavoriteButton,
   },
     data() {
     return {
@@ -130,6 +141,18 @@ div.picInfo{
   
 }
 
+.like_and_fav{
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+}
+
+.like{
+  /* margin-left: 5px; */
+  margin: 6px 0 1px 5px;
+  font-size: 20px;
+  
+}
 img.picture{
   
   margin: 20px 20px 20px 20px;

@@ -27,9 +27,9 @@ export default {
   data() {
     return {
       notLiked: true,
-      oneCount: "",
+      oneCount: 0,
       photo: {
-        photo_id: "",
+        photo_id: 0,
       },
     };
   },
@@ -62,10 +62,10 @@ export default {
       LikesService.checkLikes(photoId).then((response) => {
         if (response.data == 0) {
         this.addLike(photoId);
-        this.oneCount ++;
+        this.getAllLikes(photoId);
       } else { 
         this.deleteLike(photoId);
-        this.oneCount --;
+        this.getAllLikes(photoId);
       }
       });
     },
