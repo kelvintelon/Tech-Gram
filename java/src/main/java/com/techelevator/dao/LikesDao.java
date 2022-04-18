@@ -12,4 +12,5 @@ public interface LikesDao {
     int checkIfLiked(int photoId, String username);
 
     int getLikeCountByPhotoId(int photoId);
+
 }

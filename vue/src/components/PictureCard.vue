@@ -17,18 +17,26 @@
           })
         "
       />
-     <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
-        <div class="usernameYours">{{photo.username}}</div> 
-        </router-link>
+      <router-link
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
+      >
+        <div class="usernameYours">{{ photo.username }}</div>
+      </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
-        <like-button class="likes" :photoId="photo.photo_id" ></like-button>
-        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+        <like-button class="likes" :photoId="photo.photo_id"></like-button>
+        <favorite-button
+          class="favorites"
+          :photoId="photo.photo_id"
+        ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
+      <ul v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
+        <li>{{comment.username}}{{comment.text}}</li>
+        </ul>
     </div>
-    
-<!--       This    div    contains    Logged In    User     pictures    -->
+
+    <!--       This    div    contains    Logged In    User     pictures    -->
     <div
       class="picContainer userPics"
       v-for="photo in this.$store.state.userImages"
@@ -45,16 +53,19 @@
           })
         "
       />
-       <div class="usernameYours">{{photo.username}}</div>
+      <div class="usernameYours">{{ photo.username }}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
-        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+        <favorite-button
+          class="favorites"
+          :photoId="photo.photo_id"
+        ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
     </div>
 
-<!--      This     bottom     div     contains      favoritePics -->
+    <!--      This     bottom     div     contains      favoritePics -->
     <div
       class="picContainer favoritePics"
       v-for="photo in this.$store.state.favoriteImages"
@@ -71,18 +82,23 @@
           })
         "
       />
-      <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
-        <div class="usernameYours">{{photo.username}}</div> 
-        </router-link>
+      <router-link
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
+      >
+        <div class="usernameYours">{{ photo.username }}</div>
+      </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
-        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+        <favorite-button
+          class="favorites"
+          :photoId="photo.photo_id"
+        ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-    </div> 
+    </div>
 
-<!--      This   bottom   div   is   for  other  users   besides   the   one   who  is  logged -->
+    <!--      This   bottom   div   is   for  other  users   besides   the   one   who  is  logged -->
     <div
       class="picContainer userFeedPics"
       v-for="photo in this.$store.state.userFeedImages"
@@ -99,30 +115,32 @@
           })
         "
       />
-       <div class="usernameYours">{{photo.username}}</div>
+      <div class="usernameYours">{{ photo.username }}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
-        <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+        <favorite-button
+          class="favorites"
+          :photoId="photo.photo_id"
+        ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments">Comments: </div>
     </div>
   </div>
 </template>
-
 
 
 <script>
 import UploadFileService from "../services/UploadFileService";
 import LikeButton from "../components/LikeButton.vue";
 import FavoriteService from "../services/FavoriteService";
-import FavoriteButton from "../components/FavoriteButton.vue"
+import FavoriteButton from "../components/FavoriteButton.vue";
 
 export default {
   name: "picture-card",
   components: {
     LikeButton,
-    FavoriteButton
+    FavoriteButton,
   },
   props: ["allPhotos", "userPhotos", "favoritesPhotos", "userFeed"],
   data() {
@@ -145,16 +163,14 @@ export default {
     }
   },
   mounted() {
-    
-
- if (this.allPhotos == true) {
+    if (this.allPhotos == true) {
       this.getImagePosts();
     }
     if (this.userPhotos == true) {
       const UserString = localStorage.getItem("user");
-    let firstIndex = UserString.indexOf("username");
-    let secondIndex = UserString.indexOf("authorities");
-    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+      let firstIndex = UserString.indexOf("username");
+      let secondIndex = UserString.indexOf("authorities");
+      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
       this.getUserImages();
     }
     if (this.favoritesPhotos == true) {
@@ -165,11 +181,13 @@ export default {
     }
   },
   methods: {
-   getUserFeedImages() {
-     UploadFileService.getUserFiles(this.$route.params.username).then((response) => {
-        this.$store.commit("SET_USERFEEDIMAGES", response.data);
-      });
-   },
+    getUserFeedImages() {
+      UploadFileService.getUserFiles(this.$route.params.username).then(
+        (response) => {
+          this.$store.commit("SET_USERFEEDIMAGES", response.data);
+        }
+      );
+    },
     getImagePosts() {
       UploadFileService.getFiles().then((response) => {
         this.$store.commit("SET_IMAGEPOSTS", response.data);
@@ -233,9 +251,9 @@ ul {
 }
 .likesBlock {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.favorites{
+.favorites {
   margin-right: 10px;
 }
 </style>

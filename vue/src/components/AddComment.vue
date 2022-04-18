@@ -1,7 +1,6 @@
 <template>
   <div>
     <form v-on:submit.prevent="addNewComment" class="addComment">
-     
       <!-- <div class="form-element"> -->
         <!-- <label for="comment">Comment:</label> -->
         <textarea id="comment" type="text" name="textarea" placeholder=" Leave your thoughts here..." 
@@ -27,19 +26,26 @@ export default {
       }
     };
   },
+  mounted() {
+  },
+  created() {
+  },
   methods: {
-    addNewComment() {
+  addNewComment() {
       this.newComment.text = document.querySelector("textarea").value;
       this.newComment.photo_id = this.$store.state.pictureDetails.photo_id;
 
       CommentService.addComment(this.newComment).then(response => {     
          if (response.status === 201) {
-           
+          
            this.resetForm();
+           
          }
-        //  this.$store.commit("ADD_COMMENT", response.data);
-      console.log(response.data);
-      console.log(this.newComment.text);
+        window.alert("Comment posted")
+        location.reload();
+       
+      // console.log(response.data);
+      // console.log(this.newComment.text);
 });
       
     },
@@ -49,7 +55,7 @@ export default {
 
     }
   },
-  
+
 };
 </script>
 

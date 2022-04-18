@@ -36,6 +36,7 @@ public class CommentsController {
         return commentsDao.getCommentsByPhotoId(id);
     }
 
+
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public void updateComment (@Valid @RequestBody Comments comments) {
         commentsDao.updateComment(comments);

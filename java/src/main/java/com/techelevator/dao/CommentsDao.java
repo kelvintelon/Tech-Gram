@@ -16,4 +16,7 @@ public interface CommentsDao {
     String getUsernameByUserId(int userId);
 
     Comments getCommentByCommentId(int id);
+
+    List<Comments> getTwoComments(int photoId);
 }
+
