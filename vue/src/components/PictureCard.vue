@@ -31,7 +31,7 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-      <ul v-for="comment in photo.comments" :key="comment.comments_id">
+      <ul v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
         <li>{{comment.username}}{{comment.text}}</li>
         </ul>
     </div>

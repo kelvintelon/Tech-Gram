@@ -24,8 +24,7 @@ public class JdbcCommentsDao implements CommentsDao{
         List<Comments> comments = new ArrayList<>();
         String sql = "SELECT comment_id, photo_id, user_id, text, date_and_time " +
                 "FROM comments " +
-                "WHERE photo_id = ?" +
-                "ORDER BY date_and_time DESC";
+                "WHERE photo_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()) {
             Comments comment = mapRowToComments(result);
