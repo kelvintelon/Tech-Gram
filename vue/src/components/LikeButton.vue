@@ -62,11 +62,11 @@ export default {
       LikesService.checkLikes(photoId).then((response) => {
         if (response.data == 0) {
         this.addLike(photoId);
-        this.getAllLikes(photoId);
+        this.oneCount++ ;
       } else { 
         this.deleteLike(photoId);
-        this.getAllLikes(photoId);
-      }
+        this.oneCount-- ;      
+        }
       });
     },
   },

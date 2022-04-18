@@ -7,10 +7,10 @@
 
       <div class="picInfo">
         <div class="like_and_fav">
-          <like-button  v-bind:photoId="photo.photo_id" ></like-button>
-       
+          <like-button class="likes" v-bind:photoId="photo.photo_id" ></like-button>
           <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p>
            <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
+           <button id="editCaption" v-show="this.yourPhoto">Edit caption</button>
         <!-- <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div> -->
         </div>
         
@@ -50,7 +50,8 @@ export default {
   },
     data() {
     return {
-        // username: ""
+        username: "",
+        yourPhoto: false,
       
       errorMsg: "",
     };
@@ -60,13 +61,19 @@ export default {
      let firstIndex = UserString.indexOf("username");
      let secondIndex = UserString.indexOf("authorities");
      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+
+     if (this.username == this.$store.state.pictureDetails.username) {
+       this.yourPhoto = true;
+     }
      console.log(this.username);
       this.retrievePicture();
    },
 
   created() {
     this.retrievePicture();
-    console.log(this.$route.params.photoId);
+     if (this.username == this.$store.state.pictureDetails.username) {
+       this.yourPhoto = true;
+     }
   },
   methods: {
     
@@ -145,14 +152,17 @@ div.picInfo{
   display: flex;
   flex-direction: row;
   height: 35px;
+  justify-content: space-between;
 }
-
+.likes {
+  display: inline-block;
+}
 .like{
-  /* margin-left: 5px; */
   margin: 6px 0 1px 5px;
   font-size: 20px;
   
 }
+
 img.picture{
   
   margin: 20px 20px 20px 20px;
@@ -165,7 +175,18 @@ img.picture{
   display: flex;
   flex-direction: row;
   /* this below is hard code */
+  margin-top: 15px;
   margin-bottom: 7px;
+}
+#editCaption {
+  margin-bottom: 40px;
+  /* display: block; */
+  width: 30%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  background-color: rgb(174, 210, 241);
 }
 
 /* .likes,
