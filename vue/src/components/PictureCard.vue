@@ -71,6 +71,8 @@
       v-bind:key="photo.user_id"
       v-show="favoritesPhotos"
     >
+            <div class="usernameYours">{{ photo.username }}</div>
+
       <img
         class="picture"
         :src="photo.image_location"
@@ -84,7 +86,6 @@
       <router-link
         v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
       >
-        <div class="usernameYours">{{ photo.username }}</div>
       </router-link>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
@@ -104,6 +105,8 @@
       v-bind:key="photo.text"
       v-show="userFeed"
     >
+      <div class="usernameYours">{{ photo.username }}</div>
+
       <img
         class="picture"
         :src="photo.image_location"
@@ -114,7 +117,6 @@
           })
         "
       />
-      <div class="usernameYours">{{ photo.username }}</div>
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
