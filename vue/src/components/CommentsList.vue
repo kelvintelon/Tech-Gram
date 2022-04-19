@@ -1,5 +1,8 @@
 <template>
   <div class="commentsList">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"/>
+
     <h3 id="commentHeader">Comments: </h3>
     <div class="comments2">
     <!-- double check key for comment -->
@@ -22,11 +25,28 @@
 
       <p id="commentDate">Posted on {{comment.date_and_time | formatDate}}</p>
       </div>
-            <p contenteditable 
-                v-if="checkforUser(comment)"
-                @blur="event=>onInput(event,comment.comment_id)"
-            >{{ comment.text }}</p>
-            <p v-else>{{ comment.text }}</p>
+
+      <div class="commentList">
+          <div class="commentText">
+                <p contenteditable 
+                    v-if="checkforUser(comment)"
+                    @blur="event=>onInput(event,comment.comment_id,comment)"
+                >{{ comment.text }}
+                    
+                </p>
+                <p v-else>{{ comment.text }}</p>
+
+          </div>
+
+          <div class="icon">
+                <span class="material-icons" id="editComment" v-if="checkforUser(comment)">
+                    edit_note
+                </span>
+          </div>
+
+      </div>
+            
+     
             
         </div>
       <!-- <comment-display
@@ -94,11 +114,13 @@ export default {
             } 
     },
 
-    onInput(event,commentId){
+    onInput(event,commentId,comment){
       const value = event.target.innerText;
       this.newComment.text = value;
       this.newComment.comment_id = commentId;
-      CommentService.updateComment(this.newComment)
+
+      if (this.newComment.text!=comment.text){
+           CommentService.updateComment(this.newComment)
                     .then((response)=>{
                       if (response.status === 200) {
                         alert("Comment edit successful!");
@@ -108,6 +130,8 @@ export default {
                     .catch((error) => {
                     this.handleErrorResponse(error, "updating");
           });
+      }
+     
     },
 
   }
@@ -153,5 +177,27 @@ h3{
 }
 #commentDate {
   margin-top: 0;
+}
+
+#editComment{
+    color: rgba(0, 0, 0, 0.54);
+    cursor: pointer;
+}
+#editComment:hover{
+    color: rgba(0, 0, 0, 0.904);
+}
+
+.commentList{
+  display: flex;
+  flex-direction: row;
+}
+.commentText{
+  width: 95%;
+}
+.icon{
+  display: flex;
+  align-items: center;
+  
+
 }
 </style>
