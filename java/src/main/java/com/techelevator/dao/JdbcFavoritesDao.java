@@ -70,6 +70,7 @@ public class JdbcFavoritesDao implements FavoritesDao {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()) {
             Comments comment = mapRowToComments(result);
+            comment.setUsername(getUsernameByUserId(comment.getUser_id()));
             comments.add(comment);
         }
         return comments;
