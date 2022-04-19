@@ -1,5 +1,7 @@
 <template>
   <div class="deleteBox">
+        <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
     <h1>Tech Gram</h1>
     <h3>Are you sure you want to delete your page?</h3>
     <button class="deleteButton" @click="$router.push('/')">Go Back</button>
@@ -9,13 +11,11 @@
       
       >Yes, Delete My Profile</router-link
     >
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Fredoka+One"
-    />
   </div>
 </template>
-
+<style>
+@import url('http://fonts.cdnfonts.com/css/billabong');
+</style>
 <script>
 export default {
   name: "deleteUserFinal",
@@ -66,7 +66,7 @@ export default {
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 90px;
+  margin-top: 80px;
 }
 .deleteButton:hover {
   background-color: #167fa5;
@@ -74,8 +74,8 @@ export default {
 }
 h1 {
   margin-top: 60px;
-  font-size: 40px;
-  font-family: Fredoka One;
+  font-size: 70px;
+  font-family: 'Billabong', sans-serif;
 }
 .linkToDelete {
   display: flex;
@@ -83,7 +83,7 @@ h1 {
   position: absolute;
   text-decoration: none;
   bottom: 10px;
-  font-size: 20px;
+  font-size: 19px;
   margin: 0px 155px 0px 155px;
   color: blue;
 }

@@ -35,6 +35,7 @@
       <router-link class="link" :to="{ name: 'register' }"
         >Create an Account</router-link
       >
+      
       <button class="btn" type="submit">Login</button>
     </form>
     <link
@@ -96,8 +97,7 @@ export default {
   text-align: center;
 }
 .form-control,
-.link,
-.btn {
+.link, .btn{
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -117,6 +117,7 @@ font-size: 20px;
 .btn {
   background-color: #00adee;
   border: 1px solid black;
+    border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: black;
   padding: 15px 32px;
