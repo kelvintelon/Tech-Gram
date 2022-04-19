@@ -11,7 +11,9 @@ import axios from 'axios';
     getOnePicture(photoId){
       return axios.get(`/photos/${photoId}`);
     },
-
+    updateCaption(photo, photoId){
+      return axios.put(`/photos/${photoId}`, photo)
+    }
 }
 
 
