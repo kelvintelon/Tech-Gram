@@ -7,27 +7,7 @@
       v-bind:key="photo.photo_id"
       v-show="allPhotos"
     >
-     <router-link v-bind:to="{name: 'userFeed', params: {username: photo.username}}">
-        <div class="usernameYours">{{photo.username}}</div> 
-        </router-link>
-      <img
-        class="picture"
-        :src="photo.image_location"
-        @click="
-          $router.push({
-            name: 'photoDetails',
-            params: { photoId: photo.photo_id },
-          })
-        "
-      />
-      <!-- need to compare if photo.username == this.username-->
-     <!-- <router-link
-        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
-      >
-      
-        <div class="usernameYours">{{ photo.username }}</div>
-      </router-link> -->
-      <router-link
+     <router-link
         v-bind:to="{ name: 'userPage', params: { username: photo.username } }" v-if="checkUser(photo)"
       >
         <div class="usernameYours">{{ photo.username }}</div>
@@ -38,7 +18,16 @@
       >
         <div class="usernameYours">{{ photo.username }}</div>
       </router-link>
-
+      <img
+        class="picture"
+        :src="photo.image_location"
+        @click="
+          $router.push({
+            name: 'photoDetails',
+            params: { photoId: photo.photo_id },
+          })
+        "
+      />
 
       <!-- edit above -->
       <div class="caption">{{ photo.caption }}</div>

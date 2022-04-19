@@ -17,7 +17,7 @@
               name="textarea"
             ></textarea>
 
-            <button id="cancel" @click="showCaptionForm = !show">Cancel</button> &nbsp;
+            <button id="cancel" @click="showCaptionForm = !showCaptionForm">Cancel</button> &nbsp;
             <button id="upload" type="submit">Upload</button>
       </form>
   </div>
