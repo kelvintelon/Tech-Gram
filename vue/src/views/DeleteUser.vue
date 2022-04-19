@@ -9,12 +9,12 @@
       
       >Yes, Delete My Profile</router-link
     >
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Fredoka+One"
-    />
   </div>
+
 </template>
+<style>
+@import url('http://fonts.cdnfonts.com/css/billabong');
+</style>
 
 <script>
 export default {
@@ -61,12 +61,12 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   height: 100px;
   width: 300px;
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 15px 32px;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 90px;
+  margin-top: 80px;
 }
 .deleteButton:hover {
   background-color: #167fa5;
@@ -74,8 +74,8 @@ export default {
 }
 h1 {
   margin-top: 60px;
-  font-size: 40px;
-  font-family: Fredoka One;
+  font-size: 70px;
+  font-family: 'Billabong', sans-serif;
 }
 .linkToDelete {
   display: flex;
@@ -83,7 +83,7 @@ h1 {
   position: absolute;
   text-decoration: none;
   bottom: 10px;
-  font-size: 20px;
+  font-size: 19px;
   margin: 0px 155px 0px 155px;
   color: blue;
 }

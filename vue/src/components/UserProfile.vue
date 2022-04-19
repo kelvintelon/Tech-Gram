@@ -8,6 +8,7 @@
            <img :src="post.image" :alt="post.desc"
            class="post-image"/>
            </div>
+           
            <div>
                <img id="imgPreview1" src="" alt="Preview">
                 <img id="imgPreview2" src="" alt="Preview">
