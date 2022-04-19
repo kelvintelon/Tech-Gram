@@ -28,7 +28,7 @@
 
       <div class="commentList">
           <div class="commentText">
-                <p contenteditable 
+                <p contenteditable id="editor"
                     v-if="checkforUser(comment)"
                     @blur="event=>onInput(event,comment.comment_id,comment)"
                 >{{ comment.text }}
@@ -39,7 +39,7 @@
           </div>
 
           <div class="icon">
-                <span class="material-icons" id="editComment" v-if="checkforUser(comment)">
+                <span class="material-icons" id="editComment" v-if="checkforUser(comment)" v-on:click="editCommentActive(comment)">
                     edit_note
                 </span>
           </div>
@@ -134,6 +134,20 @@ export default {
      
     },
 
+    editCommentActive(comment){
+      const editComment2=document.querySelectorAll("#editor")
+            console.log(editComment2);
+      editComment2.forEach(
+        (element) => {
+          console.log(element.innerText);
+        if (comment.text == element.innerText){
+          element.focus();
+        }
+
+      })
+
+    },
+
   }
 };
 </script>
@@ -142,6 +156,9 @@ export default {
 #commentText {
   margin-top: 0;
 
+}
+#editor{
+  padding: 5px;
 }
 #userAndDate{
  display: flex;
@@ -197,7 +214,6 @@ h3{
 .icon{
   display: flex;
   align-items: center;
-  
 
 }
 </style>
