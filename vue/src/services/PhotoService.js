@@ -11,6 +11,12 @@ import axios from 'axios';
     getOnePicture(photoId){
       return axios.get(`/photos/${photoId}`);
     },
+    getPhotoCount(){
+      return axios.get(`/photos/photoCount`);
+    },
+    getOtherUserPhotoCount(username){
+      return axios.get(`/photos/photoCount/${username}`)
+    }
 
 }
 
