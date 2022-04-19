@@ -12,6 +12,7 @@
       >star_border</i
     >
     <span class="material-icons" id="Favorite" v-else>star</span>
+    <div id="favoriteText">Favorite</div>
   </div>
 </template>
 
@@ -70,5 +71,9 @@ export default {
 #Favorite {
   color: #00adee;
   cursor: pointer;
+}
+
+#favoriteText {
+  font-size: 12px;
 }
 </style>
