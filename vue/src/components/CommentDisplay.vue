@@ -44,6 +44,11 @@ div.main div.comment {
 div.main div.comment p {
   margin: 20px;
 }
+div.main div.comment p .date_and_time {
+  position:relative;
+  left:80px;
+
+}
 
 div.main div.comment h4 {
   font-size: 1rem;
