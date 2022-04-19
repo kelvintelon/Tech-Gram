@@ -22,7 +22,11 @@
 
       <p id="commentDate">Posted on {{comment.date_and_time | formatDate}}</p>
       </div>
-            <p id="commentText">{{ comment.text }}</p>
+            <p contenteditable 
+                v-if="checkforUser(comment)"
+                @blur="event=>onInput(event,comment.comment_id)"
+            >{{ comment.text }}</p>
+            <p v-else>{{ comment.text }}</p>
             
         </div>
       <!-- <comment-display
@@ -33,23 +37,33 @@
 
 <script>
 import CommentService from "../services/CommentService";
+// import EditComment from "./EditComment.vue"
 
 
 export default {
   name: "comment-list",
-  data() {
-    return {
-        username: "",
-    }
-  },
+ 
   components: {
+    // EditComment,
     // CommentDisplay
   },
+  data(){
+        return{
+            yourComment: false,
+            username: "",
+            newComment:{
+                comment_id:"",
+                text:"",
+            }
+        }
+    },
   created(){
       this.getCommentsByPhotoId();
   },
   mounted(){
     this.getCommentsByPhotoId();
+    
+
   },
   methods:{
     getCommentsByPhotoId(){
@@ -70,6 +84,32 @@ export default {
         return this.isUser=false;
       }
     },
+    checkforUser(comment){
+            const UserString = localStorage.getItem("user");
+            let firstIndex = UserString.indexOf("username");
+            let secondIndex = UserString.indexOf("authorities");
+            this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+            if (this.username == comment.username){
+                return this.yourComment=true;
+            } 
+    },
+
+    onInput(event,commentId){
+      const value = event.target.innerText;
+      this.newComment.text = value;
+      this.newComment.comment_id = commentId;
+      CommentService.updateComment(this.newComment)
+                    .then((response)=>{
+                      if (response.status === 200) {
+                        alert("Comment edit successful!");
+                        location.reload();
+                    }
+                    })
+                    .catch((error) => {
+                    this.handleErrorResponse(error, "updating");
+          });
+    },
+
   }
 };
 </script>

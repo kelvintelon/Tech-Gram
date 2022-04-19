@@ -40,7 +40,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -90,7 +90,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -145,7 +145,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -196,7 +196,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -323,6 +323,7 @@ export default {
   font-family: Palatino, URW Palladio L, serif;
   font-weight: bold;
   border-radius: 5px;
+  font-size: 20px;
 }
 a {
   text-decoration: none;
@@ -363,8 +364,13 @@ img {
   padding-right: 5px;
   text-align: left;
   font-weight: bold;
+  background-color:#efe3ef;
+  border-bottom: 4px solid rgb(253, 168, 168);
 }
-
+.caption {
+  text-align: left;
+  margin-bottom: 10px;
+}
 ul {
   list-style: none;
 }
@@ -378,10 +384,12 @@ ul {
 .likesBlock {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 .favorites {
   margin-right: 10px;
 }
+
 td {
   word-wrap: break-word;
   white-space: pre-wrap;

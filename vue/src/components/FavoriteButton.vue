@@ -65,11 +65,12 @@ export default {
 <style>
 #notFavorite {
   color: #00adee;
-  cursor: default;
+  cursor: pointer;
 }
 
 #Favorite {
   color: #00adee;
+  cursor: pointer;
 }
 
 #favoriteText {
