@@ -12,7 +12,12 @@
           <div class="logo_container">
             <h1 class="title">Tech Gram</h1>
           </div>
+          
         </router-link>
+
+        <div class="loginUsername">
+            <h3 class="loginUser" v-if="this.username != ''">Hi, {{this.username}} </h3>
+        </div>
 
       </div>
       
@@ -38,7 +43,18 @@
 
 <script>
 export default {
-    name:  "header-logo"
+    name:  "header-logo",
+    data(){
+        return{
+          username:"",
+        }
+    },
+    created(){
+      const UserString= localStorage.getItem("user");
+      let firstIndex = UserString.indexOf("username");
+      let secondIndex = UserString.indexOf("authorities");
+      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+    }
 };
 </script>
 
@@ -95,6 +111,23 @@ header {
   width: 60px;
   height: 60px;
 
+}
+.loginUsername{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0 0 auto auto;
+}
+.loginUser{
+  display: flex;
+  color: aliceblue;
+  /* border-bottom: 1px dashed aliceblue; */
+  border:1px dashed aliceblue;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 20px;
+  
 }
 
 </style>
