@@ -10,18 +10,14 @@
           
             <p>{{ comment.username }}</p>
 
-            <!-- adjust for editComment it works!!!!-->
             <p contenteditable 
                 v-if="checkforUser(comment)"
-                @input="event=>onInput(event)"
+                @blur="event=>onInput(event,comment.comment_id)"
             >{{ comment.text }}</p>
             <p v-else>{{ comment.text }}</p>
-            <!-- z edit above -->
 
             <p>{{comment.date_and_time | formatDate}}</p>
-            <edit-comment id="editComment" 
-                v-bind:commentUsername="comment.username"
-            ></edit-comment>
+
         </div>
       <!-- <comment-display
       /> -->
@@ -31,13 +27,13 @@
 
 <script>
 import CommentService from "../services/CommentService";
-import EditComment from "./EditComment.vue"
+// import EditComment from "./EditComment.vue"
 
 
 export default {
   name: "comment-list",
   components: {
-    EditComment,
+    // EditComment,
     // CommentDisplay
   },
   data(){
@@ -55,6 +51,7 @@ export default {
   },
   mounted(){
     this.getCommentsByPhotoId();
+    
 
   },
   methods:{
@@ -74,13 +71,22 @@ export default {
                 return this.yourComment=true;
             } 
     },
-    onInput(event){
-      const value = event.target.innerText;
-      this.content.value=value;
-    }
 
-   
-       
+    onInput(event,commentId){
+      const value = event.target.innerText;
+      this.newComment.text = value;
+      this.newComment.comment_id = commentId;
+      CommentService.updateComment(this.newComment)
+                    .then((response)=>{
+                      if (response.status === 200) {
+                        alert("Comment edit successful!");
+                        location.reload();
+                    }
+                    })
+                    .catch((error) => {
+                    this.handleErrorResponse(error, "updating");
+          });
+    },
 
   }
 };

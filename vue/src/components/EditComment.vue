@@ -21,10 +21,10 @@ export default {
             yourComment: true,
             username: "",
             showCommentIcon: false,
-            // newPhoto:{
-            //     comment:"",
-            //     image_location:"",
-            // }
+            newComment:{
+                comment_id:"",
+                text:"",
+            }
         }
     },
     methods:{
