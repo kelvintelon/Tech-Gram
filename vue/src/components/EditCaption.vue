@@ -75,11 +75,13 @@ export default {
             if (response.status === 200) {
               location.reload();
               this.showCaptionForm = !this.showCaptionForm;
-            }
+            } 
           })
           .catch((error) => {
             this.handleErrorResponse(error, "updating");
           });
+      } else {
+                alert("This is not your photo!!")
       }
     },
   },
