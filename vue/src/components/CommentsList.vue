@@ -1,11 +1,12 @@
 <template>
   <div class="commentsList">
-    <h3>Comments: </h3>
+    <h3 id="commentHeader">Comments: </h3>
     <div class="comments">
     <!-- double check key for comment -->
       <div v-for="comment in this.$store.state.pictureComments"
         v-bind:key="comment.photo_id"
-        v-bind:comment="comment">
+        v-bind:comment="comment"
+        id="commentDiv">
           
     <router-link
         v-bind:to="{ name: 'userPage', params: { username: comment.username } }" v-if="checkUser(comment)"
@@ -20,8 +21,8 @@
       </router-link>
 
             <!-- <p id="commentUsername">{{ comment.username }}</p> -->
-            <p>{{ comment.text }}</p>
-            <p>{{comment.date_and_time | formatDate}}</p>
+            <p style="margin-left: 40px">{{ comment.text }}</p>
+            <p>Posted on {{comment.date_and_time | formatDate}}</p>
         </div>
       <!-- <comment-display
       /> -->
@@ -82,9 +83,21 @@ div.main {
 .comments{
   /* background-color: rgb(209, 208, 208); */
   background-color:#efe3ef;
+  border: 4px solid rgb(253, 168, 168);
+  border-radius: 20px;
 }
 h3{
   margin: auto;
   font-weight: normal;
+}
+#commentDiv {
+  padding-top: 10px;
+  border-bottom-style: solid;
+  border-bottom-color:rgb(189, 159, 159) ;
+  border-bottom-width: 1px;
+}
+#commentHeader {
+  color: white;
+  font-size: 20px;
 }
 </style>
