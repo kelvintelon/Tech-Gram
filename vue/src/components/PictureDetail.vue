@@ -27,7 +27,19 @@
         </div>
 
         <div class="userInfo">
-          <div class="picusername">{{ photo.username }}</div>
+          <router-link
+        v-bind:to="{ name: 'userPage', params: { username: photo.username } }" v-if="checkUser(photo)"
+      >
+        <div class="picusername">{{ photo.username }}</div>
+      </router-link>
+
+      <router-link
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }" v-if="!checkUser(photo)"
+      >
+        <div class="picusername">{{ photo.username }}</div>
+      </router-link>
+
+          
           <div class="piccaption">{{ photo.caption }}</div>
         </div>
       </div>
@@ -150,6 +162,18 @@ export default {
         alert("You cannot delete someone else's photo")
       }
     },
+    checkUser(photo){
+      
+      const UserString = localStorage.getItem("user");
+      let firstIndex = UserString.indexOf("username");
+      let secondIndex = UserString.indexOf("authorities");
+      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+      if (this.username == photo.username){
+        return this.isUser=true;
+      }else{
+        return this.isUser=false;
+      }
+    },
   },
   computed: {
     photo() {
@@ -248,6 +272,7 @@ img.picture {
 } */
 .picusername {
   font-weight: bold;
+  color:#00adee;
 }
 .piccaption {
   margin-left: 5px;
@@ -261,5 +286,8 @@ ul {
   border-radius: 6px;
   padding: 1rem;
   margin: 20px auto 0 auto;
+}
+a {
+  text-decoration: none;
 }
 </style>
