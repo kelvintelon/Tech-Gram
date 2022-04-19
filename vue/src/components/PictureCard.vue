@@ -266,6 +266,9 @@ export default {
   font-weight: bold;
   border-radius: 5px;
 }
+a {
+  text-decoration: none;
+}
 .card {
   display: -ms-flexbox;
   display: inline-flex;
@@ -294,7 +297,7 @@ img {
   margin: 20px;
   margin-bottom: 10px;
 }
-.likes{}
+
 .comments {
   margin-bottom: 10px;
   padding: 10px;

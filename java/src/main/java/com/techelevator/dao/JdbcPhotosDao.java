@@ -135,6 +135,20 @@ public class JdbcPhotosDao implements PhotosDao {
         jdbcTemplate.update(sql, photos.getCaption(), photoId);
     }
 
+    @Override
+    public int getPhotoCountByUsername(String username) {
+        String sql = "SELECT count(*) FROM photos WHERE user_id = (SELECT user_id FROM users WHERE username = ?);";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        return count;
+    }
+
+    @Override
+    public int getPhotoCountByOtherUserUsername(String username) {
+        String sql = "SELECT count(*) FROM photos WHERE user_id = (SELECT user_id FROM users WHERE username = ?);";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        return count;
+    }
+
 
     private Photos mapRowToPhotos(SqlRowSet rowSet) {
         Photos photos = new Photos();
