@@ -14,14 +14,14 @@
             class="favorites"
             :photoId="photo.photo_id"
           ></favorite-button>
-          <edit-caption
+          
+          <button id="removePhoto" @click="removePhoto(photo.photo_id)">
+            Remove
+          </button>
+<edit-caption
             id="editCaption"
             :photoUsername="photo.username"
           ></edit-caption>
-          <button id="removePhoto" @click="removePhoto(photo.photo_id)">
-            Remove Photo
-          </button>
-
           <!-- <button id="editCaption" v-show="this.yourPhoto">Edit caption</button> -->
           <!-- <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div> -->
         </div>

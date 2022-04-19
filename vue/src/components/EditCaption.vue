@@ -144,7 +144,7 @@ export default {
     display:flex;
     flex-direction: row;
     background: #efe3ef;
-    width: 200%;
+    width: 100%;
     height: 150%;
     padding-top: 8px; 
     
