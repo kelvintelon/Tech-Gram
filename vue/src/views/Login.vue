@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Tech Gram</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Tech Gram</h1>  
       <h3>Log in to see your page:</h3>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -110,8 +110,8 @@ font-size: 20px;
   position: absolute;
   text-decoration: none;
   bottom: 10px;
-  font-size: 20px;
-  margin: 0px 172px 0px 172px;
+  font-size: 15px;
+   margin: 0px 100px 0px 190px;
   color: blue;
 }
 .btn {
