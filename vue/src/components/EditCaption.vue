@@ -6,26 +6,30 @@
     <button
       v-show="this.yourPhoto"
       v-on:click="showCaptionForm = !showCaptionForm"
+      id="editButton"
     >
       Edit Caption
     </button>
-    <form v-if="showCaptionForm" v-on:submit.prevent="saveNewCaption" id="captionForm" style="border:dashed 2px orange">
+    <div id="formAndButtons" v-if="showCaptionForm">
+    <form  v-on:submit.prevent="saveNewCaption" id="captionForm">
       <textarea
         class="captionTextarea"
         placeholder="Write a new caption..."
         type="text"
         @input="$emit('input', $event.target.value)"
-        rows="3"
-        cols="40"
+        rows="1"
+        cols="3000"
         name="textarea"
         
       ></textarea>
+      <br>
       <button id="cancel" @click="showCaptionForm = !showCaptionForm">
         Cancel
       </button>
       &nbsp;
       <button id="edit" type="submit">Submit</button>
     </form>
+    </div>
   </div>
 </template>
 
@@ -71,11 +75,13 @@ export default {
             if (response.status === 200) {
               location.reload();
               this.showCaptionForm = !this.showCaptionForm;
-            }
+            } 
           })
           .catch((error) => {
             this.handleErrorResponse(error, "updating");
           });
+      } else {
+                alert("This is not your photo!!")
       }
     },
   },
@@ -119,9 +125,33 @@ export default {
 
 
 <style>
+#editButton {
+  /* display: block; */
+  width: 100%;
+  height: 22px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.61);
+}
 #captionForm {
     /* float: left;
-    margin-left: 100px; */
-    background: #efe3ef
+    width: 100%; */
+    max-width: auto;
+}
+
+#formAndButtons {
+    display:flex;
+    flex-direction: row;
+    background: #efe3ef;
+    width: 200%;
+    height: 150%;
+    padding-top: 8px; 
+    
+}
+
+.captionTextarea {
+   display:inline-block;
+   width: 90%;
 }
 </style>

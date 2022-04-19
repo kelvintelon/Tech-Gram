@@ -266,6 +266,9 @@ export default {
   font-weight: bold;
   border-radius: 5px;
 }
+a {
+  text-decoration: none;
+}
 .card {
   display: -ms-flexbox;
   display: inline-flex;
