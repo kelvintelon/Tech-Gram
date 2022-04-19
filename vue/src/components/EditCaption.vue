@@ -1,6 +1,25 @@
 <template>
   <div>
-      <button v-show="this.yourPhoto">Edit Caption {{ photoUsername }}</button>
+      <!-- <button
+      v-on:click="promptCaption" >Edit Caption</button> -->
+    
+      <button v-show="this.yourPhoto" 
+      v-on:click="showCaptionForm = !showCaptionForm" >Edit Caption {{ photoUsername }}</button>
+      <form v-if="showCaptionForm">
+          <textarea
+              class="caption-input"
+              placeholder="Write a caption..."
+              type="text"
+             
+              @input="$emit('input', $event.target.value)"
+              cols="20"
+              rows="5"
+              name="textarea"
+            ></textarea>
+
+            <button id="cancel" @click="showCaptionForm = !show">Cancel</button> &nbsp;
+            <button id="upload" type="submit">Upload</button>
+      </form>
   </div>
 </template>
 
@@ -13,6 +32,7 @@ return {
     yourPhoto: true,
     username: "",
     photoUser: "",
+    showCaptionForm: false,
 }
 },
 methods: {
@@ -30,7 +50,15 @@ methods: {
     }
     }
  },
+//  promptCaption() {
+//      this.$prompt("Please enter a new caption", "Caption").then(result => {
+//          console.log(`${result.result}, ${result.text}`)
+//      })
+     
+//  },
+ 
 mounted() {
+    console.log(this.$store.state.pictureDetails.username)
     this.checkForUser(this.photoUsername);
 },
 // beforeMount() {

@@ -10,7 +10,7 @@
           <like-button class="likes" v-bind:photoId="photo.photo_id" ></like-button>
           <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p>
            <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
-           <edit-caption :photoUsername="photo.username"></edit-caption>
+           <edit-caption id="editCaption" :photoUsername="photo.username"></edit-caption>
 
            
            <!-- <button id="editCaption" v-show="this.yourPhoto">Edit caption</button> -->
@@ -212,7 +212,6 @@ img.picture{
   border: none;
   outline: none;
   border-radius: 50px;
-  background-color: rgb(174, 210, 241);
 }
 
 /* .likes,
