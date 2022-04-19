@@ -90,7 +90,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -145,7 +145,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
@@ -196,7 +196,7 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments:</div>
+      <div class="comments" v-show="photo.comments.length > 0">Comments:</div>
       <table>
         <tr
           v-for="comment in photo.comments.slice(-2)"
