@@ -20,9 +20,6 @@
           })
         "
       />
-<<<<<<< HEAD
-    
-=======
       <!-- need to compare if photo.username == this.username-->
      <!-- <router-link
         v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
@@ -45,7 +42,6 @@
 
       <!-- edit above -->
 
->>>>>>> ziyeBranch
       <div class="caption">{{ photo.caption }}</div>
       <div class="likesBlock">
         <like-button class="likes" :photoId="photo.photo_id"></like-button>
