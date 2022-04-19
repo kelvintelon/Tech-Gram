@@ -19,6 +19,9 @@ import axios from 'axios';
     },
     getOtherUserPhotoCount(username){
       return axios.get(`/photos/photoCount/${username}`)
+    },
+    deletePhoto(photoId) {
+      return axios.delete(`/photos/${photoId}`)
     }
 
 }
