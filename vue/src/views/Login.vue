@@ -119,7 +119,7 @@ font-size: 20px;
   border: 1px solid black;
     border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 15px 32px;
   font-weight: bold;
   font-size: 16px;
