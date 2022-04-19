@@ -14,7 +14,7 @@
 
     <span class="material-icons" id="Liked" v-else>favorite</span>
     
-    <div class="likes likesCount">{{ this.oneCount }}</div>
+    <div class="likes likesCount" id="likeText">{{ this.oneCount }} like{{ (this.oneCount === 1)? '' : 's' }}</div>
   </div>
 </template>
 
@@ -84,6 +84,9 @@ export default {
 #Liked {
   color: #00adee;
   cursor: pointer;
+}
+#likeText {
+  font-size: 16px;
 }
 
 </style>
