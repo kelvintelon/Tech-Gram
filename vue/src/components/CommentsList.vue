@@ -10,6 +10,7 @@
             <p>{{ comment.username }}</p>
             <p>{{ comment.text }}</p>
             <p>{{comment.date_and_time | formatDate}}</p>
+            <edit-comment></edit-comment>
         </div>
       <!-- <comment-display
       /> -->
@@ -19,11 +20,13 @@
 
 <script>
 import CommentService from "../services/CommentService";
+import EditComment from "./EditComment.vue"
 
 
 export default {
   name: "comment-list",
   components: {
+    EditComment,
     // CommentDisplay
   },
   created(){
