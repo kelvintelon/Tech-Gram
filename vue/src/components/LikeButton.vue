@@ -14,7 +14,7 @@
 
     <span class="material-icons" id="Liked" v-else>favorite</span>
     
-    <div class="likes likesCount" id="likeText">{{ this.oneCount }} like{{ (this.oneCount === 1)? '' : 's' }}</div>
+    <div class="likes likesCount" id="likeText">{{ this.oneCount }}</div>
   </div>
 </template>
 

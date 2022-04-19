@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="buttonHolder">
     <button
       class="button"
       @click="$router.push('/')"
@@ -77,6 +77,7 @@ export default {
 </script>
 
 <style>
+
 .button {
   background-color: #00adee;
   border: 1px solid black;
@@ -93,7 +94,7 @@ export default {
   cursor: pointer;
 }
 
-.button:hover {
+.button9:hover {
   background-color: #167fa5;
   transition: 0.5s;
 }

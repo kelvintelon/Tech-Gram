@@ -22,7 +22,7 @@ export default {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
-  width: 250px;
+  width: 100%;
   color: aliceblue;
   padding: 15px 32px;
   margin: 30px;
