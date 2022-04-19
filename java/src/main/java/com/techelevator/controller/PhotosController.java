@@ -63,6 +63,14 @@ public class PhotosController {
         // might need to fix that moving forward
     }
 
+    @RequestMapping(path = "/photoCount", method = RequestMethod.GET)
+    public int getPhotoCount(@Valid Principal principal) {
+        return photosDao.getPhotoCountByUsername(principal.getName());
+    }
 
+    @RequestMapping(path = "/photoCount/{username}", method = RequestMethod.GET)
+    public int getPhotoCount(@Valid @PathVariable String username) {
+        return photosDao.getPhotoCountByOtherUserUsername(username);
+    }
 
 }

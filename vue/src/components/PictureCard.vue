@@ -297,7 +297,7 @@ img {
   margin: 20px;
   margin-bottom: 10px;
 }
-.likes{}
+
 .comments {
   margin-bottom: 10px;
   padding: 10px;
