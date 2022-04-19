@@ -8,7 +8,7 @@
       <div class="picInfo">
         <div class="like_and_fav">
           <like-button class="likes" v-bind:photoId="photo.photo_id" ></like-button>
-          <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p>
+          <!-- <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p> -->
            <favorite-button class="favorites" :photoId="photo.photo_id"></favorite-button>
            <edit-caption id="editCaption" :photoUsername="photo.username"></edit-caption>
 
@@ -20,6 +20,7 @@
         <div class="userInfo">
           <div class="picusername">{{photo.username}}</div> 
           <div class="piccaption">{{ photo.caption }}</div>
+          
         </div>
         
       </div>
@@ -170,7 +171,7 @@ div.picInfo{
   margin-top: 10px;
   border-top:1px solid black;
   /* height: 20px; */
-  padding: 10px;
+  padding: 20px;
   
 }
 
@@ -179,6 +180,7 @@ div.picInfo{
   flex-direction: row;
   height: 35px;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 .likes {
   display: inline-block;
