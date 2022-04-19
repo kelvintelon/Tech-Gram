@@ -1,5 +1,6 @@
 <template>
   <div class="commentsList">
+    
     <h3>Comments: </h3>
     <div class="comments">
     <!-- double check key for comment -->
@@ -8,9 +9,19 @@
         v-bind:comment="comment">
           
             <p>{{ comment.username }}</p>
-            <p>{{ comment.text }}</p>
+
+            <!-- adjust for editComment it works!!!!-->
+            <p contenteditable 
+                v-if="checkforUser(comment)"
+                @input="event=>onInput(event)"
+            >{{ comment.text }}</p>
+            <p v-else>{{ comment.text }}</p>
+            <!-- z edit above -->
+
             <p>{{comment.date_and_time | formatDate}}</p>
-            <edit-comment></edit-comment>
+            <edit-comment id="editComment" 
+                v-bind:commentUsername="comment.username"
+            ></edit-comment>
         </div>
       <!-- <comment-display
       /> -->
@@ -29,11 +40,22 @@ export default {
     EditComment,
     // CommentDisplay
   },
+  data(){
+        return{
+            yourComment: false,
+            username: "",
+            newComment:{
+                comment_id:"",
+                text:"",
+            }
+        }
+    },
   created(){
       this.getCommentsByPhotoId();
   },
   mounted(){
     this.getCommentsByPhotoId();
+
   },
   methods:{
     getCommentsByPhotoId(){
@@ -42,6 +64,24 @@ export default {
                       this.$store.commit("SET_COMMENTS", response.data)
                     })  
     },
+
+    checkforUser(comment){
+            const UserString = localStorage.getItem("user");
+            let firstIndex = UserString.indexOf("username");
+            let secondIndex = UserString.indexOf("authorities");
+            this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+            if (this.username == comment.username){
+                return this.yourComment=true;
+            } 
+    },
+    onInput(event){
+      const value = event.target.innerText;
+      this.content.value=value;
+    }
+
+   
+       
+
   }
 };
 </script>
