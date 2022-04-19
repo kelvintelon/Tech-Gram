@@ -7,14 +7,16 @@
       v-bind:key="photo.photo_id"
       v-show="allPhotos"
     >
-     <router-link
-        v-bind:to="{ name: 'userPage', params: { username: photo.username } }" v-if="checkUser(photo)"
+      <router-link
+        v-bind:to="{ name: 'userPage', params: { username: photo.username } }"
+        v-if="checkUser(photo)"
       >
         <div class="usernameYours">{{ photo.username }}</div>
       </router-link>
 
       <router-link
-        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }" v-if="!checkUser(photo)"
+        v-bind:to="{ name: 'userFeed', params: { username: photo.username } }"
+        v-if="!checkUser(photo)"
       >
         <div class="usernameYours">{{ photo.username }}</div>
       </router-link>
@@ -40,11 +42,26 @@
       </div>
       <div class="comments">Comments:</div>
       <table>
-      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
-        <th>{{comment.username}}:</th>
-        <td>  {{comment.text}}</td>
+        <tr
+          v-for="comment in photo.comments.slice(-2)"
+          :key="comment.comments_id"
+        >
+          <th>{{ comment.username }}:</th>
+          <td v-show="comment.text.length < 11">{{ comment.text }}</td>
+          <td
+            class="threeDots"
+            v-show="comment.text.length > 11"
+            @click="
+              $router.push({
+                name: 'photoDetails',
+                params: { photoId: photo.photo_id },
+              })
+            "
+          >
+            {{ comment.text.slice(0, 11) }}...
+          </td>
         </tr>
-</table>
+      </table>
     </div>
 
     <!--       This    div    contains    Logged In    User     pictures    -->
@@ -54,7 +71,7 @@
       v-bind:key="photo.username"
       v-show="userPhotos"
     >
-    <div class="usernameYours">{{photo.username}}</div> 
+      <div class="usernameYours">{{ photo.username }}</div>
       <img
         class="picture"
         :src="photo.image_location"
@@ -74,12 +91,27 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-       <table>
-      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
-        <th>{{comment.username}}:</th>
-        <td>  {{comment.text}}</td>
+      <table>
+        <tr
+          v-for="comment in photo.comments.slice(-2)"
+          :key="comment.comments_id"
+        >
+          <th>{{ comment.username }}:</th>
+          <td v-show="comment.text.length < 11">{{ comment.text }}</td>
+          <td
+            class="threeDots"
+            v-show="comment.text.length > 11"
+            @click="
+              $router.push({
+                name: 'photoDetails',
+                params: { photoId: photo.photo_id },
+              })
+            "
+          >
+            {{ comment.text.slice(0, 11) }}...
+          </td>
         </tr>
-</table>
+      </table>
     </div>
 
     <!--      This     bottom     div     contains      favoritePics -->
@@ -89,7 +121,7 @@
       v-bind:key="photo.user_id"
       v-show="favoritesPhotos"
     >
-            <div class="usernameYours">{{ photo.username }}</div>
+      <div class="usernameYours">{{ photo.username }}</div>
 
       <img
         class="picture"
@@ -114,12 +146,27 @@
         ></favorite-button>
       </div>
       <div class="comments">Comments:</div>
-       <table>
-      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
-        <th>{{comment.username}}:</th>
-        <td>  {{comment.text}}</td>
+      <table>
+        <tr
+          v-for="comment in photo.comments.slice(-2)"
+          :key="comment.comments_id"
+        >
+          <th>{{ comment.username }}:</th>
+          <td v-show="comment.text.length < 11">{{ comment.text }}</td>
+          <td
+            class="threeDots"
+            v-show="comment.text.length > 11"
+            @click="
+              $router.push({
+                name: 'photoDetails',
+                params: { photoId: photo.photo_id },
+              })
+            "
+          >
+            {{ comment.text.slice(0, 11) }}...
+          </td>
         </tr>
-</table>
+      </table>
     </div>
 
     <!--      This   bottom   div   is   for  other  users   besides   the   one   who  is  logged -->
@@ -149,13 +196,28 @@
           :photoId="photo.photo_id"
         ></favorite-button>
       </div>
-      <div class="comments">Comments: </div>
-       <table>
-      <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
-        <th>{{comment.username}}:</th>
-        <td>  {{comment.text}}</td>
+      <div class="comments">Comments:</div>
+      <table>
+        <tr
+          v-for="comment in photo.comments.slice(-2)"
+          :key="comment.comments_id"
+        >
+          <th>{{ comment.username }}:</th>
+          <td v-show="comment.text.length < 11">{{ comment.text }}</td>
+          <td
+            class="threeDots"
+            v-show="comment.text.length > 11"
+            @click="
+              $router.push({
+                name: 'photoDetails',
+                params: { photoId: photo.photo_id },
+              })
+            "
+          >
+            {{ comment.text.slice(0, 11) }}...
+          </td>
         </tr>
-</table>
+      </table>
     </div>
   </div>
 </template>
@@ -193,9 +255,8 @@ export default {
     if (this.userFeed == true) {
       this.getUserFeedImages();
     }
-  //  edit here -z
-     console.log('this works');
-
+    //  edit here -z
+    console.log("this works");
   },
   mounted() {
     if (this.allPhotos == true) {
@@ -207,7 +268,6 @@ export default {
       let secondIndex = UserString.indexOf("authorities");
       this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
       this.getUserImages();
-
     }
     if (this.favoritesPhotos == true) {
       this.getFavoriteImages();
@@ -239,43 +299,45 @@ export default {
         this.$store.commit("SET_FAVORITEIMAGES", response.data);
       });
     },
-    
+
     // to check is login user=username, yes-isUser to true, no-isUser to false
-    checkUser(photo){
-      
+    checkUser(photo) {
       const UserString = localStorage.getItem("user");
       let firstIndex = UserString.indexOf("username");
       let secondIndex = UserString.indexOf("authorities");
       this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
-      if (this.username == photo.username){
-        return this.isUser=true;
-      }else{
-        return this.isUser=false;
+      if (this.username == photo.username) {
+        return (this.isUser = true);
+      } else {
+        return (this.isUser = false);
       }
     },
   },
- 
 };
 </script>
 
 <style>
-.usernameYours{
+.usernameYours {
   text-align: center;
-  color:#00adee;
-  font-family:Palatino, URW Palladio L, serif;
+  color: #00adee;
+  font-family: Palatino, URW Palladio L, serif;
   font-weight: bold;
   border-radius: 5px;
+}
+a {
+  text-decoration: none;
 }
 .card {
   display: -ms-flexbox;
   display: inline-flex;
-  width:80%;
+  width: 80%;
   /* max-width: 1550px; */
   -ms-flex-pack: distribute;
   justify-content: left;
   margin: 40px auto;
   flex-wrap: wrap;
-  text-align: center;}
+  text-align: center;
+}
 .picContainer {
   background-color: #efe3ef;
   border: 1px solid black;
@@ -294,13 +356,13 @@ img {
   margin: 20px;
   margin-bottom: 10px;
 }
-.likes{}
+
 .comments {
   margin-bottom: 10px;
-  padding: 10px;
-  border-left-style: solid;
-  border-left-color: lightblue;
+  margin-top: 10px;
+  padding-right: 5px;
   text-align: left;
+  font-weight: bold;
 }
 
 ul {
@@ -319,5 +381,20 @@ ul {
 }
 .favorites {
   margin-right: 10px;
+}
+td {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+}
+th {
+  vertical-align: top;
+  text-align: left;
+}
+.threeDots:hover {
+  text-decoration: underline;
+  color: blue;
+  cursor: grab;
 }
 </style>

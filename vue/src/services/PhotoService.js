@@ -13,7 +13,17 @@ import axios from 'axios';
     },
     updateCaption(photo, photoId){
       return axios.put(`/photos/${photoId}`, photo)
+    },
+    getPhotoCount(){
+      return axios.get(`/photos/photoCount`);
+    },
+    getOtherUserPhotoCount(username){
+      return axios.get(`/photos/photoCount/${username}`)
+    },
+    deletePhoto(photoId) {
+      return axios.delete(`/photos/${photoId}`)
     }
+
 }
 
 

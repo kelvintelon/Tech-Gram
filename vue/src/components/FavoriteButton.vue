@@ -12,7 +12,7 @@
       >star_border</i
     >
     <span class="material-icons" id="Favorite" v-else>star</span>
-    <div id="favoriteText">Favorite</div>
+    
   </div>
 </template>
 

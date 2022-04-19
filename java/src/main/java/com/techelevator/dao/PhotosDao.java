@@ -24,4 +24,8 @@ public interface PhotosDao {
     void deletePhotoByPhotoId(int photoId);
 
     void updateCaptionByPhotoId(Photos photos, int photoId);
+
+    int getPhotoCountByUsername(String username);
+
+    int getPhotoCountByOtherUserUsername(String username);
 }
