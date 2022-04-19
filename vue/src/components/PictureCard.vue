@@ -42,7 +42,8 @@
       <table>
       <tr v-for="comment in photo.comments.slice(-2)" :key="comment.comments_id">
         <th>{{comment.username}}:</th>
-        <td>  {{comment.text}}</td>
+        <td v-show="comment.text.length < 11">{{comment.text}}</td>
+        <td class="threeDots" v-show="comment.text.length >11" @click="$router.push({ name: 'photoDetails', params: { photoId: photo.photo_id } })">{{comment.text.slice(0,11)}}...</td>
         </tr>
 </table>
     </div>
@@ -304,6 +305,7 @@ img {
   border-left-style: solid;
   border-left-color: lightblue;
   text-align: left;
+  
 }
 
 ul {
@@ -322,5 +324,19 @@ ul {
 }
 .favorites {
   margin-right: 10px;
+}
+td {
+  word-wrap: break-word;
+white-space: pre-wrap;
+word-break: break-word;
+ text-align: left;
+}
+th {
+  vertical-align: top;
+}
+.threeDots:hover{
+text-decoration: underline;
+color: blue;
+cursor: grab;
 }
 </style>
