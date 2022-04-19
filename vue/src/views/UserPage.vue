@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wholePage">
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
     <div class="currentUsernameBox">
@@ -15,6 +15,7 @@ import HeaderLogo from "../components/HeaderLogo.vue";
 import SideMenu from "../components/SideMenu.vue";
 import PictureCard from "../components/PictureCard.vue";
 import PhotoService from "../services/PhotoService";
+import UploadFileService from "../services/PhotoService";
 
 export default {
   components: {
@@ -44,6 +45,12 @@ export default {
       PhotoService.getPhotoCount().then((response) => {
         this.photoCount = response.data;
       });
+    },
+        getUserFeedImages() {
+      UploadFileService.getUserFiles(this.$route.params.username).then(
+        (response) => {
+          this.username = response.data;
+        });
     },
   },
 };
@@ -78,6 +85,8 @@ export default {
   padding-right: 15px;
   padding-left: 15px;
   margin-top: 20px;
-  margin-right: 400px;
+  margin-right: 21%;
 }
+
+
 </style>
