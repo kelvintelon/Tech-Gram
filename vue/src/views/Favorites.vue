@@ -3,8 +3,8 @@
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo id="favHeader"></header-logo>
      <div class="currentUsernameBox">
-      <h1 class="UsernameFont">{{ username }}</h1>
-      <div class="numOfPics">{{ photoCount }} Pictures Uploaded</div>
+      <h1 class="UsernameFont">{{ username }}'s favorites</h1>
+      <div class="numOfPics">{{ photoCount }} Picture{{ ( photoCount === 0 || photoCount === 1)? '' : 's' }}</div>
     </div>
     <picture-card v-bind:favoritesPhotos="favoritesPhotos"></picture-card>
   </div>
