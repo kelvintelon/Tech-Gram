@@ -195,6 +195,8 @@ export default {
 
 <style>
 #commentText {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 #editor {
   padding: 5px;
@@ -203,10 +205,19 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 95%;
+  height: 15px;
 }
 .commentList {
   display: flex;
   flex-direction: row;
+}
+#commentDiv {
+  padding-top: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(189, 159, 159);
+  border-bottom-width: 1px;
+  padding-left: 20px;
+  height: 70%;
 }
 #commentUsername {
   color: #00adee;
@@ -223,14 +234,6 @@ div.main {
 h3 {
   margin: auto;
   font-weight: normal;
-}
-#commentDiv {
-  padding-top: 20px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(189, 159, 159);
-  border-bottom-width: 1px;
-  padding-left: 20px;
-  height: 70%;
 }
 #commentHeader {
   color: white;
