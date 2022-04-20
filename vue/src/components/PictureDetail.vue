@@ -16,7 +16,7 @@
           ></favorite-button>
           
           <button id="removePhoto" @click="removePhoto(photo.photo_id)">
-            Remove
+            REMOVE
           </button>
 <edit-caption
             id="editCaption"
@@ -264,6 +264,8 @@ img.picture {
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.61);
   background-color: rgb(253, 168, 168);
+  cursor: pointer;
+  padding-right: 10px;
 }
 
 /* .likes,

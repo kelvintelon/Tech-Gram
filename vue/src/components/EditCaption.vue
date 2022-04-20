@@ -8,7 +8,7 @@
       v-on:click="showCaptionForm = !showCaptionForm"
       id="editButton"
     >
-      Edit Caption
+      EDIT CAPTION
     </button>
     <div id="formAndButtons" v-if="showCaptionForm">
     <form  v-on:submit.prevent="saveNewCaption" id="captionForm">
@@ -133,6 +133,7 @@ export default {
   outline: none;
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.61);
+  cursor: pointer;
 }
 #captionForm {
     /* float: left;
@@ -153,5 +154,15 @@ export default {
 .captionTextarea {
    display:inline-block;
    width: 90%;
+}
+
+#cancel {
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+#edit {
+  cursor: pointer;
+  border-radius: 50px;
 }
 </style>
