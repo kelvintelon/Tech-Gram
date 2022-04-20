@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal" id="logo">Tech Gram</h1>  
+      <h1 class="h3 mb-3 font-weight-normal" id="loginlogo">Tech Gram</h1>  
       <h3>Log in to see your page:</h3>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -129,10 +129,10 @@ font-size: 20px;
       background-color:#167fa5;
       transition: 0.7s;
   }
-h1#logo {
+
+#loginlogo {
   margin-top: 40px;
-  font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 70px;
   font-family: 'Billabong', sans-serif;
 
 }

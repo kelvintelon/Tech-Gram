@@ -1,6 +1,6 @@
 <template>
   <div class="finalForm">
-    <h1 id="logo">Tech Gram</h1>
+    <h1 id="deleteuserfinallogo">Tech Gram</h1>
     <form class="toDelete" @submit.prevent="deleteUser">
       <div class="alert" role="alert" v-if="invalidCredentials">
         Invalid username or password!
@@ -106,10 +106,9 @@ export default {
   background-color: #167fa5;
   transition: 0.7s;
 }
-h1 {
-  margin-top: 60px;
-  margin-bottom: 40px;
-  font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+#deleteuserfinallogo {
+ margin-top: 40px;
+  font-size: 70px;
+  font-family: 'Billabong', sans-serif;
 }
 </style>

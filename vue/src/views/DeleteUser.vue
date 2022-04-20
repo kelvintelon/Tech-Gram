@@ -1,6 +1,6 @@
 <template>
   <div class="deleteBox">
-    <h1 id="logo">Tech Gram</h1>
+    <h1 id="deleteuserlogo">Tech Gram</h1>
         <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
 
     <h3>Are you sure you want to delete your page?</h3>
@@ -74,10 +74,10 @@ export default {
   background-color: #167fa5;
   transition: 0.7s;
 }
-h1#logo {
-  margin-top: 60px;
+#deleteuserlogo {
+ margin-top: 40px;
   font-size: 70px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Billabong', sans-serif;
 }
 .linkToDelete {
   display: flex;
