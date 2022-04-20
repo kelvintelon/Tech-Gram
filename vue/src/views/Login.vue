@@ -132,7 +132,9 @@ font-size: 20px;
 h1#logo {
   margin-top: 40px;
   font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
   font-family: 'Billabong', sans-serif;
+
 }
 h3{
   margin-bottom: 40px;

@@ -146,15 +146,15 @@ export default {
           .catch((error) => {
             if (error.response) {
               this.errorMsg =
-                "Error deleting card. Response received was '" +
+                "Error deleting photo. Response received was '" +
                 error.response.statusText +
                 "'.";
             } else if (error.request) {
               this.errorMsg =
-                "Error deleting card. Server could not be reached.";
+                "Error deleting photo. Server could not be reached.";
             } else {
               this.errorMsg =
-                "Error deleting card. Request could not be created.";
+                "Error deleting photo. Request could not be created.";
             }
           });
       }

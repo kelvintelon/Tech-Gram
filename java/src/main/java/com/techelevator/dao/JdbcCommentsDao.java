@@ -51,10 +51,10 @@ public class JdbcCommentsDao implements CommentsDao{
     }
 
     @Override
-    public void deleteComment(Comments comments){
+    public void deleteComment(int commentId){
         String sql = "DELETE FROM comments " +
                 "WHERE comments.comment_id = ?";
-        jdbcTemplate.update(sql, comments.getComment_id());
+        jdbcTemplate.update(sql, commentId);
     }
 
     @Override

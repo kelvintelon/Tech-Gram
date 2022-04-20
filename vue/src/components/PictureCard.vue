@@ -320,7 +320,7 @@ export default {
 .usernameYours {
   text-align: center;
   color: #00adee;
-  font-family: Palatino, URW Palladio L, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   border-radius: 5px;
   font-size: 20px;

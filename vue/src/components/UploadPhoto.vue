@@ -186,7 +186,7 @@ h2{
   margin: 0;
   padding: 0;
   box-shadow: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .wrapper{

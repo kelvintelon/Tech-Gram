@@ -77,7 +77,7 @@ export default {
 h1#logo {
   margin-top: 60px;
   font-size: 70px;
-  font-family: 'Billabong', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .linkToDelete {
   display: flex;

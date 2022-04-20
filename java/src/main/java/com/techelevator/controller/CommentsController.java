@@ -42,9 +42,9 @@ public class CommentsController {
         commentsDao.updateComment(comments);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public void deleteComment (@Valid @RequestBody Comments comments) {
-        commentsDao.deleteComment(comments);
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.DELETE)
+    public void deleteComment (@Valid @PathVariable int id) {
+        commentsDao.deleteComment(id);
     }
 
 }
