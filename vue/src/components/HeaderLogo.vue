@@ -93,7 +93,7 @@ header {
   height: 100%;
   display: table-cell;
   vertical-align: middle;
-  font-size: 40px;
+  font-size: 55px;
   font-weight: 200;
 }
 
