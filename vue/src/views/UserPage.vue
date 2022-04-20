@@ -4,7 +4,7 @@
     <header-logo></header-logo>
     <div class="currentUsernameBox">
       <h1 class="UsernameFont">{{ username }}</h1>
-      <div class="numOfPics">{{ photoCount }} Pictures Favored</div>
+      <div class="numOfPics">{{ photoCount }} Pictures Uploaded</div>
     </div>
     <picture-card v-bind:userPhotos="userPhotos"></picture-card>
   </div>
