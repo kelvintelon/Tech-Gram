@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <button
-      v-on:click="promptCaption" >Edit Caption</button> -->
-
     <button
       v-show="this.yourPhoto"
       v-on:click="showCaptionForm = !showCaptionForm"
@@ -52,19 +49,7 @@ export default {
     };
   },
   methods: {
-    checkForUser(photoUsername) {
-      const UserString = localStorage.getItem("user");
-      let firstIndex = UserString.indexOf("username");
-      let secondIndex = UserString.indexOf("authorities");
-      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
 
-      // this.photoUser = this.photoUsername;
-      console.log(this.username);
-      console.log(photoUsername);
-      if (this.username == this.$store.state.pictureDetails.username) {
-        this.yourPhoto = true;
-      }
-    },
     saveNewCaption() {
       this.newPhoto.caption = document.querySelector("textarea").value;
       this.newPhoto.image_location =
@@ -85,41 +70,10 @@ export default {
       }
     },
   },
-  //  promptCaption() {
-  //      this.$prompt("Please enter a new caption", "Caption").then(result => {
-  //          console.log(`${result.result}, ${result.text}`)
-  //      })
-
-  //  },
 
   mounted() {
-    console.log(this.$store.state.pictureDetails.username);
-    this.checkForUser(this.photoUsername);
   },
-  // beforeMount() {
-  //      const UserString= localStorage.getItem("user");
-  //      let firstIndex = UserString.indexOf("username");
-  //      let secondIndex = UserString.indexOf("authorities");
-  //      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
 
-  //     console.log(this.username)
-  //     console.log(this.photoUsername)
-  //     if (this.username == this.photoUsername) {
-  //         this.yourPhoto = true
-  //     }
-  // },
-  // beforeCreate() {
-  //     const UserString= localStorage.getItem("user");
-  //      let firstIndex = UserString.indexOf("username");
-  //      let secondIndex = UserString.indexOf("authorities");
-  //      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
-
-  //     console.log(this.username)
-  //     console.log(this.photoUsername)
-  //     if (this.username == this.photoUsername) {
-  //         this.yourPhoto = true
-  //     }
-  // },
 };
 </script>
 

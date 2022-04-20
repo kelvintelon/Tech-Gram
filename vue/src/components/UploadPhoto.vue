@@ -71,7 +71,6 @@ export default {
   },
   beforeMount() {
     let vm = this;
-    console.log("before Mounted");
     vm.get("img");
     // before mount displays the image when the page loads
     // line 49 is to display nothing when page loads
@@ -86,7 +85,7 @@ export default {
   methods: {
     submitForm() {
       this.imagePost.caption = document.querySelector("textarea").value;
-      console.log(this.imagePost.caption);
+    
       // this.imagePost.image_location = this.image;
       if (localStorage.getItem("PhotoCount")) {
         this.photoCount = localStorage.getItem("PhotoCount");

@@ -9,7 +9,6 @@
             class="likes"
             v-bind:photoId="photo.photo_id"
           ></like-button>
-          <!-- <p class="like">like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</p> -->
           <favorite-button
             class="favorites"
             :photoId="photo.photo_id"
@@ -21,9 +20,8 @@
 <edit-caption
             id="editCaption"
             :photoUsername="photo.username"
+            
           ></edit-caption>
-          <!-- <button id="editCaption" v-show="this.yourPhoto">Edit caption</button> -->
-          <!-- <div class="likes">{{photo.likeCount}} like{{ (photo.likeCount === 0 || photo.likeCount === 1)? '' : 's' }}</div> -->
         </div>
 
         <div class="userInfo">
@@ -80,19 +78,6 @@ export default {
   },
   mounted() {
     this.retrievePicture();
-
-    const UserString = localStorage.getItem("user");
-    let firstIndex = UserString.indexOf("username");
-    let secondIndex = UserString.indexOf("authorities");
-    this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
-
-    //  if (this.username == this.$store.state.pictureDetails.username) {
-    //    this.yourPhoto = true;
-    // console.log(this.username);
-    //  console.log(this.$store.state.pictureDetails.username)
-    //  }
-    //  console.log(this.username);
-    //  console.log(this.$store.state.pictureDetails.username)
   },
 
   created() {
@@ -163,7 +148,6 @@ export default {
       }
     },
     checkUser(photo){
-      
       const UserString = localStorage.getItem("user");
       let firstIndex = UserString.indexOf("username");
       let secondIndex = UserString.indexOf("authorities");
@@ -172,6 +156,15 @@ export default {
         return this.isUser=true;
       }else{
         return this.isUser=false;
+      }
+    },
+    checkForUser(photousername) {
+      const UserString = localStorage.getItem("user");
+      let firstIndex = UserString.indexOf("username");
+      let secondIndex = UserString.indexOf("authorities");
+      this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
+      if (this.username == photousername) {
+        return true;
       }
     },
   },
