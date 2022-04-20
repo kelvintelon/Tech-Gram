@@ -133,7 +133,7 @@ font-size: 20px;
 h1 {
   margin-top: 40px;
   font-size: 40px;
-  font-family: Fredoka One;
+  font-family: Arial, Helvetica, sans-serif;
 }
 h3{
   margin-bottom: 40px;

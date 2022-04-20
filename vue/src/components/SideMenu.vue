@@ -44,7 +44,7 @@ export default {
 footer {
   position: fixed;
   bottom: 5px;
-  color: black;
+  color:grey;
   text-align: center;
   font-weight: bold;
   font-size: 16px;

@@ -105,6 +105,6 @@ h1 {
   margin-top: 60px;
   margin-bottom: 40px;
   font-size: 40px;
-  font-family: Fredoka One;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
