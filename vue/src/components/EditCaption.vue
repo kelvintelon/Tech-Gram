@@ -93,7 +93,6 @@ export default {
   //  },
 
   mounted() {
-    console.log(this.$store.state.pictureDetails.username);
     this.checkForUser(this.photoUsername);
   },
   // beforeMount() {

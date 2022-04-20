@@ -255,8 +255,6 @@ export default {
     if (this.userFeed == true) {
       this.getUserFeedImages();
     }
-    //  edit here -z
-    console.log("this works");
   },
   mounted() {
     if (this.allPhotos == true) {
