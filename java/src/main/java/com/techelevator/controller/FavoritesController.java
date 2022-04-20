@@ -46,4 +46,9 @@ public class FavoritesController {
         return favoritesDao.addToFavorites(photoId, principal.getName());
     }
 
+    @RequestMapping(path = "/favorites/photoCount", method = RequestMethod.GET)
+    public int getPhotoCount(@Valid Principal principal) {
+        return favoritesDao.getPhotoCountByUsername(principal.getName());
+    }
+
 }
