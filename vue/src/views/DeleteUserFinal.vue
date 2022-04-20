@@ -1,6 +1,6 @@
 <template>
   <div class="finalForm">
-    <h1>Tech Gram</h1>
+    <h1 id="logo">Tech Gram</h1>
     <form class="toDelete" @submit.prevent="deleteUser">
       <div class="alert" role="alert" v-if="invalidCredentials">
         Invalid username or password!
@@ -25,13 +25,11 @@
       />
       <button class="deleteButtonFinal" type="submit">Delete</button>
     </form>
-    <button class="deleteButtonFinal" @click="$router.push('/')">
+    <button id="goBack" class="deleteButtonFinal" @click="$router.push('/')">
       Go Back
     </button>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Fredoka+One"
-    />
+            <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
   </div>
 </template>
 
@@ -75,6 +73,7 @@ export default {
 .finalForm {
   border: 2px solid black;
   background-color: aliceblue;
+  border-radius: 10px;
   position: absolute;
   margin: auto;
   top: 0;
@@ -88,15 +87,21 @@ export default {
 .deleteButtonFinal {
   background-color: #00adee;
   border: 1px solid black;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: black;
+  color:aliceblue;
   padding: 15px 32px;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
   margin-top: 30px;
-  margin-bottom: 110px;
+  margin-bottom: 70px;
 }
+#goBack{
+  padding: 15px 25px;
+
+}
+
 .deleteButton:hover {
   background-color: #167fa5;
   transition: 0.7s;

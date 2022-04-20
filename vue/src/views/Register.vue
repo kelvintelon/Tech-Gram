@@ -1,9 +1,9 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Tech Gram</h1>
+      <h1 class="h3 mb-3 font-weight-normal" id="logo">Tech Gram</h1>
       <h3>Sign up to see photos from your friends:</h3>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+      <div id="alert" class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -39,10 +39,8 @@
         Create Account
       </button>
     </form>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Fredoka+One"
-    />
+        <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
   </div>
 </template>
 
@@ -100,5 +98,6 @@ export default {
 h3{
   padding-bottom: 30px;
 }
-
+#alert{
+padding-bottom: 15px;}
 </style>

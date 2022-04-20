@@ -1,12 +1,12 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Tech Gram</h1>  
+      <h1 class="h3 mb-3 font-weight-normal" id="logo">Tech Gram</h1>  
       <h3>Log in to see your page:</h3>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div
+      <div id="alert"
         class="alert alert-success"
         role="alert"
         v-if="this.$route.query.registration"
@@ -38,10 +38,8 @@
       
       <button class="btn" type="submit">Login</button>
     </form>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Fredoka+One"
-    />
+          <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
   </div>
 </template>
 
@@ -85,7 +83,8 @@ export default {
 <style>
 .text-center {
   border: 2npmpx solid black;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   position: absolute;
   margin: auto;
   top: 0;
@@ -119,7 +118,7 @@ font-size: 20px;
   border: 1px solid black;
     border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: rgb(255, 255, 255);
+  color: aliceblue;
   padding: 15px 32px;
   font-weight: bold;
   font-size: 16px;
@@ -130,12 +129,17 @@ font-size: 20px;
       background-color:#167fa5;
       transition: 0.7s;
   }
-h1 {
+h1#logo {
   margin-top: 40px;
   font-size: 40px;
   font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Billabong', sans-serif;
+
 }
 h3{
   margin-bottom: 40px;
+}
+#alert{
+  padding-bottom: 15px;
 }
 </style>

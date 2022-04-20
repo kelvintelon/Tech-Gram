@@ -51,7 +51,8 @@ export default {
 .card {
   display: -ms-flexbox; 
   display: inline-flex;
-  max-width: 1550px;
+  /* max-width: 1550px; */
+  width:80%;
   -ms-flex-pack: distribute;
   justify-content:left;
   margin: 40px auto;

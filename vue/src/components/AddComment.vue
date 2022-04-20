@@ -27,8 +27,10 @@ export default {
     };
   },
   mounted() {
+    
   },
   created() {
+    
   },
   methods: {
   addNewComment() {
@@ -39,10 +41,12 @@ export default {
          if (response.status === 201) {
           
            this.resetForm();
-           
+         
          }
-        window.alert("Comment posted")
-        location.reload();
+          alert("Comment posted")
+          location.reload()
+           
+        
        
       // console.log(response.data);
       // console.log(this.newComment.text);
@@ -53,7 +57,14 @@ export default {
       this.newComment.photo_id= "";
       this.newComment.text="";
 
-    }
+    },
+    getCommentsByPhotoId() {
+      CommentService.getCommentsByPhotoID(this.$route.params.photoId).then(
+        (response) => {
+          this.$store.commit("SET_COMMENTS", response.data);
+        }
+      );
+    },
   },
 
 };

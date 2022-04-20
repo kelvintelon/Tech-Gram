@@ -21,4 +21,6 @@ public interface FavoritesDao {
 
     String getUsernameByUserId(int userId);
 
+    int getPhotoCountByUsername(String username);
+
 }
