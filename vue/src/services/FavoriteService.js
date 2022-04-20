@@ -16,7 +16,13 @@ export default {
 
   checkFavorite(photoId) {
     return axios.get(`/favorites/${photoId}`)
-  }
+  },
+
+  getPhotoCount(){
+    return axios.get(`/favorites/photoCount`);
+  },
+
+
 
 
 }

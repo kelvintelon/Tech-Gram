@@ -90,6 +90,13 @@ public class JdbcFavoritesDao implements FavoritesDao {
         return username;
     }
 
+    @Override
+    public int getPhotoCountByUsername(String username) {
+        String sql = "SELECT count(*) FROM favorites WHERE user_id = (SELECT user_id FROM users WHERE username = ?);";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        return count;
+    }
+
     private Photos mapRowToPhotos(SqlRowSet rowSet) {
         Photos photos = new Photos();
         photos.setPhoto_id(rowSet.getInt("photo_id"));
