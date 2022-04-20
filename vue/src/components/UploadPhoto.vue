@@ -277,6 +277,9 @@ h2{
 
 textarea {
   width: 30%;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .upload-pic {
   display: flex;
