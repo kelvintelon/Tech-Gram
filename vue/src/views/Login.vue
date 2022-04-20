@@ -84,7 +84,7 @@ export default {
 </script>
 <style>
 .text-center {
-  border: 2px solid black;
+  border: 2npmpx solid black;
   background-color: aliceblue;
   position: absolute;
   margin: auto;

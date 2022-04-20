@@ -1,6 +1,8 @@
 <template>
   <div class="deleteBox">
-    <h1>Tech Gram</h1>
+    <h1 id="logo">Tech Gram</h1>
+        <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+
     <h3>Are you sure you want to delete your page?</h3>
     <button class="deleteButton" @click="$router.push('/')">Go Back</button>
     <router-link
@@ -12,9 +14,7 @@
   </div>
 
 </template>
-<style>
-@import url('http://fonts.cdnfonts.com/css/billabong');
-</style>
+
 
 <script>
 export default {
@@ -72,7 +72,7 @@ export default {
   background-color: #167fa5;
   transition: 0.7s;
 }
-h1 {
+h1#logo {
   margin-top: 60px;
   font-size: 70px;
   font-family: 'Billabong', sans-serif;
