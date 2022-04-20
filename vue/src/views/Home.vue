@@ -4,6 +4,9 @@
     <div class="sideMenu"><side-menu></side-menu></div>
     <header-logo></header-logo>
     <picture-card v-bind:allPhotos="allPhotos"></picture-card>
+    <!-- <div class="bg-image"></div> -->
+    <img id="logoutimage" src="../../img/image.png" v-if="$store.state.token == ''"/>
+    <!-- <img src="../../img/mark.png" alt=""> -->
  
     <link href="http://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
 
@@ -54,6 +57,7 @@ export default {
 };
 </script>
 <style>
+
 .image {
     width:30%;
     margin: auto;
@@ -76,6 +80,17 @@ body {
   color: aliceblue;
   
 }
+.sideMenu{
+  z-index: 1;
+}
+
+#logoutimage{
+  filter: blur(3px);
+  z-index: -100;
+  margin:0;
+
+}
+
 
 /* .logo {
   width: 60px;
