@@ -11,7 +11,7 @@ public interface CommentsDao {
 
     void updateComment(Comments comments);
 
-    void deleteComment(Comments comments);
+    void deleteComment(int commentId);
 
     String getUsernameByUserId(int userId);
 

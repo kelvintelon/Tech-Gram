@@ -10,8 +10,8 @@ export default {
       return axios.post(`/comments`, comment )
   },
 
-  deleteComment(comment) {
-      return axios.delete(`/comments`, comment )
+  deleteComment(commentId) {
+      return axios.delete(`/comments/comment/${commentId}`)
   },
 
   updateComment(comment) {
