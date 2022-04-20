@@ -85,10 +85,11 @@ body {
 }
 
 #logoutimage{
-  filter: blur(3px);
+  filter: blur(7px);
   z-index: -100;
   margin:0;
-
+  border-radius: 30px;
+  width: 79%;
 }
 
 
