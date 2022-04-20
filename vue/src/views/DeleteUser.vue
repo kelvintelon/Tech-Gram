@@ -44,6 +44,7 @@ export default {
 <style>
 .deleteBox {
   border: 2px solid black;
+  border-radius: 10px;
   background-color: aliceblue;
   position: absolute;
   margin: auto;
@@ -57,11 +58,12 @@ export default {
 }
 .deleteButton {
   background-color: #00adee;
+  border-radius: 10px;
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: 100px;
-  width: 300px;
-  color: rgb(255, 255, 255);
+  height: 80px;
+  width: 200px;
+  color: aliceblue;
   padding: 15px 32px;
   font-weight: bold;
   font-size: 16px;
