@@ -91,6 +91,8 @@ public class JdbcUserDao implements UserDao {
         String sql = "BEGIN TRANSACTION; " +
                 "DELETE FROM comments " +
                 "WHERE comments.user_id = (SELECT user_id FROM users WHERE username = ?); " +
+                "DELETE FROM likes " +
+                "WHERE likes.user_id = (SELECT user_id FROM users WHERE username = ?); " +
                 "DELETE FROM photos " +
                 "WHERE photos.user_id = (SELECT user_id FROM users WHERE username = ?); " +
                 "DELETE FROM favorites " +
