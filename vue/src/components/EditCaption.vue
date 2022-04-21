@@ -54,6 +54,10 @@ export default {
       this.newPhoto.caption = document.querySelector("textarea").value;
       this.newPhoto.image_location =
         this.$store.state.pictureDetails.image_location;
+        const UserString= localStorage.getItem("user");
+     let firstIndex = UserString.indexOf("username");
+     let secondIndex = UserString.indexOf("authorities");
+     this.username = UserString.substring(firstIndex + 11, secondIndex - 3);
       if (this.username == this.$store.state.pictureDetails.username) {
         PhotoService.updateCaption(this.newPhoto, this.$route.params.photoId)
           .then((response) => {

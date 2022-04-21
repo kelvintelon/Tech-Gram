@@ -93,14 +93,14 @@ public class JdbcUserDao implements UserDao {
                 "WHERE comments.user_id = (SELECT user_id FROM users WHERE username = ?); " +
                 "DELETE FROM likes " +
                 "WHERE likes.user_id = (SELECT user_id FROM users WHERE username = ?); " +
-                "DELETE FROM photos " +
-                "WHERE photos.user_id = (SELECT user_id FROM users WHERE username = ?); " +
                 "DELETE FROM favorites " +
                 "WHERE favorites.user_id = (SELECT user_id FROM users WHERE username = ?); " +
+                "DELETE FROM photos " +
+                "WHERE photos.user_id = (SELECT user_id FROM users WHERE username = ?); " +
                 "DELETE FROM users " +
                 "WHERE users.username = ?; " +
                 "COMMIT TRANSACTION;";
-        jdbcTemplate.update(sql, username, username, username, username);
+        jdbcTemplate.update(sql, username, username, username, username, username);
     }
 
     private User mapRowToUser(SqlRowSet rs) {
